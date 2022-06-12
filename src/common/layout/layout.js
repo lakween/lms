@@ -1,5 +1,6 @@
 import NavBar from "./nav-bar/nav-bar";
 import SideBar from "./side-bar/side-bar";
+import {Outlet} from "react-router-dom";
 
 const Layout = () => {
     return (
@@ -8,7 +9,7 @@ const Layout = () => {
             <NavBar/>
             <div style={{display: 'flex', gap: '5px', flexGrow: 1}}>
                 <SideBar/>
-                <text>scscscscscs</text>
+                <Outlet/>
             </div>
         </div>
     </>

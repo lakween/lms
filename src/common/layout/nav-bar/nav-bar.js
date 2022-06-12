@@ -4,7 +4,7 @@ const NavBar = () => {
     return (
         <>
             <Navbar bg="dark" variant="dark">
-                <Navbar.Brand className={'ms-2'} href="#home">Navbar</Navbar.Brand>
+                <Navbar.Brand className={'ms-2'} href="#home">Learning Management System</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
                     <Nav.Link href="#features">Features</Nav.Link>

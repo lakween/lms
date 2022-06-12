@@ -10,18 +10,23 @@ import "firebase/compat/firestore";
 import reportWebVitals from './reportWebVitals';
 import firebaseConfig from "./firebase-config";
 import {store} from "./store/store";
-import { ChakraProvider } from '@chakra-ui/react'
+import {ChakraProvider} from '@chakra-ui/react'
+import {RouterConfig} from "./route-config";
+import {BrowserRouter} from "react-router-dom";
+
 firebase.initializeApp(firebaseConfig)
 firebase.firestore();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <ChakraProvider>
-            <App/>
-            </ChakraProvider>
-        </Provider>
+        <BrowserRouter>
+            <Provider store={store}>
+                <ChakraProvider>
+                    <RouterConfig/>
+                </ChakraProvider>
+            </Provider>
+        </BrowserRouter>
     </React.StrictMode>
 );
 
