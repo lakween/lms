@@ -3,18 +3,11 @@ import './App.css';
 import {Card} from "react-bootstrap";
 import NavBar from "./common/layout/nav-bar/nav-bar";
 import SideBar from "./common/layout/side-bar/side-bar";
+import Layout from "./common/layout/layout";
 
 function App() {
   return (
-      <>
-          <div style={{minHeight:'100vh' ,display:'flex',flexDirection:'column' ,boxSizing:'border-box'}}>
-              <NavBar/>
-              <div style={{display:'flex', gap:'5px',flexGrow:1}}>
-              <SideBar/>
-              <text>scscscscscs</text>
-              </div>
-          </div>
-      </>
+      <Layout/>
   );
 }
 

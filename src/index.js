@@ -10,7 +10,7 @@ import "firebase/compat/firestore";
 import reportWebVitals from './reportWebVitals';
 import firebaseConfig from "./firebase-config";
 import {store} from "./store/store";
-
+import { ChakraProvider } from '@chakra-ui/react'
 firebase.initializeApp(firebaseConfig)
 firebase.firestore();
 
@@ -18,7 +18,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Provider store={store}>
+            <ChakraProvider>
             <App/>
+            </ChakraProvider>
         </Provider>
     </React.StrictMode>
 );
