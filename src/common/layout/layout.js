@@ -1,7 +1,7 @@
 import NavBar from "./nav-bar/nav-bar";
 import SideBar from "./side-bar/side-bar";
 import {Outlet} from "react-router-dom";
-import SidebarWithHeader from "./side-bar/layo";
+import SidebarWithHeader from "./side-bar/side-bar";
 
 const Layout = () => {
     return (

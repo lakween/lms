@@ -1,16 +1,14 @@
 import {useRoutes} from "react-router-dom";
 import Layout from "./common/layout/layout";
 import HomePage from "./user/home/home.page";
+import Login from "./common/loging/loging.page";
 
 export let RouterConfig = () => {
 
     let routes = [
         {
             path: "/",
-            element: <Layout/>,
-            children: [
-                {index: true, element: <HomePage/>},
-            ],
+            element: <Login/>,
         },
         {
             path: "home",
