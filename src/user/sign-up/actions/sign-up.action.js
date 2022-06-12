@@ -1,4 +1,4 @@
-import firebase from "firebase/compat";
+import firebase from "firebase/compat/app";
 
 export const emailAndPasswordAuth = (email, password, toast) => {
     return async (dispatch) => {

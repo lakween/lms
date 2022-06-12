@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import useFormController from "../../hooks/useFormController";
 import {emailAndPasswordAuth} from"../sign-up/actions/sign-up.action";
 import {useNavigate} from "react-router-dom";
+import Card from "../../common/card/card.component"
 
 const SignUp = (getNames) => {
     const [isLoading, setIsLoading] = useState(false)
