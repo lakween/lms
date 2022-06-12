@@ -9,7 +9,7 @@ function App() {
       <>
           <div style={{minHeight:'100vh' ,display:'flex',flexDirection:'column' ,boxSizing:'border-box'}}>
               <NavBar/>
-              <div style={{display:'flex',flexDirection:'row', flexGrow: 1}}>
+              <div style={{display:'flex', gap:'5px',flexGrow:1}}>
               <SideBar/>
               <text>scscscscscs</text>
               </div>
