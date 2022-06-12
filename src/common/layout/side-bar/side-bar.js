@@ -8,7 +8,7 @@ const SideBar = () => {
     return (
         <>
 
-            <Box minHeight={'100%'} minW={'15vw'} padding={'5px'} className={'bg-primary rounded-0'} style={{
+            <Box minHeight={'100%'} minW={'15vw'} padding={'10px'} className={'bg-primary rounded-0'} style={{
                 width: '30vh',
             }}>
                 <Box minHeight={'100%'}  >
