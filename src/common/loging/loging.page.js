@@ -20,6 +20,7 @@ import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import useFormController from "../../hooks/useFormController";
+import {login} from "./actions/loging.action";
 
 const Login = () => {
     let navigate = useNavigate();
@@ -35,7 +36,7 @@ const Login = () => {
     }
 
     const loginHandler = async () => {
-        // await dispatch(login(form, navigate))
+        await dispatch(login(form, navigate))
     }
 
     const CFaUserAlt = chakra(FaUserAlt);

@@ -2,6 +2,7 @@ import {useRoutes} from "react-router-dom";
 import Layout from "./common/layout/layout";
 import HomePage from "./user/home/home.page";
 import Login from "./common/loging/loging.page";
+import SignUp from "./user/sign-up/sign-up.page";
 
 export let RouterConfig = () => {
 
@@ -16,6 +17,10 @@ export let RouterConfig = () => {
             children: [
                 {index: true, element: <HomePage/>},
             ],
+        },
+        {
+            path: "signup",
+            element: <SignUp/>,
         },
     ];
 
