@@ -21,11 +21,11 @@ export const createDocOfCollection = (collName,data)=>{
 export const getAllDocFromCollection = (collName)=>{
     return async (dispatch)=>{
         const db = firebase.firestore();
+        let array = []
         const querySnapshot = await getDocs(collection(db, collName));
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        })
-        //return snapshot.data() ? snapshot.data() : {}
+        for(let doc of querySnapshot.docs){
+            array.push(doc.data())
+        }
+        return array
     }
 }

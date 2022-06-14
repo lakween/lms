@@ -1,50 +1,33 @@
-import React, {ReactNode} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
-    IconButton,
     Avatar,
     Box,
+    Button,
     CloseButton,
-    Flex,
-    HStack,
-    VStack,
-    Icon,
-    useColorModeValue,
-    Link,
     Drawer,
     DrawerContent,
-    Text,
-    useDisclosure,
-    BoxProps,
-    FlexProps,
+    Flex,
+    HStack,
+    Icon,
+    IconButton,
+    Link,
     Menu,
     MenuButton,
     MenuDivider,
     MenuItem,
-    MenuList, Button, useColorMode,
+    MenuList,
+    Text,
+    useColorMode,
+    useColorModeValue,
+    useDisclosure,
+    VStack,
 } from '@chakra-ui/react';
-import {
-    FiHome,
-    FiTrendingUp,
-    FiCompass,
-    FiStar,
-    FiSettings,
-    FiMenu,
-    FiBell,
-    FiChevronDown,
-} from 'react-icons/fi';
-import {IconType} from 'react-icons';
+import {FiBell, FiChevronDown, FiMenu,} from 'react-icons/fi';
+import {useDispatch} from "react-redux";
+import {getAllDocFromCollection} from "../../common-action/common-action";
+import {useNavigate} from "react-router-dom";
 
-const LinkItems = [
-    {name: 'Home', icon: FiHome},
-    {name: 'Trending', icon: FiTrendingUp},
-    {name: 'Explore', icon: FiCompass},
-    {name: 'Favourites', icon: FiStar},
-    {name: 'Settings', icon: FiSettings},
-];
-
-export default function SidebarWithHeader({
-                                              children,
-                                          }) {
+export default function SidebarWithHeader({children}) {
     const {isOpen, onOpen, onClose} = useDisclosure();
 
     return (
@@ -76,7 +59,21 @@ export default function SidebarWithHeader({
 }
 
 const SidebarContent = ({onClose}) => {
+    const [LinkItems, setLinkItems] = useState([])
+    const navigator = useNavigate()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+    async function getData() {
+        let res = await dispatch(getAllDocFromCollection('userRoutes'))
+        setLinkItems([...res])
+    }
+
     return (
+
         <Box
             transition="3s ease"
             bg={useColorModeValue('white', 'gray.900')}
@@ -92,8 +89,8 @@ const SidebarContent = ({onClose}) => {
                 <CloseButton display={{base: 'flex', md: 'none'}} onClick={onClose}/>
 
             </Flex>
-            {LinkItems.map((link) => (
-                <NavItem key={link.name} icon={link.icon}>
+            {LinkItems?.map((link) => (
+                <NavItem key={link.name} icon={link.icon} link={link.link}>
                     {link.name}
                 </NavItem>
             ))}
@@ -101,9 +98,11 @@ const SidebarContent = ({onClose}) => {
     );
 };
 
-const NavItem = ({icon, children, ...rest}) => {
+const NavItem = ({icon, link, children, ...rest}) => {
     return (
-        <Link href="#" style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
+        <Link onClick={() => {
+            navigator.to(link)
+        }} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
             <Flex
                 align="center"
                 p="4"
@@ -134,7 +133,7 @@ const NavItem = ({icon, children, ...rest}) => {
 };
 
 const MobileNav = ({onOpen, ...rest}) => {
-    const { colorMode, toggleColorMode } = useColorMode()
+    const {colorMode, toggleColorMode} = useColorMode()
     return (
         <Flex
             ml={{base: 0, md: 60}}
