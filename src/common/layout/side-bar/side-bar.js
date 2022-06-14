@@ -22,7 +22,7 @@ import {
     useDisclosure,
     VStack,
 } from '@chakra-ui/react';
-import {FiBell, FiChevronDown, FiMenu,} from 'react-icons/fi';
+import {FiBell, FiChevronDown, FiCompass, FiHome, FiMenu, FiSettings, FiStar, FiTrendingUp,} from 'react-icons/fi';
 import {useDispatch} from "react-redux";
 import {getAllDocFromCollection} from "../../common-action/common-action";
 import {useNavigate} from "react-router-dom";
@@ -60,8 +60,12 @@ export default function SidebarWithHeader({children}) {
 
 const SidebarContent = ({onClose}) => {
     const [LinkItems, setLinkItems] = useState([])
-    const navigator = useNavigate()
+    let navigate = useNavigate();
     const dispatch = useDispatch()
+
+    let icons = {
+    FiHome:<FiHome/>
+    }
 
     useEffect(() => {
         getData()
@@ -71,6 +75,14 @@ const SidebarContent = ({onClose}) => {
         let res = await dispatch(getAllDocFromCollection('userRoutes'))
         setLinkItems([...res])
     }
+
+    const LinkItemss = [
+        {name: 'Home', icon: FiHome},
+        {name: 'Trending', icon: FiTrendingUp},
+        {name: 'Explore', icon: FiCompass},
+        {name: 'Favourites', icon: FiStar},
+        {name: 'Settings', icon: FiSettings},
+    ];
 
     return (
 
@@ -89,8 +101,8 @@ const SidebarContent = ({onClose}) => {
                 <CloseButton display={{base: 'flex', md: 'none'}} onClick={onClose}/>
 
             </Flex>
-            {LinkItems?.map((link) => (
-                <NavItem key={link.name} icon={link.icon} link={link.link}>
+            {LinkItemss?.map((link) => (
+                <NavItem key={link.name} navigate={navigate} icon={link.icon} link={link.link}>
                     {link.name}
                 </NavItem>
             ))}
@@ -98,10 +110,10 @@ const SidebarContent = ({onClose}) => {
     );
 };
 
-const NavItem = ({icon, link, children, ...rest}) => {
+const NavItem = ({icon, link, children,navigate, ...rest}) => {
     return (
         <Link onClick={() => {
-            navigator.to(link)
+            navigate(link)
         }} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
             <Flex
                 align="center"
@@ -122,7 +134,7 @@ const NavItem = ({icon, link, children, ...rest}) => {
                         _groupHover={{
                             color: 'white',
                         }}
-                        as={icon}
+                        icon={icon}
                     />
                 )}
 
