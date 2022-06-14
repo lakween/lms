@@ -38,11 +38,13 @@ const Login = () => {
         // console.log(res)
 
     }
+
     const loginHandler = async () => {
+
         setIsLoading(true)
         let res = await dispatch(login(form, navigate))
         setIsLoading(false)
-        if(res){
+        if (res) {
             dispatch(setUserDetails(res))
             navigate('/home')
         }
@@ -56,7 +58,6 @@ const Login = () => {
 
     return (
         <LightMode>
-
             <Flex
                 flexDirection="column"
                 width="100wh"
