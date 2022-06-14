@@ -1,7 +1,7 @@
 import {Badge, Box, Image} from "@chakra-ui/react";
 import {BsStarFill} from "react-icons/bs";
 
-const courseCardComponent = () => {
+const CourseCardComponent = () => {
 
     const property = {
         imageUrl: 'https://bit.ly/2Z4KKcF',
@@ -70,3 +70,4 @@ const courseCardComponent = () => {
 
     )
 }
+export default CourseCardComponent

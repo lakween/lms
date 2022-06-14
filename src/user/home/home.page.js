@@ -1,16 +1,44 @@
 import MainCard from "./components/main-card.component";
-import {useColorModeValue} from "@chakra-ui/react";
+import {Center, useColorModeValue, Wrap, WrapItem} from "@chakra-ui/react";
+import CourseCardComponent from "./components/course-card.component";
 
 const HomePage = ()=>{
 
     return (
-        <MainCard height="60vh"
-                  alignItems="center"
-                  bg={useColorModeValue('white', 'gray.900')}
-                  borderWidth="2px"
-                  borderColor={useColorModeValue('gray.200', 'gray.700')}
-                  borderStyle={'solid'}
-                  justifyContent={{base: 'space-between', md: 'flex-end'}}/>
+        <MainCard
+                  >
+           <Wrap spacing='30px'>
+               <WrapItem>
+                   <CourseCardComponent/>
+               </WrapItem>
+               <WrapItem>
+                   <CourseCardComponent/>
+               </WrapItem>
+               <WrapItem>
+                   <CourseCardComponent/>
+               </WrapItem>
+               <WrapItem>
+                   <CourseCardComponent/>
+               </WrapItem>
+               <WrapItem>
+                   <CourseCardComponent/>
+               </WrapItem>
+               <WrapItem>
+                   <CourseCardComponent/>
+               </WrapItem>
+               <WrapItem>
+                   <CourseCardComponent/>
+               </WrapItem>
+               <WrapItem>
+                   <CourseCardComponent/>
+               </WrapItem>
+               <WrapItem>
+                   <CourseCardComponent/>
+               </WrapItem>
+
+           </Wrap>
+            </MainCard>
+
     )
 }
 
