@@ -2,8 +2,8 @@ import firebase from "firebase/compat/app";
 import {collection, getDocs} from "firebase/firestore";
 import setUserDetails from '../../../store/reducers/user-details.slice'
 
-export const googleSignUp =  (navigate) => {
-    return async (dispatch)=>{
+export const googleSignUp = (navigate) => {
+    return async (dispatch) => {
         let provider = new firebase.auth.GoogleAuthProvider();
         let result = await firebase.auth().signInWithPopup(provider).then(function (result) {
             navigate('signup')
@@ -45,15 +45,14 @@ export const signOut = () => {
 
 export const login = (form, navigate) => {
     return async (dispatch) => {
-        firebase.auth().signInWithEmailAndPassword(form.username, form.password)
-            .then((userCredential) => {
-                setUserDetails(userCredential)
-                navigate('/home')
-            })
-            .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-            });
+        try {
+            let res = await firebase.auth().signInWithEmailAndPassword(form.username, form.password)
+            return res
+        }catch(e)
+        {
+            console.log(e)
+        }
+
     }
 }
 
@@ -72,7 +71,7 @@ export const checkEmailExist = (form) => {
     }
 }
 
-export const getAllDocuments =  (CollectionName) => {
+export const getAllDocuments = (CollectionName) => {
     return async (dispatch) => {
         let data = []
         const db = firebase.firestore();

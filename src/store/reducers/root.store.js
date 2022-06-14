@@ -1,10 +1,10 @@
 import {combineReducers} from "@reduxjs/toolkit";
 import commonSlice from './common-slice'
-import userDetailsSlice from "./user-details.slice";
+import setUserDetails from "./user-details.slice";
 
 const RootStore = combineReducers({
     commonSlice: commonSlice,
-    userDetailsSlice:userDetailsSlice,
+    setUserDetails:setUserDetails,
 })
 
 export default RootStore

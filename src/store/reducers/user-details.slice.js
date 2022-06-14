@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const commonSlice = createSlice({
+const userDetailsSlice = createSlice({
     name: 'userDetailsSlice',
     initialState: {},
     reducers: {
@@ -8,5 +8,5 @@ const commonSlice = createSlice({
     },
 })
 
-export const { setCommonState } = commonSlice.actions
-export default commonSlice.reducer
+export const { setUserDetails } = userDetailsSlice.actions
+export default userDetailsSlice.reducer

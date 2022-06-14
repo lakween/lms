@@ -11,8 +11,8 @@ import {
     InputGroup,
     InputLeftElement,
     InputRightElement,
-    Link,Text,
-    Stack,LightMode, useColorMode
+    Link, Text,
+    Stack, LightMode, useColorMode
 } from "@chakra-ui/react";
 import {FaLock, FaUserAlt} from "react-icons/fa";
 import {FcGoogle} from "react-icons/fc";
@@ -21,16 +21,16 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import useFormController from "../../hooks/useFormController";
 import {login} from "./actions/loging.action";
+import {setCommonState} from "../../store/reducers/common-slice";
+import {setUserDetails} from "../../store/reducers/user-details.slice";
 
 const Login = () => {
     const {colorMode, toggleColorMode} = useColorMode()
     let navigate = useNavigate();
     let dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(false)
+
     let [valueChangeHandler, setValue, form, setForm] = useFormController()
-    if (colorMode === 'Dark') {
-        toggleColorMode()
-    }
 
     async function signUpwithGoogle() {
         // setIsLoading(true)
@@ -38,9 +38,14 @@ const Login = () => {
         // console.log(res)
 
     }
-
     const loginHandler = async () => {
-        await dispatch(login(form, navigate))
+        setIsLoading(true)
+        let res = await dispatch(login(form, navigate))
+        setIsLoading(false)
+        if(res){
+            dispatch(setUserDetails(res))
+            navigate('/home')
+        }
     }
 
     const CFaUserAlt = chakra(FaUserAlt);
@@ -110,6 +115,7 @@ const Login = () => {
                                 </FormHelperText>
                             </FormControl>
                             <Button
+                                isLoading={isLoading}
                                 borderRadius={0}
                                 type="submit"
                                 variant="solid"
