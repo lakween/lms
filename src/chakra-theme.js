@@ -15,7 +15,17 @@ export const theme = extendTheme({
         FormLabel: {
             baseStyle: (props) => ({
                 color: mode("black", "whiteAlpha.900")(props)
-            })
+            }),
+            outlined: (props) => ({
+                color: mode("blue.400", "white")(props),
+                bg: "transparent",
+                fontSize: "10px",
+                border: "1px solid",
+                borderColor: { bg: mode("blue.400", "white")(props)},
+                _hover: { bg: mode("blue.50", "transparent")(props) },
+                _focus: { bg: mode("blue.50", "transparent")(props) },
+                _active: { bg: mode("blue.50", "transparent")(props) },
+            }),
         },
         Box: {
             baseStyle: (props) => ({
@@ -26,18 +36,48 @@ export const theme = extendTheme({
             baseStyle: (props) => ({
                 color: mode("black", "whiteAlpha.900")(props),
                 borderColor: mode("black", "black")(props)
-            })
+            }),
+            outlined: (props) => ({
+                color: mode("blue.400", "white")(props),
+                bg: "transparent",
+                fontSize: "10px",
+                border: "1px solid",
+                borderColor: { bg: mode("blue.400", "white")(props)},
+                _hover: { bg: mode("blue.50", "transparent")(props) },
+                _focus: { bg: mode("blue.50", "transparent")(props) },
+                _active: { bg: mode("blue.50", "transparent")(props) },
+            }),
         },
         FormControl: {
             baseStyle: (props) => ({
                 color: mode("black", "whiteAlpha.900")(props),
                 colorScheme: mode("black", "whiteAlpha.900")(props)
-            })
+            }),
+            outlined: (props) => ({
+                color: mode("blue.400", "white")(props),
+                bg: "transparent",
+                fontSize: "10px",
+                border: "1px solid",
+                borderColor: { bg: mode("blue.400", "white")(props)},
+                _hover: { bg: mode("blue.50", "transparent")(props) },
+                _focus: { bg: mode("blue.50", "transparent")(props) },
+                _active: { bg: mode("blue.50", "transparent")(props) },
+            }),
         },
         InputGroup: {
             baseStyle: (props) => ({
                 borderColor: mode("black", "black")(props)
-            })
+            }),
+            outlined: (props) => ({
+                color: mode("blue.400", "white")(props),
+                bg: "transparent",
+                fontSize: "10px",
+                border: "1px solid",
+                borderColor: { bg: mode("blue.400", "white")(props)},
+                _hover: { bg: mode("blue.50", "transparent")(props) },
+                _focus: { bg: mode("blue.50", "transparent")(props) },
+                _active: { bg: mode("blue.50", "transparent")(props) },
+            }),
         }
 
     },
@@ -60,13 +100,33 @@ export const theme = extendTheme({
         InputGroup: {
             baseStyle: (props) => ({
                 borderColor: mode("black", "black")(props)
-            })
+            }),
+            outlined: (props) => ({
+                color: mode("blue.400", "white")(props),
+                bg: "transparent",
+                fontSize: "10px",
+                border: "1px solid",
+                borderColor: { bg: mode("blue.400", "white")(props)},
+                _hover: { bg: mode("blue.50", "transparent")(props) },
+                _focus: { bg: mode("blue.50", "transparent")(props) },
+                _active: { bg: mode("blue.50", "transparent")(props) },
+            }),
         },
         Input: {
             baseStyle: (props) => ({
                 color: mode("black", "whiteAlpha.900")(props),
                 borderColor: mode("black", "whiteAlpha.900")(props)
-            })
+            }),
+            outlined: (props) => ({
+                color: mode("blue.400", "white")(props),
+                bg: "transparent",
+                fontSize: "10px",
+                border: "1px solid",
+                borderColor: { bg: mode("blue.400", "white")(props)},
+                _hover: { bg: mode("blue.50", "transparent")(props) },
+                _focus: { bg: mode("blue.50", "transparent")(props) },
+                _active: { bg: mode("blue.50", "transparent")(props) },
+            }),
         },
     }),
 });
