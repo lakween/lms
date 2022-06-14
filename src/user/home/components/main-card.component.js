@@ -5,6 +5,7 @@ const MainCard = ({children, ...rest}) => {
         <Flex
             bg={useColorModeValue('white', 'gray.900')}
             borderWidth="2px"
+            padding={'10px'}
             borderColor={useColorModeValue('gray.200', 'gray.700')}
             borderStyle={'solid'}
             {...rest}
