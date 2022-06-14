@@ -64,7 +64,7 @@ const SidebarContent = ({onClose}) => {
     const dispatch = useDispatch()
 
     let icons = {
-    FiHome:<FiHome/>
+    FiHome:FiHome
     }
 
     useEffect(() => {
@@ -75,14 +75,6 @@ const SidebarContent = ({onClose}) => {
         let res = await dispatch(getAllDocFromCollection('userRoutes'))
         setLinkItems([...res])
     }
-
-    const LinkItemss = [
-        {name: 'Home', icon: FiHome},
-        {name: 'Trending', icon: FiTrendingUp},
-        {name: 'Explore', icon: FiCompass},
-        {name: 'Favourites', icon: FiStar},
-        {name: 'Settings', icon: FiSettings},
-    ];
 
     return (
 
@@ -101,8 +93,8 @@ const SidebarContent = ({onClose}) => {
                 <CloseButton display={{base: 'flex', md: 'none'}} onClick={onClose}/>
 
             </Flex>
-            {LinkItemss?.map((link) => (
-                <NavItem key={link.name} navigate={navigate} icon={link.icon} link={link.link}>
+            {LinkItems.map((link) => (
+                <NavItem key={link.name} link={link.link} navigate={navigate} icon={icons[link.icon]}>
                     {link.name}
                 </NavItem>
             ))}
@@ -110,11 +102,9 @@ const SidebarContent = ({onClose}) => {
     );
 };
 
-const NavItem = ({icon, link, children,navigate, ...rest}) => {
+const NavItem = ({icon,link, navigate, children, ...rest}) => {
     return (
-        <Link onClick={() => {
-            navigate(link)
-        }} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
+        <Link onClick={()=>{ navigate(link)}} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
             <Flex
                 align="center"
                 p="4"
@@ -134,7 +124,7 @@ const NavItem = ({icon, link, children,navigate, ...rest}) => {
                         _groupHover={{
                             color: 'white',
                         }}
-                        icon={icon}
+                        as={icon}
                     />
                 )}
 
