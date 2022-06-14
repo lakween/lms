@@ -38,9 +38,9 @@ export const createDoc = (collection, toast, navigate, form) => {
 
 
 export const signOut = () => {
-    return firebase.auth().signOut().then(() => {
-    }).catch((error) => {
-    });
+    return async ()=>{
+        let res = await firebase.auth().signOut()
+    }
 }
 
 export const login = (form, navigate) => {
@@ -52,7 +52,6 @@ export const login = (form, navigate) => {
         {
             console.log(e)
         }
-
     }
 }
 
