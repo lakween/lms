@@ -14,17 +14,12 @@ const SignUp = (getNames) => {
     const toast = useToast()
 
     const signUpHandler = async () => {
-        let res = await dispatch(emailAndPasswordAuth(form.email, form.password, toast))
+        let res = await dispatch(emailAndPasswordAuth(form.email, form.password, toast,navigate))
     }
 
     const signedButtonMarkup = (
         <Flex justifyContent={'right'} mt={3} columnGap={'20px'} direction={'row'}>
-            <Button onClick={() => {
-
-            }} width={'100px'} colorScheme="teal" size="sm">
-                Skip
-            </Button>
-            <Button isLoading={isLoading} onClick={signUpHandler} width={'100px'} colorScheme="teal" size="sm">
+            <Button isLoading={isLoading} onClick={signUpHandler} width={'120px'} colorScheme="teal" size="sm">
                 create account
             </Button>
         </Flex>

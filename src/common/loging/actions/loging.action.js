@@ -1,5 +1,6 @@
 import firebase from "firebase/compat/app";
 import {collection, getDocs} from "firebase/firestore";
+import setUserDetails from '../../../store/reducers/user-details.slice'
 
 export const googleSignUp =  (navigate) => {
     return async (dispatch)=>{
@@ -46,6 +47,7 @@ export const login = (form, navigate) => {
     return async (dispatch) => {
         firebase.auth().signInWithEmailAndPassword(form.username, form.password)
             .then((userCredential) => {
+                setUserDetails(userCredential)
                 navigate('/home')
             })
             .catch((error) => {
