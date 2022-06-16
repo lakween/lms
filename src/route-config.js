@@ -4,20 +4,13 @@ import HomePage from "./user/home/home.page";
 import WebHome from "./web/home.page";
 import SignUp from "./user/sign-up/sign-up.page";
 import Login from "./common/loging/loging.page";
+import {useSelector} from "react-redux";
 
 export let RouterConfig = () => {
 
-    let userRoutes = [
-        {
-            path: "home",
-            element: <Layout/>,
-            children: [
-                {index: true, element: <HomePage/>},
-            ],
-        },
-    ]
+    let userType = useSelector(state => state.userType)
 
-    let routes = [
+    let commonRoutes = [
         {
             path: "/",
             element: <WebHome/>,
@@ -32,6 +25,31 @@ export let RouterConfig = () => {
         },
     ];
 
-    let element = useRoutes(routes);
+
+    let studentRoutes = [
+        ...commonRoutes,
+        {
+            path: "home",
+            element: <Layout/>,
+            children: [
+                {index: true, element: <HomePage/>},
+            ],
+        },
+    ]
+
+    let adminRoutes = [
+        ...commonRoutes,
+        {
+            path: "home",
+            element: <Layout/>,
+            children: [
+                {index: true, element: <HomePage/>},
+            ],
+        },
+    ]
+
+
+
+    let element = useRoutes(userType== "student"?studentRoutes:adminRoutes);
     return element
 }
