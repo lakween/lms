@@ -1,12 +1,12 @@
 import firebase from "firebase/compat/app";
-import setUserDetails from '../../../store/reducers/user-details.slice'
+import setUserLoginDetails from '../../../store/reducers/user-details.slice'
 
 export const emailAndPasswordAuth = (email, password, toast,navigate) => {
     return async (dispatch) => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 console.log(userCredential, 'userCredential')
-                setUserDetails(userCredential)
+                setUserLoginDetails(userCredential)
                 navigate('/home')
                 return true
             })

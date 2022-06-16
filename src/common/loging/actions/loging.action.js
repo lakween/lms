@@ -1,6 +1,6 @@
 import firebase from "firebase/compat/app";
-import {collection, getDocs} from "firebase/firestore";
-import setUserDetails from '../../../store/reducers/user-details.slice'
+import {collection, getDocs,query,where} from "firebase/firestore";
+import setUserLoginDetails from '../../../store/reducers/user-details.slice'
 
 export const googleSignUp = (navigate) => {
     return async (dispatch) => {
@@ -54,6 +54,20 @@ export const login = (form, navigate) => {
         }
     }
 }
+export const getUsrType = (id) => {
+    return async (dispatch) => {
+        const db = firebase.firestore();
+        let userType =''
+        const accounts = collection(db, "accounts")
+        const q = query(accounts, where("userId", "==", id));
+        const querySnapshot = await getDocs(q);
+        for (let doc of querySnapshot.docs){
+            userType = (doc.data()).userType
+        }
+        return userType
+    }
+}
+
 
 export const checkEmailExist = (form) => {
     return async (dispatch) => {
