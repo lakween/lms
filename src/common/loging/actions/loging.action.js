@@ -36,7 +36,6 @@ export const createDoc = (collection, toast, navigate, form) => {
     }
 }
 
-
 export const signOut = () => {
     return async ()=>{
         let res = await firebase.auth().signOut()
