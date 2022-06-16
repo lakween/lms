@@ -14,9 +14,11 @@ import {
 
 import { Image, Link } from "@chakra-ui/react";
 import { AiOutlineMenu } from "react-icons/ai";
+import {useNavigate} from "react-router-dom";
 
 const HeaderNav = () => {
   const bg = useColorModeValue("white", "gray.800");
+  let navigate = useNavigate();
 
   return (
     <chakra.nav bg={bg} shadow="base">
@@ -89,6 +91,7 @@ const HeaderNav = () => {
               Contact
             </chakra.a>
             <chakra.a
+                onClick={()=>{navigate('/login')}}
               display="block"
               mx={4}
               mt={[2, , 0]}
