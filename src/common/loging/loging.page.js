@@ -20,9 +20,11 @@ import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import useFormController from "../../hooks/useFormController";
-import {login} from "./actions/loging.action";
+import {getUsrType, login} from "./actions/loging.action";
 import {setCommonState} from "../../store/reducers/common-slice";
 import {setUserLoginDetails} from "../../store/reducers/user-details.slice";
+import firebase from "firebase/compat/app";
+import {collection, getDocs, query, where} from "firebase/firestore";
 
 const Login = () => {
     const {colorMode, toggleColorMode} = useColorMode()
@@ -43,11 +45,12 @@ const Login = () => {
 
         setIsLoading(true)
         let res = await dispatch(login(form, navigate))
+        let userType = await dispatch(getUsrType('dedkzbpbWPd1aQfvaGDN3Zn3DgW2'))
         setIsLoading(false)
-        if (res) {
-            dispatch(setUserLoginDetails(res))
-            navigate('/home')
-        }
+        // if (res) {
+        //     dispatch(setUserLoginDetails(res))
+        //     navigate('/home')
+        // }
     }
 
     const CFaUserAlt = chakra(FaUserAlt);
