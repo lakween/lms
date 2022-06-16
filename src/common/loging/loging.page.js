@@ -22,7 +22,7 @@ import {useState} from "react";
 import useFormController from "../../hooks/useFormController";
 import {getUsrType, login} from "./actions/loging.action";
 import {setCommonState} from "../../store/reducers/common-slice";
-import {setUserLoginDetails} from "../../store/reducers/user-details.slice";
+import {setUserLoginDetails, setUserType} from "../../store/reducers/user-details.slice";
 import firebase from "firebase/compat/app";
 import {collection, getDocs, query, where} from "firebase/firestore";
 
@@ -45,12 +45,13 @@ const Login = () => {
 
         setIsLoading(true)
         let res = await dispatch(login(form, navigate))
-        let userType = await dispatch(getUsrType('dedkzbpbWPd1aQfvaGDN3Zn3DgW2'))
+        let userType = await dispatch(getUsrType(res.user.uid))
         setIsLoading(false)
-        // if (res) {
-        //     dispatch(setUserLoginDetails(res))
-        //     navigate('/home')
-        // }
+        if (res) {
+            dispatch(setUserLoginDetails(res))
+            dispatch(setUserType(userType))
+            navigate('/home')
+        }
     }
 
     const CFaUserAlt = chakra(FaUserAlt);
