@@ -10,7 +10,27 @@ export let RouterConfig = () => {
 
     let userType = useSelector(state => state.userType)
 
-    let commonRoutes = [
+    let studentRoute = [
+        {
+            path: "home",
+            element: <Layout/>,
+            children: [
+                {index: true, element: <HomePage/>},
+            ],
+        },
+    ]
+
+    let adminRoute= [
+        {
+            path: "home",
+            element: <Layout/>,
+            children: [
+                {index: true, element: <HomePage/>},
+            ],
+        },
+    ]
+
+    let routes = [
         {
             path: "/",
             element: <WebHome/>,
@@ -23,33 +43,9 @@ export let RouterConfig = () => {
             path: "login",
             element: <Login/>,
         },
+        ...(userType == "student" ? studentRoute : adminRoute)
     ];
 
-
-    let studentRoutes = [
-        ...commonRoutes,
-        {
-            path: "home",
-            element: <Layout/>,
-            children: [
-                {index: true, element: <HomePage/>},
-            ],
-        },
-    ]
-
-    let adminRoutes = [
-        ...commonRoutes,
-        {
-            path: "home",
-            element: <Layout/>,
-            children: [
-                {index: true, element: <HomePage/>},
-            ],
-        },
-    ]
-
-
-
-    let element = useRoutes(userType== "student"?studentRoutes:adminRoutes);
+    let element = useRoutes(routes);
     return element
 }
