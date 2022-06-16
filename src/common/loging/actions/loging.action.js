@@ -1,6 +1,6 @@
 import firebase from "firebase/compat/app";
 import {collection, getDocs} from "firebase/firestore";
-import setUserDetails from '../../../store/reducers/user-details.slice'
+import setUserLoginDetails from '../../../store/reducers/user-details.slice'
 
 export const googleSignUp = (navigate) => {
     return async (dispatch) => {

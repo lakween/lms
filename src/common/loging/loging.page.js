@@ -22,7 +22,7 @@ import {useState} from "react";
 import useFormController from "../../hooks/useFormController";
 import {login} from "./actions/loging.action";
 import {setCommonState} from "../../store/reducers/common-slice";
-import {setUserDetails} from "../../store/reducers/user-details.slice";
+import {setUserLoginDetails} from "../../store/reducers/user-details.slice";
 
 const Login = () => {
     const {colorMode, toggleColorMode} = useColorMode()
@@ -45,7 +45,7 @@ const Login = () => {
         let res = await dispatch(login(form, navigate))
         setIsLoading(false)
         if (res) {
-            dispatch(setUserDetails(res))
+            dispatch(setUserLoginDetails(res))
             navigate('/home')
         }
     }

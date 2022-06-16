@@ -7,17 +7,20 @@ import Login from "./common/loging/loging.page";
 
 export let RouterConfig = () => {
 
-    let routes = [
-        {
-            path: "/",
-            element: <WebHome/>,
-        },
+    let userRoutes = [
         {
             path: "home",
             element: <Layout/>,
             children: [
                 {index: true, element: <HomePage/>},
             ],
+        },
+    ]
+
+    let routes = [
+        {
+            path: "/",
+            element: <WebHome/>,
         },
         {
             path: "signup",

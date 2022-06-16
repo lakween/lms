@@ -94,7 +94,7 @@ const HeaderNav = () => {
                 onClick={()=>{navigate('/login')}}
               display="block"
               mx={4}
-              mt={[2, , 0]}
+              mt={[2,0]}
               fontSize="sm"
               color="gray.700"
               _dark={{ color: "gray.200" }}
