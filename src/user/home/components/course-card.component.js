@@ -17,7 +17,6 @@ const CourseCardComponent = () => {
     return (
         <Box margin={5} maxW='25vw' borderWidth='1px' borderRadius='lg' overflow='hidden'>
             <Image src={property.imageUrl} alt={property.imageAlt}/>
-
             <Box p='6'>
                 <Box display='flex' alignItems='baseline'>
                     <Badge borderRadius='full' px='2' colorScheme='teal'>
@@ -34,6 +33,7 @@ const CourseCardComponent = () => {
                         {property.beds} beds &bull; {property.baths} baths
                     </Box>
                 </Box>
+
 
                 <Box
                     mt='1'
