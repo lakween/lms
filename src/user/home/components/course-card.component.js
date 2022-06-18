@@ -22,31 +22,16 @@ const CourseCardComponent = ({title,description,img}) => {
                     mt='1'
                     fontWeight='semibold'
                     as='h4'
-                    lineHeight='tight'
                     noOfLines={1}
                 >
-                    {property.title}
+                    {title}
                 </Box>
-
-                <Box>
-                    {property.formattedPrice}
-                    <Box as='span' color='gray.600' fontSize='sm'>
-                        / wk
-                    </Box>
-                </Box>
-
-                <Box display='flex' mt='2' alignItems='center'>
-                    {Array(5)
-                        .fill('')
-                        .map((_, i) => (
-                            <BsStarFill
-                                key={i}
-                                color={i < property.rating ? 'teal.500' : 'gray.300'}
-                            />
-                        ))}
-                    <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-                        {property.reviewCount} reviews
-                    </Box>
+                <Box
+                    mt='3'
+                    as='p'
+                    noOfLines={2}
+                >
+                    {description}
                 </Box>
             </Box>
         </Box>
