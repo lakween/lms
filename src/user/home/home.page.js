@@ -5,7 +5,7 @@ import CourseCardComponent from "./components/course-card.component";
 const HomePage = () => {
 
     return (
-        <MainCard maxHeight={'88vh'}>
+        <MainCard minHeight={'100%'}>
             <CourseCardComponent/>
             <CourseCardComponent/>
             <CourseCardComponent/>

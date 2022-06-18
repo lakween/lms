@@ -15,7 +15,7 @@ const CourseCardComponent = () => {
     }
 
     return (
-        <Box maxW='25vw' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+        <Box margin={5} maxW='25vw' borderWidth='1px' borderRadius='lg' overflow='hidden'>
             <Image src={property.imageUrl} alt={property.imageAlt}/>
 
             <Box p='6'>
