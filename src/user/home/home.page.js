@@ -19,6 +19,10 @@ const HomePage = () => {
        setCourses(res)
     }
 
+    const onClickHandler= ()=>{
+
+    }
+
     return (
         <MainCard minHeight={'100%'}>
             {
