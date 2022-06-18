@@ -1,6 +1,7 @@
 import firebase from "firebase/compat/app";
 import {collection, getDocs,query,where} from "firebase/firestore";
-import setUserLoginDetails from '../../../store/reducers/user-details.slice'
+import { getAuth, setPersistence,inMemoryPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
+
 
 export const googleSignUp = (navigate) => {
     return async (dispatch) => {
@@ -46,6 +47,7 @@ export const login = (form, navigate) => {
     return async (dispatch) => {
         try {
             let res = await firebase.auth().signInWithEmailAndPassword(form.username, form.password)
+            const auth = getAuth();
             return res
         }catch(e)
         {

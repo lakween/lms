@@ -11,8 +11,10 @@ import {
     InputGroup,
     InputLeftElement,
     InputRightElement,
-    Link, Text,
-    Stack, LightMode, useColorMode
+    LightMode,
+    Link,
+    Stack,
+    useColorMode
 } from "@chakra-ui/react";
 import {FaLock, FaUserAlt} from "react-icons/fa";
 import {FcGoogle} from "react-icons/fc";
@@ -21,10 +23,7 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import useFormController from "../../hooks/useFormController";
 import {getUsrType, login} from "./actions/loging.action";
-import {setCommonState} from "../../store/reducers/common-slice";
 import {setUserLoginDetails, setUserType} from "../../store/reducers/user-details.slice";
-import firebase from "firebase/compat/app";
-import {collection, getDocs, query, where} from "firebase/firestore";
 
 const Login = () => {
     const {colorMode, toggleColorMode} = useColorMode()

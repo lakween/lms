@@ -1,19 +1,42 @@
 import MainCard from "./components/main-card.component";
 import {Center, useColorModeValue, Wrap, WrapItem} from "@chakra-ui/react";
 import CourseCardComponent from "./components/course-card.component";
+import {useEffect, useState} from "react";
+import {getAllDocFromCollection} from "../../common/common-action/common-action";
+import {useDispatch} from "react-redux";
 
 const HomePage = () => {
+    const dispatch = useDispatch()
+    const [courses,setCourses] = useState([])
+
+    useEffect(()=>{
+        getCourses()
+    },[])
+
+   async function getCourses(){
+       let res = await dispatch(getAllDocFromCollection('courses'))
+       console.log(res,'res')
+       setCourses(res)
+    }
+
+    const onClickHandler= ()=>{
+
+    }
 
     return (
-        <MainCard maxHeight={'88vh'}>
-            <CourseCardComponent/>
-            <CourseCardComponent/>
-            <CourseCardComponent/>
-            <CourseCardComponent/>
-            <CourseCardComponent/>
-            <CourseCardComponent/>
-            <CourseCardComponent/>
+        <>
+        <MainCard minHeight={'20vh'} maxHeight={'20vh'}>
+            {
+                courses.map((course)=>( <CourseCardComponent title={course.title} description={course.description} onClick={onClickHandler} img={''}/>))
+            }
         </MainCard>
+
+        <MainCard marginTop={5} minHeight={'80%'} maxHeight={'80%'}>
+            {
+                courses.map((course)=>( <CourseCardComponent title={course.title} description={course.description} onClick={onClickHandler} img={''}/>))
+            }
+        </MainCard>
+        </>
 
     )
 }

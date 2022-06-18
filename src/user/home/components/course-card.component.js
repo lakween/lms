@@ -1,7 +1,7 @@
 import {Badge, Box, Image} from "@chakra-ui/react";
 import {BsStarFill} from "react-icons/bs";
 
-const CourseCardComponent = () => {
+const CourseCardComponent = ({title,description,img,onClick}) => {
 
     const property = {
         imageUrl: 'https://bit.ly/2Z4KKcF',
@@ -15,55 +15,23 @@ const CourseCardComponent = () => {
     }
 
     return (
-        <Box maxW='25vw' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-            <Image src={property.imageUrl} alt={property.imageAlt}/>
-
+        <Box cursor={'pointer'} onClick={onClick} margin={5} maxW='15vw' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+            <Image sizes={'sm'} src={property.imageUrl} alt={property.imageAlt}/>
             <Box p='6'>
-                <Box display='flex' alignItems='baseline'>
-                    <Badge borderRadius='full' px='2' colorScheme='teal'>
-                        New
-                    </Badge>
-                    <Box
-                        color='gray.500'
-                        fontWeight='semibold'
-                        letterSpacing='wide'
-                        fontSize='xs'
-                        textTransform='uppercase'
-                        ml='2'
-                    >
-                        {property.beds} beds &bull; {property.baths} baths
-                    </Box>
-                </Box>
-
                 <Box
                     mt='1'
                     fontWeight='semibold'
                     as='h4'
-                    lineHeight='tight'
                     noOfLines={1}
                 >
-                    {property.title}
+                    {title}
                 </Box>
-
-                <Box>
-                    {property.formattedPrice}
-                    <Box as='span' color='gray.600' fontSize='sm'>
-                        / wk
-                    </Box>
-                </Box>
-
-                <Box display='flex' mt='2' alignItems='center'>
-                    {Array(5)
-                        .fill('')
-                        .map((_, i) => (
-                            <BsStarFill
-                                key={i}
-                                color={i < property.rating ? 'teal.500' : 'gray.300'}
-                            />
-                        ))}
-                    <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-                        {property.reviewCount} reviews
-                    </Box>
+                <Box
+                    mt='3'
+                    as='p'
+                    noOfLines={2}
+                >
+                    {description}
                 </Box>
             </Box>
         </Box>

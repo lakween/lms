@@ -10,7 +10,7 @@ const MainCard = ({children, ...rest}) => {
             borderColor={useColorModeValue('gray.200', 'gray.700')}
             borderStyle={'solid'}
             {...rest}
-        className={"d-flex justify-content-between flex-wrap"}>
+        className={"d-flex flex-wrap"}>
          {children}
         </Box>
     )
