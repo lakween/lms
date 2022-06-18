@@ -14,7 +14,8 @@ import {
     LightMode,
     Link,
     Stack,
-    useColorMode
+    useColorMode,
+    useColorModeValue
 } from "@chakra-ui/react";
 import {FaLock, FaUserAlt} from "react-icons/fa";
 import {FcGoogle} from "react-icons/fc";
@@ -26,7 +27,7 @@ import {getUsrType, login} from "./actions/loging.action";
 import {setUserLoginDetails, setUserType} from "../../store/reducers/user-details.slice";
 
 const Login = () => {
-    const {colorMode, toggleColorMode} = useColorMode()
+    // const {colorMode, toggleColorMode} = useColorMode()
     let navigate = useNavigate();
     let dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(false)
@@ -60,12 +61,12 @@ const Login = () => {
     const handleShowClick = () => setShowPassword(!showPassword);
 
     return (
-        <LightMode>
             <Flex
+                bg={useColorModeValue('white', 'gray.900')}
                 flexDirection="column"
                 width="100wh"
                 height="100vh"
-                backgroundColor="gray.200"
+
                 justifyContent="center"
                 alignItems="center"
             >
@@ -77,13 +78,13 @@ const Login = () => {
                 >
                     <Avatar bg="teal.500"/>
                     <Heading color="teal.400">Welcome</Heading>
-                    <Box minW={{base: "90%", md: "468px"}}>
+                    <Box minW={{base: "90%", md: "468px"}}  bg={useColorModeValue('white', 'gray.900')}>
 
                         <Stack
                             spacing={4}
                             p="1rem"
-                            backgroundColor="whiteAlpha.900"
                             boxShadow="md"
+                            bg={useColorModeValue('white', 'gray.900')}
                         >
                             <FormControl>
                                 <InputGroup>
@@ -123,7 +124,7 @@ const Login = () => {
                                 borderRadius={0}
                                 type="submit"
                                 variant="solid"
-                                colorScheme="teal"
+                                colorScheme={useColorModeValue('teal', 'teal')}
                                 width="full"
                                 onClick={loginHandler}
                             >
@@ -146,8 +147,6 @@ const Login = () => {
                     </Link>
                 </Box>
             </Flex>
-        </LightMode>
-
     );
 };
 
