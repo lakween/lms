@@ -10,12 +10,15 @@ const MainCard = ({children, innerText, ...rest}) => {
             borderStyle={'solid'}
             {...rest}
         >
-            <Flex justify={'center'} align={'center'}>
-                <Text>
-                    Recently Accsess Course
-                </Text>
-            </Flex>
-            <Box className={"d-flex flex-wrap"}>
+            {
+                innerText &&  (<Flex justify={'center'} align={'center'}>
+                    <Text>
+                        {innerText}
+                    </Text>
+                </Flex>)
+            }
+
+            <Box height={'100%'} className={"d-flex flex-wrap"}>
 
                 {children}
             </Box>
