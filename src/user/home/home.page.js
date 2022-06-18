@@ -19,7 +19,7 @@ const HomePage = () => {
 
     return (
         <MainCard minHeight={'100%'}>
-            <CourseCardComponent/>
+            <CourseCardComponent title={} description={} img={} />
             <CourseCardComponent/>
             <CourseCardComponent/>
             <CourseCardComponent/>
