@@ -17,6 +17,13 @@ import {theme} from "./chakra-theme";
 
 firebase.initializeApp(firebaseConfig)
 firebase.firestore();
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log('user',user)
+    } else {
+        console.log('user','please login')
+    }
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

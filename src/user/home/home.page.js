@@ -24,11 +24,19 @@ const HomePage = () => {
     }
 
     return (
-        <MainCard minHeight={'100%'}>
+        <>
+        <MainCard minHeight={'20vh'} maxHeight={'20vh'}>
             {
                 courses.map((course)=>( <CourseCardComponent title={course.title} description={course.description} onClick={onClickHandler} img={''}/>))
             }
         </MainCard>
+
+        <MainCard marginTop={5} minHeight={'80%'} maxHeight={'80%'}>
+            {
+                courses.map((course)=>( <CourseCardComponent title={course.title} description={course.description} onClick={onClickHandler} img={''}/>))
+            }
+        </MainCard>
+        </>
 
     )
 }
