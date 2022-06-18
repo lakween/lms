@@ -9,12 +9,13 @@ import {
   Button,
   Stack,
   Icon,
-  Divider,
+  Divider, Menu, MenuButton, HStack, Avatar, VStack, Text, MenuList, MenuItem, MenuDivider,
 } from "@chakra-ui/react";
 
 import { Image, Link } from "@chakra-ui/react";
 import { AiOutlineMenu } from "react-icons/ai";
 import {useNavigate} from "react-router-dom";
+import {FiChevronDown} from "react-icons/fi";
 
 const HeaderNav = () => {
   const bg = useColorModeValue("white", "gray.800");
@@ -43,15 +44,8 @@ const HeaderNav = () => {
                 Learning Menagemnt System
               </chakra.a>
             </Box>
-
-            <Flex display={{ md: "none" }}>
-              <IconButton
-                aria-label="toggle menu"
-                icon={<AiOutlineMenu />}
-                variant="ghost"
-              />
-            </Flex>
           </Flex>
+
 
           <Box display={["none", , "flex"]} alignItems={{ md: "center" }}>
             <chakra.a
@@ -104,6 +98,29 @@ const HeaderNav = () => {
               Login
             </chakra.a>
           </Box>
+          <Flex display={{ md: "none" }} >
+            <Menu>
+              <MenuButton
+                  py={2}
+                  transition="all 0.3s"
+                  _focus={{boxShadow: 'none'}}>
+                <HStack>
+                  <Box display={{md: 'flex'}}>
+                    <FiChevronDown/>
+                  </Box>
+                </HStack>
+              </MenuButton>
+              <MenuList
+                  bg={useColorModeValue('white', 'gray.900')}
+                  borderColor={useColorModeValue('gray.200', 'gray.700')}>
+                <MenuItem>Home</MenuItem>
+                <MenuItem>About</MenuItem>
+                <MenuItem>Contact</MenuItem>
+                <MenuDivider/>
+                <MenuItem onClick={()=>navigate("login")}>Login</MenuItem>
+              </MenuList>
+            </Menu>
+          </Flex>
         </Box>
       </Box>
     </chakra.nav>

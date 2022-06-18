@@ -50,7 +50,7 @@ export default function SidebarWithHeader({children}) {
                 </DrawerContent>
             </Drawer>
             <MobileNav onOpen={onOpen}/>
-            <Box ml={{base: 0, md: 60}} height={'88vh'} p="4">
+            <Box ml={{base: 0, md: 60}}  p="4">
                 {children}
             </Box>
         </Box>

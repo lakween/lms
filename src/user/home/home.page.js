@@ -25,13 +25,13 @@ const HomePage = () => {
 
     return (
         <>
-        <MainCard minHeight={'20vh'} maxHeight={'20vh'}>
+        <MainCard innerText={'Recently Access Course'} overflowY={'scroll'} minHeight={'40vh'} maxHeight={'43vh'}>
             {
                 courses.map((course)=>( <CourseCardComponent title={course.title} description={course.description} onClick={onClickHandler} img={''}/>))
             }
         </MainCard>
 
-        <MainCard marginTop={5} minHeight={'80%'} maxHeight={'80%'}>
+        <MainCard marginTop={5} innerText={'All Courses'}>
             {
                 courses.map((course)=>( <CourseCardComponent title={course.title} description={course.description} onClick={onClickHandler} img={''}/>))
             }
