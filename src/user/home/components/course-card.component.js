@@ -15,7 +15,7 @@ const CourseCardComponent = ({title,description,img,onClick}) => {
     }
 
     return (
-        <Box onClick={onClick} margin={5} maxW='25vw' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+        <Box cursor={'pointer'} onClick={onClick} margin={5} maxW='25vw' borderWidth='1px' borderRadius='lg' overflow='hidden'>
             <Image src={property.imageUrl} alt={property.imageAlt}/>
             <Box p='6'>
                 <Box

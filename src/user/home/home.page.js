@@ -26,7 +26,7 @@ const HomePage = () => {
     return (
         <MainCard minHeight={'100%'}>
             {
-                courses.map((course)=>( <CourseCardComponent title={course.title} description={course.description} img={''}/>))
+                courses.map((course)=>( <CourseCardComponent title={course.title} description={course.description} onClick={onClickHandler} img={''}/>))
             }
         </MainCard>
 
