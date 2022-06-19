@@ -1,7 +1,7 @@
 import {Badge, Box, Image} from "@chakra-ui/react";
 import {BsStarFill} from "react-icons/bs";
 
-const CourseCardComponent = ({title,description,img,onClick}) => {
+const CourseCardComponent = ({id,title,description,img,onClick}) => {
 
     const property = {
         imageUrl: 'https://bit.ly/2Z4KKcF',
@@ -15,7 +15,7 @@ const CourseCardComponent = ({title,description,img,onClick}) => {
     }
 
     return (
-        <Box cursor={'pointer'} onClick={onClick} margin={5} maxW='15vw' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+        <Box cursor={'pointer'} onClick={()=>onClick(id)} margin={5} maxW='15vw' borderWidth='1px' borderRadius='lg' overflow='hidden'>
             <Image sizes={'sm'} src={property.imageUrl} alt={property.imageAlt}/>
             <Box p='6'>
                 <Box

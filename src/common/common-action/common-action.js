@@ -24,8 +24,10 @@ export const getAllDocFromCollection = (collName)=>{
         let array = []
         const querySnapshot = await getDocs(collection(db, collName));
         for(let doc of querySnapshot.docs){
-            array.push(doc.data())
+            array.push({...doc.data(),id:doc.id})
         }
         return array
     }
 }
+
+

@@ -23,12 +23,13 @@ import {
     VStack,
 } from '@chakra-ui/react';
 import {FiBell, FiChevronDown, FiCompass, FiHome, FiMenu, FiSettings, FiStar, FiTrendingUp,} from 'react-icons/fi';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getAllDocFromCollection} from "../../common-action/common-action";
 import {useNavigate} from "react-router-dom";
 
 export default function SidebarWithHeader({children}) {
     const {isOpen, onOpen, onClose} = useDisclosure();
+    const data = useSelector(state => state)
 
     return (
         <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
