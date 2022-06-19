@@ -30,7 +30,6 @@ import {useNavigate} from "react-router-dom";
 export default function SidebarWithHeader({children}) {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const data = useSelector(state => state)
-    console.log(data,'dgfdgfdg')
 
     return (
         <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>

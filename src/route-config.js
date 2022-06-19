@@ -9,7 +9,9 @@ import useUserLoginInfo from "./hooks/useUserLoginInfo";
 
 export let RouterConfig = () => {
 
-   const userType = useUserLoginInfo()
+   const [userType] = useUserLoginInfo()
+
+    console.log(userType,'uuadad')
 
 
     let studentRoute = [
