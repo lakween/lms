@@ -4,6 +4,7 @@ import CourseCardComponent from "./components/course-card.component";
 import {useEffect, useState} from "react";
 import {getAllDocFromCollection} from "../../common/common-action/common-action";
 import {useDispatch} from "react-redux";
+import {getRecentAccCourses} from "./actions/home.action";
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -14,9 +15,10 @@ const HomePage = () => {
     },[])
 
    async function getCourses(){
-       let res = await dispatch(getAllDocFromCollection('courses'))
-       console.log(res,'res')
-       setCourses(res)
+       let allCourses = await dispatch(getAllDocFromCollection('courses'))
+       let recentlyAccCourses = await dispatch(getRecentAccCourses())
+       console.log(allCourses,'res')
+       setCourses(allCourses)
     }
 
     const onClickHandler= ()=>{
