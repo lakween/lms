@@ -20,7 +20,8 @@ const HomePage = () => {
     }
 
     const onClickHandler = async (id) => {
-        await increaseCountofCourse(id)
+        console.log('clickef')
+        await dispatch(increaseCountofCourse(id))
     }
 
     return (
