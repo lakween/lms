@@ -9,6 +9,7 @@ import {getRecentAccCourses} from "./actions/home.action";
 const HomePage = () => {
     const dispatch = useDispatch()
     const [courses,setCourses] = useState([])
+    const [recentlyAccCourses,setRecentlyAccCourses] = useState([])
 
     useEffect(()=>{
         getCourses()
@@ -17,8 +18,8 @@ const HomePage = () => {
    async function getCourses(){
        let allCourses = await dispatch(getAllDocFromCollection('courses'))
        let recentlyAccCourses = await dispatch(getRecentAccCourses())
-       console.log(allCourses,'res')
        setCourses(allCourses)
+       setRecentlyAccCourses(recentlyAccCourses)
     }
 
     const onClickHandler= ()=>{
@@ -29,7 +30,7 @@ const HomePage = () => {
         <>
         <MainCard innerText={'Recently Access Course'} overflowY={'scroll'} minHeight={'40vh'} maxHeight={'43vh'}>
             {
-                courses.map((course)=>( <CourseCardComponent title={course.title} description={course.description} onClick={onClickHandler} img={''}/>))
+                recentlyAccCourses.map((course)=>( <CourseCardComponent title={course.title} description={course.description} onClick={onClickHandler} img={''}/>))
             }
         </MainCard>
 
