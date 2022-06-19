@@ -5,10 +5,12 @@ import WebHome from "./web/home.page";
 import SignUp from "./user/sign-up/sign-up.page";
 import Login from "./common/loging/loging.page";
 import {useSelector} from "react-redux";
+import useUserLoginInfo from "./hooks/useUserLoginInfo";
 
 export let RouterConfig = () => {
 
-    let userType = useSelector(state => state.userType)
+   const userType = useUserLoginInfo()
+
 
     let studentRoute = [
         {
