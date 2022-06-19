@@ -9,10 +9,22 @@ export const getRecentAccCourses= ()=>{
         const q = query(courses, orderBy("accsessCount", "desc"), limit(5));
         const querySnapshot = await getDocs(q);
         for(let doc of querySnapshot.docs){
-            array.push(doc.data())
-            console.log(doc.data())
+            array.push({...doc.data(),id:doc.id})
         }
-        console.log(array,'arr')
+        return array
+    }
+}
+
+export const increaseCountofCourse = (id)=>{
+    return async (dispatch)=>{
+        const db = firebase.firestore();
+        let array = []
+        const courses = collection(db, "courses")
+        const q = query(courses, orderBy("accsessCount", "desc"), limit(5));
+        const querySnapshot = await getDocs(q);
+        for(let doc of querySnapshot.docs){
+            array.push(doc.data())
+        }
         return array
     }
 }

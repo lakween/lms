@@ -4,7 +4,7 @@ import CourseCardComponent from "./components/course-card.component";
 import {useEffect, useState} from "react";
 import {getAllDocFromCollection} from "../../common/common-action/common-action";
 import {useDispatch} from "react-redux";
-import {getRecentAccCourses} from "./actions/home.action";
+import {getRecentAccCourses,increaseCountofCourse} from "./actions/home.action";
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -22,8 +22,8 @@ const HomePage = () => {
        setRecentlyAccCourses(recentlyAccCourses)
     }
 
-    const onClickHandler= ()=>{
-
+    const onClickHandler= async (id)=>{
+         await increaseCountofCourse(id)
     }
 
     return (
@@ -36,7 +36,7 @@ const HomePage = () => {
 
         <MainCard marginTop={5} innerText={'All Courses'}>
             {
-                courses.map((course)=>( <CourseCardComponent title={course.title} description={course.description} onClick={onClickHandler} img={''}/>))
+                courses.map((course)=>( <CourseCardComponent id={course.id}  title={course.title} description={course.description} onClick={onClickHandler} img={''}/>))
             }
         </MainCard>
         </>
