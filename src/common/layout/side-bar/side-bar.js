@@ -26,6 +26,7 @@ import {FiBell, FiChevronDown, FiCompass, FiHome, FiMenu, FiSettings, FiStar, Fi
 import {useDispatch, useSelector} from "react-redux";
 import {getAllDocFromCollection} from "../../common-action/common-action";
 import {useNavigate} from "react-router-dom";
+import {signOut} from "../../loging/actions/loging.action";
 
 export default function SidebarWithHeader({children}) {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -137,6 +138,12 @@ const NavItem = ({icon,link, navigate, children, ...rest}) => {
 const MobileNav = ({onOpen, ...rest}) => {
     const {colorMode, toggleColorMode} = useColorMode()
     let navigate = useNavigate();
+    const dispatch =useDispatch()
+
+    const signOutHandler = async ()=>{
+        await dispatch(signOut())
+        navigate('/login')
+    }
     return (
         <Flex
             ml={{base: 0, md: 60}}
@@ -210,7 +217,7 @@ const MobileNav = ({onOpen, ...rest}) => {
                             <MenuItem>Settings</MenuItem>
                             <MenuItem>Billing</MenuItem>
                             <MenuDivider/>
-                            <MenuItem onClick={()=>navigate('/login')}>Sign out</MenuItem>
+                            <MenuItem onClick={signOutHandler}>Sign out</MenuItem>
                         </MenuList>
                     </Menu>
                 </Flex>

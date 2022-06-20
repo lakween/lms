@@ -5,7 +5,7 @@ import {setUserLoginDetails, setUserType} from "../store/reducers/user-details.s
 import firebase from "firebase/compat/app";
 import {useNavigate} from "react-router-dom";
 
-const useUserLoginInfo= ()=>{
+const useUserLoginInfo = ()=>{
     let dispatch = useDispatch()
     let navigate = useNavigate()
     let state = useSelector(state => state.setUserDetails)
@@ -21,7 +21,7 @@ const useUserLoginInfo= ()=>{
                 dispatch(setUserLoginDetails(user))
                 dispatch(setUserType(userType))
             } else {
-                navigate('login')
+                navigate('/')
             }
         });
     }
