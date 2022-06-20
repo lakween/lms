@@ -57,5 +57,5 @@ export let RouterConfig = () => {
     ];
 
     let element = useRoutes(routes)
-    return element
+    return element ? element : <>loading Animation</>
 }
