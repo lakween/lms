@@ -45,9 +45,9 @@ export let RouterConfig = () => {
             path: "login",
             element: <Login/>,
         },
-        ...(userType == "student" ? studentRoute : adminRoute)
+        ...(userType == "student" ? studentRoute :userType == "admin"?adminRoute:[])
     ];
 
     let element = useRoutes(routes)
-    return userType ? element :<><Text>Loading......... 'should be put animation' </Text></>
+    return element
 }
