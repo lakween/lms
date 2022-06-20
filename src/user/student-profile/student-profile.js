@@ -38,11 +38,11 @@ const StudentProfile = () => {
                     </Flex>
                     <Flex direction={'row'}>
                         <Text flex={1}>Mobile Number</Text>
-                        <p flex={1}>0714704367</p>
+                        <DisplayLine text={'0714704367'}/>
                     </Flex>
                     <Flex direction={'row'}>
                         <Text flex={1}>Birth Day</Text>
-                        <p flex={1}>2-7-1998</p>
+                        <DisplayLine text={'2-7-1998'}/>
                     </Flex>
                 </Box>
                 <Box p={5} borderWidth="1px"  flex={1} width={'50%'}>
