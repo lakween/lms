@@ -7,10 +7,12 @@ import Login from "./common/loging/loging.page";
 import {useSelector} from "react-redux";
 import useUserLoginInfo from "./hooks/useUserLoginInfo";
 import {Text} from "@chakra-ui/react";
+import StudentProfile from "./user/student-profile/student-profile";
+import PageLoadingIndicator from "./common/page-loading-indicator/page-loading-indicator";
 
 export let RouterConfig = () => {
 
-   const [userType] = useUserLoginInfo()
+    const [userType] = useUserLoginInfo()
 
     let studentRoute = [
         {
@@ -20,9 +22,16 @@ export let RouterConfig = () => {
                 {index: true, element: <HomePage/>},
             ],
         },
+        {
+            path: "profile",
+            element: <Layout/>,
+            children: [
+                {index: true, element: <StudentProfile/>},
+            ],
+        },
     ]
 
-    let adminRoute= [
+    let adminRoute = [
         {
             path: "home",
             element: <Layout/>,
@@ -45,9 +54,9 @@ export let RouterConfig = () => {
             path: "login",
             element: <Login/>,
         },
-        ...(userType == "student" ? studentRoute : adminRoute)
+        ...(userType == "student" ? studentRoute : userType == "admin" ? adminRoute : [])
     ];
 
     let element = useRoutes(routes)
-    return userType ? element :<><Text>Loading......... 'should be put animation' </Text></>
+    return element ? element : <PageLoadingIndicator/>
 }
