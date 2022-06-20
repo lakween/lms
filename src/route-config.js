@@ -8,6 +8,7 @@ import {useSelector} from "react-redux";
 import useUserLoginInfo from "./hooks/useUserLoginInfo";
 import {Text} from "@chakra-ui/react";
 import StudentProfile from "./user/student-profile/student-profile";
+import PageLoadingIndicator from "./common/page-loading-indicator/page-loading-indicator";
 
 export let RouterConfig = () => {
 
@@ -57,5 +58,5 @@ export let RouterConfig = () => {
     ];
 
     let element = useRoutes(routes)
-    return element ? element : <>loading Animation</>
+    return element ? element : <PageLoadingIndicator/>
 }
