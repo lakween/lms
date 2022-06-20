@@ -7,6 +7,7 @@ import Login from "./common/loging/loging.page";
 import {useSelector} from "react-redux";
 import useUserLoginInfo from "./hooks/useUserLoginInfo";
 import {Text} from "@chakra-ui/react";
+import StudentProfile from "./user/student-profile/student-profile";
 
 export let RouterConfig = () => {
 
@@ -18,6 +19,13 @@ export let RouterConfig = () => {
             element: <Layout/>,
             children: [
                 {index: true, element: <HomePage/>},
+            ],
+        },
+        {
+            path: "profile",
+            element: <Layout/>,
+            children: [
+                {index: true, element: <StudentProfile/>},
             ],
         },
     ]

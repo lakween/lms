@@ -136,6 +136,7 @@ const NavItem = ({icon,link, navigate, children, ...rest}) => {
 
 const MobileNav = ({onOpen, ...rest}) => {
     const {colorMode, toggleColorMode} = useColorMode()
+    let navigate = useNavigate();
     return (
         <Flex
             ml={{base: 0, md: 60}}
@@ -205,7 +206,7 @@ const MobileNav = ({onOpen, ...rest}) => {
                         <MenuList
                             bg={useColorModeValue('white', 'gray.900')}
                             borderColor={useColorModeValue('gray.200', 'gray.700')}>
-                            <MenuItem>Profile</MenuItem>
+                            <MenuItem onClick={()=>navigate('/profile')}>Profile</MenuItem>
                             <MenuItem>Settings</MenuItem>
                             <MenuItem>Billing</MenuItem>
                             <MenuDivider/>
