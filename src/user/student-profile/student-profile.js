@@ -1,7 +1,11 @@
 import {Avatar, Box, Flex, Text, useColorModeValue} from "@chakra-ui/react";
+import EditComponent from "../../common/edite.componet";
+import DisplayLine from "../../common/display-line/display-line.component";
 
 
 const StudentProfile = () => {
+
+
     return (
         <>
             <Box borderWidth="1px" mb={4}
@@ -11,8 +15,7 @@ const StudentProfile = () => {
                     <Avatar size='2xl' name='Segun Adebayo' src='https://bit.ly/dan-abramov'/>
                     <input type={'file'} />
                 </Flex>
-                <Text mt={2}>Lakween Senathilake</Text>
-
+                <DisplayLine text={'Lakween Senathilake'}/>
             </Box>
 
             <Box borderWidth="1px"
