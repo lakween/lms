@@ -15,7 +15,7 @@ const StudentProfile = () => {
                     <Avatar size='2xl' name='Segun Adebayo' src='https://bit.ly/dan-abramov'/>
                     <input type={'file'} />
                 </Flex>
-                <DisplayLine text={'Lakween Senathilake'}/>
+                <DisplayLine mt={5} text={'Lakween Senathilake'}/>
             </Box>
 
             <Box borderWidth="1px"
@@ -30,11 +30,11 @@ const StudentProfile = () => {
                     <br/>
                     <Flex direction={'row'}>
                         <Text flex={1}>Full Name</Text>
-                        <p flex={1}>Lakween Lalanahansa Senathilake</p>
+                        <DisplayLine text={'Lakween Lalanahansa Senathilake'}/>
                     </Flex>
                     <Flex direction={'row'}>
                         <Text flex={1}>Email Address</Text>
-                        <p flex={1}>lakweensenathilake@gmail.com</p>
+                        <DisplayLine text={'lakweensenathilake@gmail.com'}/>
                     </Flex>
                     <Flex direction={'row'}>
                         <Text flex={1}>Mobile Number</Text>
