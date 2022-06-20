@@ -10,7 +10,7 @@ import {Text} from "@chakra-ui/react";
 
 export let RouterConfig = () => {
 
-   const [userType] = useUserLoginInfo()
+    const [userType] = useUserLoginInfo()
 
     let studentRoute = [
         {
@@ -22,7 +22,7 @@ export let RouterConfig = () => {
         },
     ]
 
-    let adminRoute= [
+    let adminRoute = [
         {
             path: "home",
             element: <Layout/>,
@@ -45,7 +45,7 @@ export let RouterConfig = () => {
             path: "login",
             element: <Login/>,
         },
-        ...(userType == "student" ? studentRoute :userType == "admin"?adminRoute:[])
+        ...(userType == "student" ? studentRoute : userType == "admin" ? adminRoute : [])
     ];
 
     let element = useRoutes(routes)
