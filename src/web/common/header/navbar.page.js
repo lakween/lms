@@ -61,6 +61,7 @@ const HeaderNav = () => {
               Home
             </chakra.a>
             <chakra.a
+            onClick={()=>{navigate('/about')}}
               display="block"
               mx={4}
               mt={[2, , 0]}
@@ -73,6 +74,7 @@ const HeaderNav = () => {
               Abount
             </chakra.a>
             <chakra.a
+            onClick={()=>{navigate('/contact')}}
               display="block"
               mx={4}
               mt={[2, , 0]}
@@ -114,7 +116,7 @@ const HeaderNav = () => {
                   bg={useColorModeValue('white', 'gray.900')}
                   borderColor={useColorModeValue('gray.200', 'gray.700')}>
                 <MenuItem>Home</MenuItem>
-                <MenuItem>About</MenuItem>
+                <MenuItem onClick={()=>navigate("about")}>About</MenuItem>
                 <MenuItem>Contact</MenuItem>
                 <MenuDivider/>
                 <MenuItem onClick={()=>navigate("login")}>Login</MenuItem>
