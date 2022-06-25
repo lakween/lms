@@ -1,20 +1,28 @@
 import {Avatar, Box, Flex, Text, useColorModeValue} from "@chakra-ui/react";
 import DisplayLine from "../../common/display-line/display-line.component";
 import useUserLoginInfo from "../../hooks/useUserLoginInfo";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
-import {updateStudentProfile} from "./actions/student-profile.action";
+import {updateProfilePhoto, updateStudentProfile} from "./actions/student-profile.action";
 
 
 const StudentProfile = () => {
     let [type, userDetails] = useUserLoginInfo()
-
+    const [photo,setPhoto] = useState('')
     const [model,setModel] = useState({...userDetails?._delegate})
     const dispatch = useDispatch()
-    console.log(userDetails,">>>>>>>>>>")
+
     const onUpdateHandler = async (path,form)=>{
         setModel ({...userDetails,...form})
          await dispatch(updateStudentProfile(userDetails,form))
+    }
+
+    const onChangeProfilePicture = async (e)=>{
+        if (e.target.files[0]) {
+            dispatch(updateProfilePhoto(e.target.files[0],userDetails))
+           setPhoto(URL.createObjectURL(e.target.files[0]))
+
+        }
     }
 
     return (
@@ -23,8 +31,8 @@ const StudentProfile = () => {
                  borderColor={useColorModeValue('gray.200', 'gray.700')} padding={5}
                  bg={useColorModeValue('white', 'gray.900')} width={'100%'} borderStyle={'solid'}>
                 <Flex gap={5} direction={'row'} align={'center'}>
-                    <Avatar size='2xl' name='Segun Adebayo' src='https://bit.ly/dan-abramov'/>
-                    <input type={'file'} onChange={''}/>
+                    <Avatar size='2xl' name='Segun Adebayo' src={photo}/>
+                    <input type={'file'} onChange={onChangeProfilePicture}/>
                 </Flex>
                 <DisplayLine
                     modelPath={'displayName'}
