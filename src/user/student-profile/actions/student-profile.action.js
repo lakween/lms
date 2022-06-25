@@ -24,7 +24,9 @@ export const updateProfilePhoto = (file, currentUser) => {
 export const updateStudentProfile = (id, model) => {
     return async (dispatch) => {
         const db = firebase.firestore();
-        await setDoc(doc(db, "accounts", id), model);
+        // await setDoc(doc(db, "accounts", id), model);
+        const accountRef = doc(db, 'accounts', id);
+        await setDoc(accountRef, model, { merge: true });
     }
 }
 

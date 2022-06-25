@@ -38,8 +38,8 @@ const StudentProfile = () => {
     }
 
     const onUpdateHandler = async (path, form) => {
-        setModel({...currentUser, ...form})
-        await dispatch(updateStudentProfile(currentUser, form))
+        setModel({...model,...form})
+        await dispatch(updateStudentProfile(currentUser.uid, form))
     }
 
 
@@ -73,24 +73,38 @@ const StudentProfile = () => {
                     <br/>
                     <Flex direction={'row'}>
                         <Text flex={1}>Full Name</Text>
-                        <DisplayLine text={'Lakween Lalanahansa Senathilake'}/>
+                        <DisplayLine
+                            modelPath={'fullName'}
+                            name={'fullName'}
+                            onUpdate={onUpdateHandler}
+                            value={model?.fullName ? model?.fullName : 'Unknown'
+                            }/>
                     </Flex>
                     <Flex direction={'row'}>
                         <Text flex={1}>Email Address</Text>
-                        <DisplayLine text={'lakweensenathilake@gmail.com'}/>
+                        <DisplayLine
+                            modelPath={'email'}
+                            name={'email'}
+                            value={model?.email ? model?.email : '--------'
+                            }/>
                     </Flex>
                     <Flex direction={'row'}>
                         <Text flex={1}>Mobile Number</Text>
                         <DisplayLine
-                            modelPath={'phoneNumber'}
-                            name={'phoneNumber'}
+                            modelPath={'mobileNumber'}
+                            name={'mobileNumber'}
                             onUpdate={onUpdateHandler}
-                            value={model?.phoneNumber ? model?.phoneNumber : '--------'
+                            value={model?.mobileNumber ? model?.mobileNumber : '--------'
                             }/>
                     </Flex>
                     <Flex direction={'row'}>
                         <Text flex={1}>Birth Day</Text>
-                        <DisplayLine text={'2-7-1998'}/>
+                        <DisplayLine
+                            modelPath={'BirthDay'}
+                            name={'BirthDay'}
+                            onUpdate={onUpdateHandler}
+                            value={model?.BirthDay ? model?.BirthDay : '00-00-0000'
+                            }/>
                     </Flex>
                 </Box>
                 <Box p={5} borderWidth="1px" flex={1} width={'50%'}>
