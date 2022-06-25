@@ -11,7 +11,7 @@ const StudentProfile = () => {
 
     const [model,setModel] = useState({...userDetails?._delegate})
     const dispatch = useDispatch()
-    console.log(model)
+    console.log(userDetails,">>>>>>>>>>")
     const onUpdateHandler = async (path,form)=>{
         setModel ({...userDetails,...form})
          await dispatch(updateStudentProfile(userDetails,form))
