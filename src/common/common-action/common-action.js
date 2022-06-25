@@ -14,7 +14,6 @@ export const createDocOfCollection = (collName,data)=>{
     return async (dispatch)=>{
         const db = firebase.firestore();
         const docRef = await addDoc(collection(db, collName), data);
-        console.log("Document written with ID: ", docRef.id)
     }
 }
 
@@ -29,5 +28,3 @@ export const getAllDocFromCollection = (collName)=>{
         return array
     }
 }
-
-

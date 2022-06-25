@@ -5,7 +5,7 @@ import {setUserLoginDetails, setUserType} from "../store/reducers/user-details.s
 import firebase from "firebase/compat/app";
 import {useNavigate} from "react-router-dom";
 
-const useUserLoginInfo= ()=>{
+const useUserLoginInfo = ()=>{
     let dispatch = useDispatch()
     let navigate = useNavigate()
     let state = useSelector(state => state.setUserDetails)
@@ -18,15 +18,16 @@ const useUserLoginInfo= ()=>{
         firebase.auth().onAuthStateChanged(async function(user) {
             if (user) {
                 let userType = await dispatch(getUsrType(user.uid))
+                console.log(userType,'>>>>>>>')
                 dispatch(setUserLoginDetails(user))
                 dispatch(setUserType(userType))
             } else {
-                navigate('login')
+                navigate('/')
             }
         });
     }
 
-    console.log(state?.userType)
+    console.log(state?.loginDetails)
     return [state?.userType,state?.loginDetails,setUsr]
 
 }

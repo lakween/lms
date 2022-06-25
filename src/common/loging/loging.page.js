@@ -45,10 +45,11 @@ const Login = () => {
 
         setIsLoading(true)
         let res = await dispatch(login(form, navigate))
+        console.log(res,'res')
         let userType = await dispatch(getUsrType(res.user.uid))
         setIsLoading(false)
         if (res) {
-            dispatch(setUserLoginDetails(res))
+            dispatch(setUserLoginDetails(res.user))
             dispatch(setUserType(userType))
             navigate('/home')
         }
