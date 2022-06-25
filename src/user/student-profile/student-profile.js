@@ -1,10 +1,21 @@
 import {Avatar, Box, Flex, Text, useColorModeValue} from "@chakra-ui/react";
-import EditComponent from "../../common/edite.componet";
 import DisplayLine from "../../common/display-line/display-line.component";
+import useUserLoginInfo from "../../hooks/useUserLoginInfo";
+import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {updateStudentProfile} from "./actions/student-profile.action";
 
 
 const StudentProfile = () => {
+    let [type, userDetails] = useUserLoginInfo()
 
+    const [model,setModel] = useState({...userDetails?._delegate})
+    const dispatch = useDispatch()
+    console.log(model)
+    const onUpdateHandler = async (path,form)=>{
+        setModel ({...userDetails,...form})
+         await dispatch(updateStudentProfile(userDetails,form))
+    }
 
     return (
         <>
@@ -13,9 +24,14 @@ const StudentProfile = () => {
                  bg={useColorModeValue('white', 'gray.900')} width={'100%'} borderStyle={'solid'}>
                 <Flex gap={5} direction={'row'} align={'center'}>
                     <Avatar size='2xl' name='Segun Adebayo' src='https://bit.ly/dan-abramov'/>
-                    <input type={'file'} />
+                    <input type={'file'} onChange={''}/>
                 </Flex>
-                <DisplayLine mt={5} text={'Lakween Senathilake'}/>
+                <DisplayLine
+                    modelPath={'displayName'}
+                    name ={'displayName'}
+                    onUpdate={onUpdateHandler} mt={5}
+                    value={model?.displayName ? model?.displayName : 'Unknown'
+                    }/>
             </Box>
 
             <Box borderWidth="1px"
@@ -45,7 +61,7 @@ const StudentProfile = () => {
                         <DisplayLine text={'2-7-1998'}/>
                     </Flex>
                 </Box>
-                <Box p={5} borderWidth="1px"  flex={1} width={'50%'}>
+                <Box p={5} borderWidth="1px" flex={1} width={'50%'}>
                     <h1>Student Details</h1>
                     <br/>
                     <br/>

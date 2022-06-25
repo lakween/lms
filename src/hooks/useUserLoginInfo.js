@@ -26,7 +26,7 @@ const useUserLoginInfo = ()=>{
         });
     }
 
-    console.log(state?.userType)
+    console.log(state?.loginDetails)
     return [state?.userType,state?.loginDetails,setUsr]
 
 }

@@ -41,7 +41,7 @@ const HeaderNav = () => {
                   _dark: { color: "gray.300" },
                 }}
               >
-                Learning Menagemnt System
+                Learning Management System
               </chakra.a>
             </Box>
           </Flex>
