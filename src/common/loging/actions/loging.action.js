@@ -1,5 +1,5 @@
 import firebase from "firebase/compat/app";
-import {collection, getDocs,query,where} from "firebase/firestore";
+import {collection, doc,getDoc, getDocs, query, where} from "firebase/firestore";
 import { getAuth, setPersistence,inMemoryPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
 
 
@@ -58,14 +58,23 @@ export const login = (form, navigate) => {
 export const getUsrType = (id) => {
     return async (dispatch) => {
         const db = firebase.firestore();
-        let userType =''
-        const accounts = collection(db, "accounts")
-        const q = query(accounts, where("userId", "==", id));
-        const querySnapshot = await getDocs(q);
-        for (let doc of querySnapshot.docs){
-            userType = (doc.data()).userType
+        // let userType =''
+        // const accounts = collection(db, "accounts")
+        // const q = query(accounts, where("userId", "==", id));
+        // const querySnapshot = await getDocs(q);
+        // for (let doc of querySnapshot.docs){
+        //     userType = (doc.data()).userType
+        // }
+        const docRef = doc(db, "accounts", id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+            return docSnap.data().userType
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
         }
-        return userType
     }
 }
 

@@ -1,22 +1,33 @@
 import {Avatar, Box, Flex, Text, useColorModeValue} from "@chakra-ui/react";
 import DisplayLine from "../../common/display-line/display-line.component";
-import useUserLoginInfo from "../../hooks/useUserLoginInfo";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useDispatch} from "react-redux";
-import {updateProfilePhoto, updateStudentProfile} from "./actions/student-profile.action";
+import {
+    getUserLocalAccount,
+    updateAuthProfile,
+    updateProfilePhoto,
+    updateStudentProfile
+} from "./actions/student-profile.action";
 import {getAuth} from "firebase/auth";
-
 
 const StudentProfile = () => {
     const {currentUser} = getAuth();
-    console.log(currentUser)
     const [photo, setPhoto] = useState('')
-    const [model, setModel] = useState({...currentUser})
+    const [model, setModel] = useState({})
     const dispatch = useDispatch()
 
-    const onUpdateHandler = async (path, form) => {
+    useEffect(() => {
+        getLocalProfileData()
+    }, [currentUser])
+
+    const getLocalProfileData = async () => {
+        let userData = await dispatch(getUserLocalAccount(currentUser?.uid))
+        setModel({...currentUser, ...userData})
+    }
+
+    const onUpdateAuthHandler = async (path, form) => {
         setModel({...currentUser, ...form})
-        await dispatch(updateStudentProfile(currentUser, form))
+        await dispatch(updateAuthProfile(currentUser, form))
     }
 
     const onChangeProfilePicture = async (e) => {
@@ -25,6 +36,12 @@ const StudentProfile = () => {
             setPhoto(URL.createObjectURL(e.target.files[0]))
         }
     }
+
+    const onUpdateHandler = async (path, form) => {
+        setModel({...currentUser, ...form})
+        await dispatch(updateStudentProfile(currentUser, form))
+    }
+
 
     return (
         <>
@@ -39,7 +56,7 @@ const StudentProfile = () => {
                 <DisplayLine
                     modelPath={'displayName'}
                     name={'displayName'}
-                    onUpdate={onUpdateHandler} mt={5}
+                    onUpdate={onUpdateAuthHandler} mt={5}
                     value={model?.displayName ? model?.displayName : 'Unknown'
                     }/>
             </Box>
@@ -64,7 +81,12 @@ const StudentProfile = () => {
                     </Flex>
                     <Flex direction={'row'}>
                         <Text flex={1}>Mobile Number</Text>
-                        <DisplayLine text={'0714704367'}/>
+                        <DisplayLine
+                            modelPath={'phoneNumber'}
+                            name={'phoneNumber'}
+                            onUpdate={onUpdateHandler}
+                            value={model?.phoneNumber ? model?.phoneNumber : '--------'
+                            }/>
                     </Flex>
                     <Flex direction={'row'}>
                         <Text flex={1}>Birth Day</Text>
