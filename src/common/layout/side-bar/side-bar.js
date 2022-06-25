@@ -28,6 +28,7 @@ import {getAllDocFromCollection} from "../../common-action/common-action";
 import {useNavigate} from "react-router-dom";
 import {signOut} from "../../loging/actions/loging.action";
 import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
+import {getAuth} from "firebase/auth";
 
 export default function SidebarWithHeader({children}) {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -196,7 +197,7 @@ const MobileNav = ({onOpen, ...rest}) => {
                                 <Avatar
                                     size={'sm'}
                                     src={
-                                        'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                                        userDetails?.photoURL || 'https://www.pngitem.com/middle/mmhwxw_transparent-user-png-default-user-image-png-png'
                                     }
                                 />
                                 <VStack

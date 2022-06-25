@@ -4,24 +4,25 @@ import useUserLoginInfo from "../../hooks/useUserLoginInfo";
 import {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {updateProfilePhoto, updateStudentProfile} from "./actions/student-profile.action";
+import {getAuth} from "firebase/auth";
 
 
 const StudentProfile = () => {
-    let [type, userDetails] = useUserLoginInfo()
-    const [photo,setPhoto] = useState('')
-    const [model,setModel] = useState({...userDetails?._delegate})
+    const {currentUser} = getAuth();
+    console.log(currentUser)
+    const [photo, setPhoto] = useState('')
+    const [model, setModel] = useState({...currentUser})
     const dispatch = useDispatch()
 
-    const onUpdateHandler = async (path,form)=>{
-        setModel ({...userDetails,...form})
-         await dispatch(updateStudentProfile(userDetails,form))
+    const onUpdateHandler = async (path, form) => {
+        setModel({...currentUser, ...form})
+        await dispatch(updateStudentProfile(currentUser, form))
     }
 
-    const onChangeProfilePicture = async (e)=>{
+    const onChangeProfilePicture = async (e) => {
         if (e.target.files[0]) {
-            dispatch(updateProfilePhoto(e.target.files[0],userDetails))
-           setPhoto(URL.createObjectURL(e.target.files[0]))
-
+            dispatch(updateProfilePhoto(e.target.files[0], currentUser))
+            setPhoto(URL.createObjectURL(e.target.files[0]))
         }
     }
 
@@ -31,12 +32,13 @@ const StudentProfile = () => {
                  borderColor={useColorModeValue('gray.200', 'gray.700')} padding={5}
                  bg={useColorModeValue('white', 'gray.900')} width={'100%'} borderStyle={'solid'}>
                 <Flex gap={5} direction={'row'} align={'center'}>
-                    <Avatar size='2xl' name='Segun Adebayo' src={photo}/>
-                    <input type={'file'} onChange={onChangeProfilePicture}/>
+                    <Avatar size='2xl'
+                            src={photo || model?.photoURL || 'https://www.pngitem.com/middle/mmhwxw_transparent-user-png-default-user-image-png-png'}/>
+                    <input type={'file'} accept="image/png,image/jpeg" onChange={onChangeProfilePicture}/>
                 </Flex>
                 <DisplayLine
                     modelPath={'displayName'}
-                    name ={'displayName'}
+                    name={'displayName'}
                     onUpdate={onUpdateHandler} mt={5}
                     value={model?.displayName ? model?.displayName : 'Unknown'
                     }/>
