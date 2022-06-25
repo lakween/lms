@@ -27,10 +27,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {getAllDocFromCollection} from "../../common-action/common-action";
 import {useNavigate} from "react-router-dom";
 import {signOut} from "../../loging/actions/loging.action";
+import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
 
 export default function SidebarWithHeader({children}) {
     const {isOpen, onOpen, onClose} = useDisclosure();
-    const data = useSelector(state => state)
 
     return (
         <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
@@ -52,7 +52,7 @@ export default function SidebarWithHeader({children}) {
                 </DrawerContent>
             </Drawer>
             <MobileNav onOpen={onOpen}/>
-            <Box ml={{base: 0, md: 60}}  p="4">
+            <Box ml={{base: 0, md: 60}} p="4">
                 {children}
             </Box>
         </Box>
@@ -65,7 +65,7 @@ const SidebarContent = ({onClose}) => {
     const dispatch = useDispatch()
 
     let icons = {
-    FiHome:FiHome
+        FiHome: FiHome
     }
 
     useEffect(() => {
@@ -103,9 +103,11 @@ const SidebarContent = ({onClose}) => {
     );
 };
 
-const NavItem = ({icon,link, navigate, children, ...rest}) => {
+const NavItem = ({icon, link, navigate, children, ...rest}) => {
     return (
-        <Link onClick={()=>{ navigate(link)}} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
+        <Link onClick={() => {
+            navigate(link)
+        }} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
             <Flex
                 align="center"
                 p="4"
@@ -137,10 +139,12 @@ const NavItem = ({icon,link, navigate, children, ...rest}) => {
 
 const MobileNav = ({onOpen, ...rest}) => {
     const {colorMode, toggleColorMode} = useColorMode()
-    let navigate = useNavigate();
-    const dispatch =useDispatch()
+    let [type, userDetails] = useUserLoginInfo()
 
-    const signOutHandler = async ()=>{
+    let navigate = useNavigate();
+    const dispatch = useDispatch()
+
+    const signOutHandler = async () => {
         await dispatch(signOut())
         navigate('/login')
     }
@@ -200,9 +204,13 @@ const MobileNav = ({onOpen, ...rest}) => {
                                     alignItems="flex-start"
                                     spacing="1px"
                                     ml="2">
-                                    <Text fontSize="sm">Justina Clark</Text>
+                                    <Text fontSize="sm">{
+                                        userDetails.displayName ?
+                                            userDetails.displayName :
+                                            <>'Login As '{userDetails.email}</>
+                                    }</Text>
                                     <Text fontSize="xs" color="gray.600">
-                                        Admin
+                                        {type}
                                     </Text>
                                 </VStack>
                                 <Box display={{base: 'none', md: 'flex'}}>
@@ -213,7 +221,7 @@ const MobileNav = ({onOpen, ...rest}) => {
                         <MenuList
                             bg={useColorModeValue('white', 'gray.900')}
                             borderColor={useColorModeValue('gray.200', 'gray.700')}>
-                            <MenuItem onClick={()=>navigate('/profile')}>Profile</MenuItem>
+                            <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
                             <MenuItem>Settings</MenuItem>
                             <MenuItem>Billing</MenuItem>
                             <MenuDivider/>
