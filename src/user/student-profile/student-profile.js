@@ -26,7 +26,7 @@ const StudentProfile = () => {
     }
 
     const onUpdateAuthHandler = async (path, form) => {
-        setModel({...currentUser, ...form})
+        setModel({...model,...currentUser, ...form})
         await dispatch(updateAuthProfile(currentUser, form))
     }
 
