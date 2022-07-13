@@ -14,6 +14,7 @@ import {ChakraProvider, ColorModeProvider} from '@chakra-ui/react'
 import {RouterConfig} from "./route-config";
 import {BrowserRouter} from "react-router-dom";
 import {theme} from "./chakra-theme";
+import { getStorage } from "firebase/storage";
 import {getUsrType, login} from "./common/loging/actions/loging.action";
 
 firebase.initializeApp(firebaseConfig)
