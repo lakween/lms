@@ -49,6 +49,7 @@ const HeaderNav = () => {
 
           <Box display={["none", , "flex"]} alignItems={{ md: "center" }}>
             <chakra.a
+            onClick={()=> {navigate ('/')}}
               display="block"
               mx={4}
               mt={[2, , 0]}
@@ -85,6 +86,19 @@ const HeaderNav = () => {
               _hover={{ color: "brand.400", _dark: { color: "blue.400" } }}
             >
               Contact
+            </chakra.a>
+            <chakra.a
+                onClick={()=>{navigate('/courses')}}
+              display="block"
+              mx={4}
+              mt={[2,0]}
+              fontSize="sm"
+              color="gray.700"
+              _dark={{ color: "gray.200" }}
+              textTransform="capitalize"
+              _hover={{ color: "brand.400", _dark: { color: "blue.400" } }}
+            >
+              Online Courses
             </chakra.a>
             <chakra.a
                 onClick={()=>{navigate('/login')}}

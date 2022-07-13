@@ -4,6 +4,8 @@ import HomePage from "./user/home/home.page";
 import WebHome from "./web/home.page";
 import About from "./web/about.page";
 import Contact from "./web/contact.page";
+import Courses from "./web/courses.page";
+import CourseDeatils from "./web/courses_detail.page";
 import SignUp from "./user/sign-up/sign-up.page";
 import Login from "./common/loging/loging.page";
 import {useSelector} from "react-redux";
@@ -63,6 +65,14 @@ export let RouterConfig = () => {
         {
             path: "contact",
             element: <Contact/>,
+        },
+        {
+            path: "courses",
+            element: <Courses/>,
+        },
+        {
+            path: "cosdetails",
+            element: <CourseDeatils/>,
         },
         ...(userType == "student" ? studentRoute : userType == "admin" ? adminRoute : [])
     ];
