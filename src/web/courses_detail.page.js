@@ -5,20 +5,19 @@ import {
   useColorModeValue,
   Flex,
   IconButton,
+  SimpleGrid,
   Heading,
   Button,
   Stack,
   Icon,
+  Container,
 } from "@chakra-ui/react";
 
-import { Image, Link, Input } from "@chakra-ui/react";
+import CourseDetails from "./common/component/course_details.compo";
 import HeaderNav from "./common/header/navbar.page";
-import { AiOutlineLink, AiOutlineTwitter } from "react-icons/ai";
 import SmallCentered from "./common/footer/footer.page";
-import CallToActionWithVideo from "./common/component/home.compo";
-import SimpleThreeColumns from "./common/component/three_col_grid";
 
-const WebHome = () => {
+const Courses = () => {
   const bg = useColorModeValue("white", "gray.800");
 
   const Feature = (props) => {
@@ -52,35 +51,16 @@ const WebHome = () => {
   return (
     <>
       <HeaderNav />
+
       <>
-        <>
-          <Box
-            w="full"
-            h="container.sm"
-            backgroundImage="url(https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)"
-            bgPos="center"
-            bgSize="cover"
-          >
-            {/* card here */}
-            <Flex
-              flexDirection="column"
-              gap="4"
-              justify="center"
-              boxSize="full"
-              bg="blackAlpha.700"
-            >
-              <CallToActionWithVideo></CallToActionWithVideo>
-             
-        
-            </Flex>
-          </Box>
-          <SimpleThreeColumns></SimpleThreeColumns>
-         
-        </>
+       <CourseDetails></CourseDetails>
+      </>
+
+      <>
         <SmallCentered />
       </>
     </>
   );
 };
 
-export default WebHome;
+export default Courses;
