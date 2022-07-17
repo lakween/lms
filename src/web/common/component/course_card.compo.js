@@ -9,10 +9,9 @@ import {
   Stack,
   chakra,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+
 
 function CourseCard(props) {
-  let navigate = useNavigate();
   return (
     <Box>
       <Flex p={2} w="full" alignItems="center" justifyContent="center">
@@ -62,9 +61,6 @@ function CourseCard(props) {
             <Stack direction={"row"} justify={"start"} spacing={6} mt={"2"}>
               <Stack spacing={0} align={"start"}>
                 <chakra.a
-                  onClick={() => {
-                    navigate("/cosdetails");
-                  }}
                   display="block"
                   fontSize="sm"
                   color="gray.700"

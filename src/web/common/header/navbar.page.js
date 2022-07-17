@@ -4,18 +4,17 @@ import {
   Box,
   useColorModeValue,
   Flex,
-  IconButton,
-  Heading,
-  Button,
-  Stack,
-  Icon,
-  Divider, Menu, MenuButton, HStack, Avatar, VStack, Text, MenuList, MenuItem, MenuDivider,
+  Menu,
+  MenuButton,
+  HStack,
+  MenuList,
+  MenuItem,
+  MenuDivider,
 } from "@chakra-ui/react";
 
-import { Image, Link } from "@chakra-ui/react";
-import { AiOutlineMenu } from "react-icons/ai";
-import {useNavigate} from "react-router-dom";
-import {FiChevronDown} from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+import { FiChevronDown } from "react-icons/fi";
+import Logo from "../component/logo.compo";
 
 const HeaderNav = () => {
   const bg = useColorModeValue("white", "gray.800");
@@ -30,6 +29,9 @@ const HeaderNav = () => {
           justifyContent={{ md: "space-between" }}
         >
           <Flex alignItems="center" justifyContent="space-between">
+            <Box mr="2">
+              <Logo color={useColorModeValue("gray.700", "white")} />
+            </Box>
             <Box fontSize="xl" fontWeight="semibold" color="gray.700">
               <chakra.a
                 fontSize={["xl", , "2xl"]}
@@ -41,15 +43,16 @@ const HeaderNav = () => {
                   _dark: { color: "gray.300" },
                 }}
               >
-                Learning Management System
+                SILEC
               </chakra.a>
             </Box>
           </Flex>
 
-
           <Box display={["none", , "flex"]} alignItems={{ md: "center" }}>
             <chakra.a
-            onClick={()=> {navigate ('/')}}
+              onClick={() => {
+                navigate("/");
+              }}
               display="block"
               mx={4}
               mt={[2, , 0]}
@@ -62,7 +65,9 @@ const HeaderNav = () => {
               Home
             </chakra.a>
             <chakra.a
-            onClick={()=>{navigate('/about')}}
+              onClick={() => {
+                navigate("/about");
+              }}
               display="block"
               mx={4}
               mt={[2, , 0]}
@@ -75,7 +80,9 @@ const HeaderNav = () => {
               Abount
             </chakra.a>
             <chakra.a
-            onClick={()=>{navigate('/contact')}}
+              onClick={() => {
+                navigate("/contact");
+              }}
               display="block"
               mx={4}
               mt={[2, , 0]}
@@ -88,10 +95,12 @@ const HeaderNav = () => {
               Contact
             </chakra.a>
             <chakra.a
-                onClick={()=>{navigate('/courses')}}
+              onClick={() => {
+                navigate("/courses");
+              }}
               display="block"
               mx={4}
-              mt={[2,0]}
+              mt={[2, 0]}
               fontSize="sm"
               color="gray.700"
               _dark={{ color: "gray.200" }}
@@ -101,10 +110,12 @@ const HeaderNav = () => {
               Online Courses
             </chakra.a>
             <chakra.a
-                onClick={()=>{navigate('/login')}}
+              onClick={() => {
+                navigate("/login");
+              }}
               display="block"
               mx={4}
-              mt={[2,0]}
+              mt={[2, 0]}
               fontSize="sm"
               color="gray.700"
               _dark={{ color: "gray.200" }}
@@ -114,26 +125,28 @@ const HeaderNav = () => {
               Login
             </chakra.a>
           </Box>
-          <Flex display={{ md: "none" }} >
+          <Flex display={{ md: "none" }}>
             <Menu>
               <MenuButton
-                  py={2}
-                  transition="all 0.3s"
-                  _focus={{boxShadow: 'none'}}>
+                py={2}
+                transition="all 0.3s"
+                _focus={{ boxShadow: "none" }}
+              >
                 <HStack>
-                  <Box display={{md: 'flex'}}>
-                    <FiChevronDown/>
+                  <Box display={{ md: "flex" }}>
+                    <FiChevronDown />
                   </Box>
                 </HStack>
               </MenuButton>
               <MenuList
-                  bg={useColorModeValue('white', 'gray.900')}
-                  borderColor={useColorModeValue('gray.200', 'gray.700')}>
+                bg={useColorModeValue("white", "gray.900")}
+                borderColor={useColorModeValue("gray.200", "gray.700")}
+              >
                 <MenuItem>Home</MenuItem>
-                <MenuItem onClick={()=>navigate("about")}>About</MenuItem>
+                <MenuItem onClick={() => navigate("about")}>About</MenuItem>
                 <MenuItem>Contact</MenuItem>
-                <MenuDivider/>
-                <MenuItem onClick={()=>navigate("login")}>Login</MenuItem>
+                <MenuDivider />
+                <MenuItem onClick={() => navigate("login")}>Login</MenuItem>
               </MenuList>
             </Menu>
           </Flex>

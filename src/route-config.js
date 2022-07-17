@@ -6,6 +6,7 @@ import About from "./web/about.page";
 import Contact from "./web/contact.page";
 import Courses from "./web/courses.page";
 import CourseDeatils from "./web/courses_detail.page";
+import CoursePayment from "./web/course_payment.page";
 import SignUp from "./user/sign-up/sign-up.page";
 import Login from "./common/loging/loging.page";
 import {useSelector} from "react-redux";
@@ -71,8 +72,12 @@ export let RouterConfig = () => {
             element: <Courses/>,
         },
         {
-            path: "cosdetails",
+            path: "cosdetails/:id",
             element: <CourseDeatils/>,
+        },
+        {
+            path: "coursepayment",
+            element: <CoursePayment/>,
         },
         ...(userType == "student" ? studentRoute : userType == "admin" ? adminRoute : [])
     ];
