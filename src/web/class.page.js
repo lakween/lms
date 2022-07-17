@@ -4,13 +4,8 @@ import {
   chakra,
   Box,
   useColorModeValue,
-  Flex,
-  IconButton,
-  SimpleGrid,
   Heading,
-  Button,
-  Stack,
-  Icon,
+  SimpleGrid,
   Container,
 } from "@chakra-ui/react";
 import {
@@ -27,13 +22,13 @@ import firebase from "firebase/compat/app";
 import CourseCard from "./common/component/course_card.compo";
 import HeaderNav from "./common/header/navbar.page";
 import SmallCentered from "./common/footer/footer.page";
-import { getAllCourses } from "./actions/course.actions";
+import { getAllClasses } from "./actions/course.actions";
 import { useNavigate } from "react-router-dom";
 
-const Courses = () => {
+const Class = () => {
   let navigate = useNavigate();
   const [input, setInput] = useState("");
-  const [course, setCourse] = useState([]);
+  const [classes, setClasses] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,10 +36,11 @@ const Courses = () => {
   }, []);
 
   async function get() {
-    let res = await dispatch(getAllCourses());
-    setCourse(res || []);
+    let res = await dispatch(getAllClasses());
+    setClasses(res || []);
   }
 
+  console.log(classes);
   const bg = useColorModeValue("white", "gray.800");
 
   return (
@@ -53,20 +49,15 @@ const Courses = () => {
 
       <>
         <Container maxW="7xl" bg="gray.50">
-          <Heading mb={"2"} p={2}>
-            Courses
-          </Heading>
+          <Heading mb={"2"} p={2}> Classess</Heading>
           <SimpleGrid columns={[2, null, 4]} spacing="5px">
-            {course.map((item) => (
+            {classes.map((item) => (
               <Box
                 onClick={() => {
-                  navigate("/cosdetails/" + item.id);
+                  navigate("/class/" + item.id);
                 }}
               >
-                <CourseCard
-                  name={item.title}
-                  imageURL="https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80"
-                />
+                <CourseCard name={item.title} imageURL={item.img} />
               </Box>
             ))}
           </SimpleGrid>
@@ -79,4 +70,4 @@ const Courses = () => {
   );
 };
 
-export default Courses;
+export default Class;

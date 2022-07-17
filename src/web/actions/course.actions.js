@@ -24,12 +24,12 @@ export const getAllCourses = () => {
   };
 };
 
-export const singleCourseDetail = () => {
+export const getAllClasses = () => {
   return async (dispatch) => {
     const db = firebase.firestore();
     let array = [];
-    const courses = collection(db, "courses");
-    const q = query(collection(db, "courses"), where("id", "==", "9VHyItHQnpRKEfe9dWI8"));
+    const courses = collection(db, "classes");
+    const q = query(courses, orderBy("accsessCount", "desc"));
     const querySnapshot = await getDocs(q);
     for (let doc of querySnapshot.docs) {
       array.push({ ...doc.data(), id: doc.id });

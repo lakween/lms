@@ -103,11 +103,17 @@ export default function CallToActionWithVideo() {
               ></BasicCard>
             </Box>
 
-            <BasicCard
-              cardName="Online Class"
-              cardDesc="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eligendi similique exercitationem optio libero vitae accusamus cupiditate laborum eos."
-              bgColor="linear-gradient(to left, #e05cff, #a100d8)"
-            ></BasicCard>
+            <Box
+              onClick={() => {
+                navigate("/class");
+              }}
+            >
+              <BasicCard
+                cardName="Online Class"
+                cardDesc="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eligendi similique exercitationem optio libero vitae accusamus cupiditate laborum eos."
+                bgColor="linear-gradient(to left, #e05cff, #a100d8)"
+              ></BasicCard>
+            </Box>
           </Box>
         </Flex>
       </Stack>
