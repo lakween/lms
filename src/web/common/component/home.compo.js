@@ -14,7 +14,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import BasicCard from "../component/card.compo";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export default function CallToActionWithVideo() {
   let navigate = useNavigate();
   return (
@@ -71,16 +71,7 @@ export default function CallToActionWithVideo() {
               bg={"red.400"}
               _hover={{ bg: "red.500" }}
             >
-              Get started
-            </Button>
-            <Button
-              rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
-              px={6}
-              leftIcon={<PlayIcon h={4} w={4} color={"gray.300"} />}
-            >
-              How It Works
+              Journey
             </Button>
           </Stack>
         </Stack>
@@ -99,18 +90,30 @@ export default function CallToActionWithVideo() {
             width={"full"}
             overflow={"hidden"}
           >
-            <BasicCard
-              onClick={()=>{navigate('/login')}}
-              cardName="Courses "
-              cardDesc="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eligendi similique exercitationem optio libero vitae accusamus cupiditate laborum eos."
-              cardIcon="AiFillBook"
-              bgColor="linear(to-l, #ffd05c, #ff7924)"
-            ></BasicCard>
-            <BasicCard
-              cardName="Online Class"
-              cardDesc="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eligendi similique exercitationem optio libero vitae accusamus cupiditate laborum eos."
-              bgColor="linear-gradient(to left, #e05cff, #a100d8)"
-            ></BasicCard>
+            <Box
+              onClick={() => {
+                navigate("/courses");
+              }}
+            >
+              <BasicCard
+                cardName="Courses "
+                cardDesc="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eligendi similique exercitationem optio libero vitae accusamus cupiditate laborum eos."
+                cardIcon="AiFillBook"
+                bgColor="linear(to-l, #ffd05c, #ff7924)"
+              ></BasicCard>
+            </Box>
+
+            <Box
+              onClick={() => {
+                navigate("/class");
+              }}
+            >
+              <BasicCard
+                cardName="Online Class"
+                cardDesc="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eligendi similique exercitationem optio libero vitae accusamus cupiditate laborum eos."
+                bgColor="linear-gradient(to left, #e05cff, #a100d8)"
+              ></BasicCard>
+            </Box>
           </Box>
         </Flex>
       </Stack>

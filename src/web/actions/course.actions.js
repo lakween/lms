@@ -6,6 +6,7 @@ import {
   updateDoc,
   increment,
   getDocs,
+  where,
 } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 
@@ -14,6 +15,20 @@ export const getAllCourses = () => {
     const db = firebase.firestore();
     let array = [];
     const courses = collection(db, "courses");
+    const q = query(courses, orderBy("accsessCount", "desc"));
+    const querySnapshot = await getDocs(q);
+    for (let doc of querySnapshot.docs) {
+      array.push({ ...doc.data(), id: doc.id });
+    }
+    return array;
+  };
+};
+
+export const getAllClasses = () => {
+  return async (dispatch) => {
+    const db = firebase.firestore();
+    let array = [];
+    const courses = collection(db, "classes");
     const q = query(courses, orderBy("accsessCount", "desc"));
     const querySnapshot = await getDocs(q);
     for (let doc of querySnapshot.docs) {
