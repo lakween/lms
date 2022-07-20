@@ -75,7 +75,7 @@ const SidebarContent = ({onClose}) => {
     }, [])
 
     async function getData() {
-        let res = (!status == 'pending') ? await dispatch(getAllDocFromCollection('userRoutes')) : []
+        let res = (!status == 'pending' || !status ) ? await dispatch(getAllDocFromCollection('userRoutes')) : []
         setLinkItems([...res])
     }
 
