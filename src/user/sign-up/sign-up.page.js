@@ -16,6 +16,7 @@ import useFormController from "../../hooks/useFormController";
 import {emailAndPasswordAuth} from "../sign-up/actions/sign-up.action";
 import {useNavigate} from "react-router-dom";
 import Card from "../../common/card/card.component"
+import {createDocOfCollectionWithId} from "../../common/common-action/common-action";
 
 const SignUp = (getNames) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -26,6 +27,17 @@ const SignUp = (getNames) => {
 
     const signUpHandler = async () => {
         let res = await dispatch(emailAndPasswordAuth(form.email, form.password, toast,navigate))
+        console.log(res,'res')
+        if (res.isNewUser) {
+            let result = await dispatch(createDocOfCollectionWithId('accounts', res.uid, {
+                ...res,
+                userType: 'student',
+                status: 'pending'
+            }))
+            console.log(result)
+        }
+        navigate('/unknownProfile')
+        console.log(res)
     }
 
     const signedButtonMarkup = (
@@ -37,9 +49,8 @@ const SignUp = (getNames) => {
     )
 
     return (
-
-            <Container marginTop={200} display={'flex'} justifyContent={"center"} height={'50vh'} centerContent padding={5} maxW='70%'
-                       bg={useColorModeValue('white', 'gray.900')} >
+            <Container marginTop={200} display={'flex'} justifyContent={"center"} height={'44vh'} centerContent padding={5} maxW='70%'
+                       bg={useColorModeValue('gray.100', 'gray.900')} >
                 <Box width={'100%'} inSideTitle={'Personal Informations'}>
                     <Flex padding={3} width={'100%'} bg={useColorModeValue('white', 'gray.900')} gap={3} direction={'row'}>
                         <Box width={'100%'} bg={useColorModeValue('white', 'gray.900')}>
