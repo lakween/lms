@@ -1,4 +1,15 @@
-import {Box, Button, Container, Flex, FormControl, FormLabel, Input, useToast, LightMode} from '@chakra-ui/react'
+import {
+    Box,
+    Button,
+    Container,
+    Flex,
+    FormControl,
+    FormLabel,
+    Input,
+    useToast,
+    LightMode,
+    useColorModeValue
+} from '@chakra-ui/react'
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import useFormController from "../../hooks/useFormController";
@@ -20,21 +31,21 @@ const SignUp = (getNames) => {
     const signedButtonMarkup = (
         <Flex justifyContent={'right'} mt={3} columnGap={'20px'} direction={'row'}>
             <Button isLoading={isLoading} onClick={signUpHandler} width={'120px'} colorScheme="teal" size="sm">
-                create account
+                Create Account
             </Button>
         </Flex>
     )
 
     return (
-        <LightMode>
-            <Container display={'flex'} justifyContent={"center"} height={'100vh'} centerContent padding={5} maxW='70%'
-                       backgroundColor={'#c8d8e5'}>
-                <Card inSideTitle={'Personal Informations'}>
-                    <Flex gap={3} direction={'row'}>
-                        <Box width={'100%'}>
+
+            <Container marginTop={200} display={'flex'} justifyContent={"center"} height={'50vh'} centerContent padding={5} maxW='70%'
+                       bg={useColorModeValue('white', 'gray.900')} >
+                <Box width={'100%'} inSideTitle={'Personal Informations'}>
+                    <Flex padding={3} width={'100%'} bg={useColorModeValue('white', 'gray.900')} gap={3} direction={'row'}>
+                        <Box width={'100%'} bg={useColorModeValue('white', 'gray.900')}>
                             <FormControl>
-                                <FormLabel>First Name</FormLabel>
-                                <Input borderColor={"black"} value={form.first_name} onChange={valueChangeHandler} name='first_name'
+                                <FormLabel >First Name</FormLabel>
+                                <Input  value={form.first_name} onChange={valueChangeHandler} name='first_name'
                                        type='text'/>
                             </FormControl>
                             <FormControl>
@@ -71,9 +82,8 @@ const SignUp = (getNames) => {
                         </Box>
                     </Flex>
                     {signedButtonMarkup}
-                </Card>
+                </Box>
             </Container>
-        </LightMode>
     )
 }
 

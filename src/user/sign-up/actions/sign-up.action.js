@@ -5,7 +5,6 @@ export const emailAndPasswordAuth = (email, password, toast,navigate) => {
     return async (dispatch) => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
-                console.log(userCredential, 'userCredential')
                 setUserLoginDetails(userCredential)
                 navigate('/home')
                 return true
