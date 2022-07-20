@@ -24,7 +24,7 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import useFormController from "../../hooks/useFormController";
 import {getUsrType, googleSignUp, login} from "./actions/loging.action";
-import {setUserLoginDetails, setUserType} from "../../store/reducers/user-details.slice";
+import {setProfileStatus, setUserLoginDetails, setUserType} from "../../store/reducers/user-details.slice";
 import ChoiseSigninTypeModal from "./components/modal/choise-signin-type.modal";
 
 const Login = () => {
@@ -49,12 +49,15 @@ const Login = () => {
         setIsLoading(true)
         let res = await dispatch(login(form, navigate))
         console.log(res,'res')
-        let userType = await dispatch(getUsrType(res.user.uid))
+        let userDetails = await dispatch(getUsrType(res.user.uid))
         setIsLoading(false)
         if (res) {
             dispatch(setUserLoginDetails(res.user))
-            dispatch(setUserType(userType))
-            navigate('/home')
+            dispatch(setUserType(userDetails.userType))
+            dispatch(setProfileStatus(userDetails.status))
+            console.log(userDetails,'??????')
+            if(userDetails.status == 'pending') navigate('/unknownProfile')
+            else navigate('/home')
         }
     }
 
