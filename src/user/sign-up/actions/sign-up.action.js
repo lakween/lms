@@ -3,13 +3,33 @@ import setUserLoginDetails from '../../../store/reducers/user-details.slice'
 
 export const emailAndPasswordAuth = (email, password, toast, navigate) => {
     return async (dispatch) => {
-       let res = await firebase.auth().createUserWithEmailAndPassword(email, password)
-        return {
-            email: res.user.email,
-            fullName: res?.user?.displayName,
-            uid: res?.user?.uid,
-            isNewUser: res?.additionalUserInfo?.isNewUser
+        try {
+            let res = await firebase.auth().createUserWithEmailAndPassword(email, password)
+            return {
+                email: res.user.email,
+                fullName: res?.user?.displayName,
+                uid: res?.user?.uid,
+                isNewUser: res?.additionalUserInfo?.isNewUser
+            }
+            if(res){
+                toast({
+                    title: 'Registration Success',
+                    status: 'success',
+                    duration: 9000,
+                    isClosable: true,
+                })
+            }
+        }catch (e) {
+            console.log(e,'>>>>>>')
+            toast({
+                title: 'Something wrong',
+                description: [...e.message.split(":")][1],
+                status: 'error',
+                duration: 9000,
+                isClosable: true,
+            })
         }
+
             // .then((userCredential) => {
             //     console.log(userCredential, 'userCredential')
             //     setUserLoginDetails(userCredential)
@@ -35,6 +55,6 @@ export const emailAndPasswordAuth = (email, password, toast, navigate) => {
             //         })
             //     }
             // });
-       return res
+       //return res
     }
 }
