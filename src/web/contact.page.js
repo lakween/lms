@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   chakra,
   Box,
@@ -22,7 +22,6 @@ import {
   InputLeftElement,
   Textarea,
 } from "@chakra-ui/react";
-import { FiExternalLink } from "react-icons/fi";
 import {
   MdPhone,
   MdEmail,
@@ -31,13 +30,13 @@ import {
   MdOutlineEmail,
 } from "react-icons/md";
 import { BsGithub, BsLinkedin, BsPerson } from "react-icons/bs";
-
-import { Image, Link } from "@chakra-ui/react";
 import HeaderNav from "./common/header/navbar.page";
 import SmallCentered from "./common/footer/footer.page";
 
 const Contact = () => {
   const bg = useColorModeValue("white", "gray.800");
+  const [name, setName] = useState("");
+  console.log(name);
 
   const Feature = (props) => {
     return (
@@ -216,7 +215,7 @@ const Contact = () => {
                           <VStack spacing={5}>
                             <FormControl id="name" isRequired>
                               <FormLabel>Your Name</FormLabel>
-                              <InputGroup borderColor="#E0E1E7">
+                              <InputGroup borderColor="#E0E1E7" value={name}  onChange={(e) => setName(e.target.value)} >
                                 <InputLeftElement
                                   pointerEvents="none"
                                   children={<BsPerson color="gray.800" />}
