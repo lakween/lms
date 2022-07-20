@@ -32,7 +32,6 @@ import {
 import { BsGithub, BsLinkedin, BsPerson } from "react-icons/bs";
 import HeaderNav from "./common/header/navbar.page";
 import SmallCentered from "./common/footer/footer.page";
-import useFormController from "../../hooks/useFormController";
 
 const Contact = () => {
   const bg = useColorModeValue("white", "gray.800");
