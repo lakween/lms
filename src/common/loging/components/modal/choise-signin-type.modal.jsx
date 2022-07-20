@@ -31,6 +31,7 @@ const ChoiseSigninTypeModal = ({modalMethod, State}) => {
             }))
             console.log(result)
         }
+        navigate('/unknownProfile')
         console.log(res)
     }
 
