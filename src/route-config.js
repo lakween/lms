@@ -19,9 +19,9 @@ import PendingProfilePage from "./user/pending-profile/pending-profile.page";
 
 export let RouterConfig = () => {
 
-    const [userType] = useUserLoginInfo()
+    const [userType,status] = useUserLoginInfo()
 
-    console.log(userType,'sksksks')
+    console.log(status,'sksksks')
 
     let studentRoute = [
         {
