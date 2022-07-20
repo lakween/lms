@@ -45,6 +45,7 @@ const ChoiseSigninTypeModal = ({modalMethod, State}) => {
             }))
             console.log(result)
         }
+        navigate('/unknownProfile')
         console.log(res)
     }
 
@@ -60,7 +61,7 @@ const ChoiseSigninTypeModal = ({modalMethod, State}) => {
                             <Button size={'sm'} colorScheme='blue' onClick={onClickStudent}>
                                 Sign in As Student
                             </Button>
-                            <Button size={'sm'} colorScheme='blue'> Sign in As Teacher</Button>
+                            <Button onClick={onClickTeacher} size={'sm'} colorScheme='blue'> Sign in As Teacher</Button>
                         </div>
                     </ModalBody>
                     <ModalFooter/>
