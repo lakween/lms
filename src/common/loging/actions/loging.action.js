@@ -3,14 +3,13 @@ import {collection, doc,getDoc, getDocs, query, where} from "firebase/firestore"
 import { getAuth, setPersistence,inMemoryPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
 
 
-export const googleSignUp = (navigate) => {
+export const googleSignUp = () => {
     return async (dispatch) => {
         let provider = new firebase.auth.GoogleAuthProvider();
         let result = await firebase.auth().signInWithPopup(provider).then(function (result) {
-            navigate('signup')
-            return {email: result.user.email, user_name: result.user.displayName}
+            return {email: result.user.email, fullName: result?.user?.displayName , uid:result?.user?.uid ,isNewUser: result?.additionalUserInfo?.isNewUser}
         }).catch(function (error) {
-            return {success: false}
+            return {success: error}
         });
         return result
     }
