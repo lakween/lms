@@ -62,7 +62,7 @@ export default function SidebarWithHeader({children}) {
 
 const SidebarContent = ({onClose}) => {
     const [LinkItems, setLinkItems] = useState([])
-    const [userType, status] = useUserLoginInfo()
+    const [userType, status,user] = useUserLoginInfo()
     let navigate = useNavigate();
     const dispatch = useDispatch()
 
@@ -76,6 +76,7 @@ const SidebarContent = ({onClose}) => {
 
     async function getData() {
         let res = (!status == 'pending' || !status ) ? await dispatch(getAllDocFromCollection('userRoutes')) : []
+        console.log(user,'res')
         setLinkItems([...res])
     }
 
