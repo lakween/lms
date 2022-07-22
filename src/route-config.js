@@ -18,7 +18,6 @@ import PendingProfilePage from "./user/pending-profile/pending-profile.page";
 export let RouterConfig = () => {
 
     const [userType, status, user] = useUserLoginInfo()
-    console.log(user)
 
     const getRoutesByUser = () => {
         switch (true) {
