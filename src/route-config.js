@@ -21,8 +21,6 @@ export let RouterConfig = () => {
 
     const [userType,status] = useUserLoginInfo()
 
-    console.log(status,'sksksks')
-
     let studentRoute = [
         {
             path: "home",

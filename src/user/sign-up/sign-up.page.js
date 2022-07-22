@@ -49,9 +49,11 @@ const SignUp = (getNames) => {
     )
 
     return (
+
             <Container marginTop={200} display={'flex'} justifyContent={"center"} height={'44vh'} centerContent padding={5} maxW='70%'
                        bg={useColorModeValue('gray.100', 'gray.900')} >
                 <Box width={'100%'} inSideTitle={'Personal Informations'}>
+                    <img/>
                     <Flex padding={3} width={'100%'} bg={useColorModeValue('white', 'gray.900')} gap={3} direction={'row'}>
                         <Box width={'100%'} bg={useColorModeValue('white', 'gray.900')}>
                             <FormControl>
