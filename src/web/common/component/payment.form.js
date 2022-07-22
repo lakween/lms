@@ -43,7 +43,7 @@ export default function BasicUsage() {
               <TabPanels>
                 <TabPanel>
                   <FormControl>
-                    <FormLabel>Student Name</FormLabel>
+                    <FormLabel>Payment Reference Number</FormLabel>
                     <Input
                       placeholder="Upload Your Bank Pay Slip"
                       type="text"

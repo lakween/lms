@@ -95,6 +95,13 @@ export default function LargeWithNewsletter() {
             <Link href={"#"}>Contact us</Link>
            
           </Stack>
+          <Stack align={"flex-start"}>
+            <ListHeader>Services</ListHeader>
+            <Link href={"#"}>Events</Link>
+            <Link href={"#"}>Classs</Link>
+            <Link href={"#"}>Field Visit</Link>
+           
+          </Stack>
           
           <Stack align={"flex-start"}>
             <ListHeader>Find us on Google</ListHeader>
