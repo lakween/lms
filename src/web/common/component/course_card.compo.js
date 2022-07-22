@@ -68,10 +68,10 @@ function CourseCard(props) {
                   textTransform="capitalize"
                   _hover={{ color: "brand.400", _dark: { color: "blue.400" } }}
                 >
-                  in Entrepreneurship & Education
+                  English & Education
                 </chakra.a>
                 <Text fontWeight={600} fontSize={"lg"} color={"orange.500"}>
-                  LKR 0.00
+                  LKR 5000.00
                 </Text>
               </Stack>
             </Stack>
