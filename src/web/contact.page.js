@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, {useState} from "react";
-=======
 import React, { useState } from "react";
->>>>>>> main
 import {
   chakra,
   Box,
@@ -52,8 +48,6 @@ import firebase from "firebase/compat/app";
 
 const Contact = () => {
   const bg = useColorModeValue("white", "gray.800");
-  const [name, setName] = useState("");
-  console.log(name);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -278,7 +272,7 @@ const Contact = () => {
                           <VStack spacing={5}>
                             <FormControl id="user_name" isRequired>
                               <FormLabel>Your Name</FormLabel>
-                              <InputGroup borderColor="#E0E1E7" value={name}  onChange={(e) => setName(e.target.value)} >
+                              <InputGroup borderColor="#E0E1E7">
                                 <InputLeftElement
                                   pointerEvents="none"
                                   children={<BsPerson color="gray.800" />}
