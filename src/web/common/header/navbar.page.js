@@ -43,11 +43,7 @@ const HeaderNav = () => {
                   _dark: { color: "gray.300" },
                 }}
               >
-<<<<<<< HEAD
                 SILEC Sri Lanka Language Academy 
-=======
-                Sri Lanka Language Academy
->>>>>>> 28fe525527011b5bc17460eb60be075575ef2009
               </chakra.a>
             </Box>
           </Flex>
