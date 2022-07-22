@@ -105,7 +105,7 @@ export default function LargeWithNewsletter() {
             <ListHeader>Find us on Google</ListHeader>
             <Box>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2760.158893377219!2d81.0746776444375!3d6.982028969037331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae4618a1a9fec37%3A0x1dd900702229654b!2z4LaM4LeAIOC3gOC3meC2veC3iuC2veC3g-C3iuC3gyDgt4Dgt5Lgt4Hgt4rgt4Ag4LeA4LeS4Lav4LeK4La64LeP4La94La6!5e0!3m2!1ssi!2slk!4v1657985690742!5m2!1ssi!2slk"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15844.573421592653!2d79.98938572067547!3d6.873421370528153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25143e76aca6f%3A0x32d3f21aa8b40949!2z4LaF4Lat4LeU4La74LeU4Lac4LeS4La74LeS4La6!5e0!3m2!1ssi!2slk!4v1658427912228!5m2!1ssi!2slk"
                 alt="demo"
               />
             </Box>
