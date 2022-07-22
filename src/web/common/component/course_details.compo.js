@@ -33,7 +33,7 @@ export default function CourseDetails(props) {
             rounded={"md"}
             alt={"product image"}
             src={
-              "https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080"
+              "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8b25saW5lJTIwbGVhcm5pbmd8ZW58MHx8MHx8&w=1000&q=80"
             }
             fit={"cover"}
             align={"center"}
@@ -85,16 +85,16 @@ export default function CourseDetails(props) {
               </Text>
 
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-                <List spacing={2}>
-                  <ListItem>Chronograph</ListItem>
-                  <ListItem>Master Chronometer Certified</ListItem>{" "}
-                  <ListItem>Tachymeter</ListItem>
-                </List>
-                <List spacing={2}>
-                  <ListItem>Anti‑magnetic</ListItem>
-                  <ListItem>Chronometer</ListItem>
-                  <ListItem>Small seconds</ListItem>
-                </List>
+              <List spacing={2}>
+                    <ListItem>Writing</ListItem>
+                    <ListItem>Reading</ListItem>{' '}
+                    <ListItem>Speaking</ListItem>
+                  </List>
+                  <List spacing={2}>
+                    <ListItem>Listening</ListItem>
+                    <ListItem>Communication</ListItem>
+                    <ListItem>Team work</ListItem>
+                  </List>
               </SimpleGrid>
             </Box>
             <Box>
@@ -109,50 +109,33 @@ export default function CourseDetails(props) {
               </Text>
 
               <List spacing={2}>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Between lugs:
-                  </Text>{" "}
-                  20 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Bracelet:
-                  </Text>{" "}
-                  leather strap
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Case:
-                  </Text>{" "}
-                  Steel
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Case diameter:
-                  </Text>{" "}
-                  42 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Dial color:
-                  </Text>{" "}
-                  Black
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Crystal:
-                  </Text>{" "}
-                  Domed, scratch‑resistant sapphire crystal with anti‑reflective
-                  treatment inside
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Water resistance:
-                  </Text>{" "}
-                  5 bar (50 metres / 167 feet){" "}
-                </ListItem>
-              </List>
+                  
+                  <ListItem>
+                    <Text as={'span'} fontWeight={'bold'}>
+                      Commitment:
+                    </Text>{' '}
+                    6 months
+                  </ListItem>
+                  <ListItem>
+                    <Text as={'span'} fontWeight={'bold'}>
+                      Exam Format:
+                    </Text>{' '}
+                    All three tests in the suite are designed to test the four core language skills (reading, writing, speaking and listening)
+                  </ListItem>
+                  <ListItem>
+                    <Text as={'span'} fontWeight={'bold'}>
+                    Scoring:
+                    </Text>{' '}
+                     Scoring above 50% is pass level.
+                  </ListItem>
+                  <ListItem>
+                    <Text as={'span'} fontWeight={'bold'}>
+                      Certificate:
+                    </Text>{' '}
+                    All pass candidates scoring receive a certificate.
+                  </ListItem>
+                  
+                </List>
             </Box>
           </Stack>
 

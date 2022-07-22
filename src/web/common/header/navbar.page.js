@@ -43,7 +43,7 @@ const HeaderNav = () => {
                   _dark: { color: "gray.300" },
                 }}
               >
-                Sri Lanka Language Academy
+                SILEC Sri Lanka Language Academy 
               </chakra.a>
             </Box>
           </Flex>
@@ -77,7 +77,7 @@ const HeaderNav = () => {
               textTransform="capitalize"
               _hover={{ color: "brand.400", _dark: { color: "blue.400" } }}
             >
-              Abount
+              About
             </chakra.a>
             <chakra.a
               onClick={() => {
@@ -107,7 +107,7 @@ const HeaderNav = () => {
               textTransform="capitalize"
               _hover={{ color: "brand.400", _dark: { color: "blue.400" } }}
             >
-              Online Courses
+            Courses
             </chakra.a>
             <chakra.a
               onClick={() => {
