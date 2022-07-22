@@ -62,6 +62,7 @@ export default function SidebarWithHeader({children}) {
 
 const SidebarContent = ({onClose}) => {
     const [LinkItems, setLinkItems] = useState([])
+    const [userType, status] = useUserLoginInfo()
     let navigate = useNavigate();
     const dispatch = useDispatch()
 
@@ -74,7 +75,7 @@ const SidebarContent = ({onClose}) => {
     }, [])
 
     async function getData() {
-        let res = await dispatch(getAllDocFromCollection('userRoutes'))
+        let res = (!status == 'pending' || !status ) ? await dispatch(getAllDocFromCollection('userRoutes')) : []
         setLinkItems([...res])
     }
 
@@ -140,7 +141,7 @@ const NavItem = ({icon, link, navigate, children, ...rest}) => {
 
 const MobileNav = ({onOpen, ...rest}) => {
     const {colorMode, toggleColorMode} = useColorMode()
-    let [type, userDetails] = useUserLoginInfo()
+    let [type, status, userDetails] = useUserLoginInfo()
 
     let navigate = useNavigate();
     const dispatch = useDispatch()

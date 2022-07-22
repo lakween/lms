@@ -15,10 +15,11 @@ import useUserLoginInfo from "./hooks/useUserLoginInfo";
 import {Text} from "@chakra-ui/react";
 import StudentProfile from "./user/student-profile/student-profile";
 import PageLoadingIndicator from "./common/page-loading-indicator/page-loading-indicator";
+import PendingProfilePage from "./user/pending-profile/pending-profile.page";
 
 export let RouterConfig = () => {
 
-    const [userType] = useUserLoginInfo()
+    const [userType,status] = useUserLoginInfo()
 
     let studentRoute = [
         {
@@ -59,6 +60,13 @@ export let RouterConfig = () => {
         {
             path: "login",
             element: <Login/>,
+        },
+        {
+            path: "unknownProfile",
+            element: <Layout/>,
+            children: [
+                {index: true, element: <PendingProfilePage/>},
+            ],
         },
         {
             path: "about",

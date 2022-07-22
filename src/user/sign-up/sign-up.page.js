@@ -1,10 +1,22 @@
-import {Box, Button, Container, Flex, FormControl, FormLabel, Input, useToast, LightMode} from '@chakra-ui/react'
+import {
+    Box,
+    Button,
+    Container,
+    Flex,
+    FormControl,
+    FormLabel,
+    Input,
+    useToast,
+    LightMode,
+    useColorModeValue
+} from '@chakra-ui/react'
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import useFormController from "../../hooks/useFormController";
 import {emailAndPasswordAuth} from "../sign-up/actions/sign-up.action";
 import {useNavigate} from "react-router-dom";
 import Card from "../../common/card/card.component"
+import {createDocOfCollectionWithId} from "../../common/common-action/common-action";
 
 const SignUp = (getNames) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -15,26 +27,38 @@ const SignUp = (getNames) => {
 
     const signUpHandler = async () => {
         let res = await dispatch(emailAndPasswordAuth(form.email, form.password, toast,navigate))
+        console.log(res,'res')
+        if (res.isNewUser) {
+            let result = await dispatch(createDocOfCollectionWithId('accounts', res.uid, {
+                ...res,
+                userType: 'student',
+                status: 'pending'
+            }))
+            console.log(result)
+        }
+        navigate('/unknownProfile')
+        console.log(res)
     }
 
     const signedButtonMarkup = (
         <Flex justifyContent={'right'} mt={3} columnGap={'20px'} direction={'row'}>
             <Button isLoading={isLoading} onClick={signUpHandler} width={'120px'} colorScheme="teal" size="sm">
-                create account
+                Create Account
             </Button>
         </Flex>
     )
 
     return (
-        <LightMode>
-            <Container display={'flex'} justifyContent={"center"} height={'100vh'} centerContent padding={5} maxW='70%'
-                       backgroundColor={'#c8d8e5'}>
-                <Card inSideTitle={'Personal Informations'}>
-                    <Flex gap={3} direction={'row'}>
-                        <Box width={'100%'}>
+
+            <Container marginTop={200} display={'flex'} justifyContent={"center"} height={'44vh'} centerContent padding={5} maxW='70%'
+                       bg={useColorModeValue('gray.100', 'gray.900')} >
+                <Box width={'100%'} inSideTitle={'Personal Informations'}>
+                    <img/>
+                    <Flex padding={3} width={'100%'} bg={useColorModeValue('white', 'gray.900')} gap={3} direction={'row'}>
+                        <Box width={'100%'} bg={useColorModeValue('white', 'gray.900')}>
                             <FormControl>
-                                <FormLabel>First Name</FormLabel>
-                                <Input borderColor={"black"} value={form.first_name} onChange={valueChangeHandler} name='first_name'
+                                <FormLabel >First Name</FormLabel>
+                                <Input  value={form.first_name} onChange={valueChangeHandler} name='first_name'
                                        type='text'/>
                             </FormControl>
                             <FormControl>
@@ -71,9 +95,8 @@ const SignUp = (getNames) => {
                         </Box>
                     </Flex>
                     {signedButtonMarkup}
-                </Card>
+                </Box>
             </Container>
-        </LightMode>
     )
 }
 
