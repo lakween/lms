@@ -29,6 +29,7 @@ import {useNavigate} from "react-router-dom";
 import {signOut} from "../../loging/actions/loging.action";
 import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
 import {getAuth} from "firebase/auth";
+import {clearUserDetails} from "../../../store/reducers/user-details.slice";
 
 export default function SidebarWithHeader({children}) {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -62,21 +63,28 @@ export default function SidebarWithHeader({children}) {
 
 const SidebarContent = ({onClose}) => {
     const [LinkItems, setLinkItems] = useState([])
-    const [userType, status] = useUserLoginInfo()
+    const [userType, status, user] = useUserLoginInfo()
     let navigate = useNavigate();
     const dispatch = useDispatch()
 
     let icons = {
         FiHome: FiHome
     }
+    console.log(LinkItems, 'LinkItems')
 
     useEffect(() => {
         getData()
-    }, [])
+    }, [user?.uid])
 
     async function getData() {
-        let res = (!status == 'pending' || !status ) ? await dispatch(getAllDocFromCollection('userRoutes')) : []
-        setLinkItems([...res])
+        if (status == 'pending') {
+            console.log(status, 'pending')
+            setLinkItems([])
+        } else if (status == 'approved' || '') {
+            let res = await dispatch(getAllDocFromCollection('userRoutes'))
+            setLinkItems([...res])
+
+        }
     }
 
     return (
@@ -148,6 +156,7 @@ const MobileNav = ({onOpen, ...rest}) => {
 
     const signOutHandler = async () => {
         await dispatch(signOut())
+        dispatch(clearUserDetails())
         navigate('/login')
     }
     return (

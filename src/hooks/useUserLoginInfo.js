@@ -14,9 +14,7 @@ const useUserLoginInfo = ()=>{
     },[])
 
     async function setUsr(){
-
         firebase.auth().onAuthStateChanged(async function(user) {
-
             if (user) {
                 let userdetails = await dispatch(getUsrType(user.uid))
                 dispatch(setUserLoginDetails(user))

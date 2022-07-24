@@ -7,21 +7,42 @@ import Contact from "./web/contact.page";
 import Courses from "./web/courses.page";
 import Class from "./web/class.page";
 import CourseDeatils from "./web/courses_detail.page";
-import CoursePayment from "./web/course_payment.page";
 import SignUp from "./user/sign-up/sign-up.page";
 import Login from "./common/loging/loging.page";
-import {useSelector} from "react-redux";
 import useUserLoginInfo from "./hooks/useUserLoginInfo";
-import {Text} from "@chakra-ui/react";
 import StudentProfile from "./user/student-profile/student-profile";
 import PageLoadingIndicator from "./common/page-loading-indicator/page-loading-indicator";
 import PendingProfilePage from "./user/pending-profile/pending-profile.page";
 
 export let RouterConfig = () => {
 
-    const [userType,status] = useUserLoginInfo()
+    const [userType, status, user] = useUserLoginInfo()
+
+    const getRoutesByUser = () => {
+        switch (true) {
+            case (status == "pending"):
+                return unknownRoute
+            case (userType == 'student'):
+                return studentRoute
+            case (userType == 'admin'):
+                return adminRoute
+            default:
+                return [{
+                    path: "/",
+                    element: <WebHome/>,
+                },]
+        }
+    }
 
     let studentRoute = [
+        {
+            path: "/",
+            element: <Layout/>,
+            children: [
+                {index: true, element: <HomePage/>},
+            ],
+        },
+
         {
             path: "home",
             element: <Layout/>,
@@ -47,12 +68,17 @@ export let RouterConfig = () => {
             ],
         },
     ]
-
-    let routes = [
+    let unknownRoute = [
         {
             path: "/",
-            element: <WebHome/>,
+            element: <Layout/>,
+            children: [
+                {index: true, element: <PendingProfilePage/>},
+            ],
         },
+    ]
+
+    let routes = [
         {
             path: "signup",
             element: <SignUp/>,
@@ -93,10 +119,12 @@ export let RouterConfig = () => {
             element: <CourseDeatils/>,
         },
         {
-            path: "coursepayment",
-            element: <CoursePayment/>,
+            path: "/",
+            element: <WebHome/>,
         },
-        ...(userType == "student" ? studentRoute : userType == "admin" ? adminRoute : [])
+
+        ...getRoutesByUser()
+        // ...(userType == "student" ? studentRoute : userType == "admin" ? adminRoute : [])
     ];
 
     let element = useRoutes(routes)

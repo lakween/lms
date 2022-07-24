@@ -46,17 +46,16 @@ export default function CallToActionWithVideo() {
                 zIndex: -1,
               }}
             >
-              EDU Lane,
+             Achieve your dreams with
             </Text>
             <br />
             <Text as={"span"} color={"gray.50"}>
-              achieve your dreams
+            SILEC Sri Lanka Language Academy
             </Text>
           </Heading>
           <Text color={"gray.50"}>
-            Snippy is a rich coding snippets app that lets you create your own
-            code snippets, categorize them, and even sync them in the cloud so
-            you can use them anywhere. All that is free!
+          English allows you to actually broaden your world, 
+          from job opportunities to the ability to relate to people from every country.
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
@@ -97,7 +96,7 @@ export default function CallToActionWithVideo() {
             >
               <BasicCard
                 cardName="Courses "
-                cardDesc="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eligendi similique exercitationem optio libero vitae accusamus cupiditate laborum eos."
+                cardDesc="Join with SILEC Sri Lanka Language Academy and learn efficiently and get a valuable certificates with joy, happy, unity."
                 cardIcon="AiFillBook"
                 bgColor="linear(to-l, #ffd05c, #ff7924)"
               ></BasicCard>
@@ -110,7 +109,7 @@ export default function CallToActionWithVideo() {
             >
               <BasicCard
                 cardName="Online Class"
-                cardDesc="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio eligendi similique exercitationem optio libero vitae accusamus cupiditate laborum eos."
+                cardDesc="English is essential subject for grade 1 to 13 in Sri Lanka. In here you can learn School Syllabus of Sri Lanka. Join with us !"
                 bgColor="linear-gradient(to left, #e05cff, #a100d8)"
               ></BasicCard>
             </Box>

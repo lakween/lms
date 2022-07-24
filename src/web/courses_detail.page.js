@@ -70,7 +70,6 @@ const Courses = () => {
   }
 
   const bg = useColorModeValue("white", "gray.800");
-  console.log(courseDetails);
 
   const Feature = (props) => {
     return (
@@ -110,6 +109,7 @@ const Courses = () => {
         title={item.title}
         fee={item.fee}
         desc={item.description}  
+        cid={item.id}  
         ></CourseDetails>
         ))}
       </>

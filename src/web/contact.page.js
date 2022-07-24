@@ -142,7 +142,7 @@ const Contact = () => {
               textTransform="uppercase"
               fontWeight="extrabold"
             >
-              Award winning support
+             
             </chakra.span>
             <chakra.h1
               mb={4}
@@ -163,8 +163,7 @@ const Contact = () => {
               _dark={{ color: "gray.400" }}
               letterSpacing="wider"
             >
-              Get the #1 Business Messenger and start delivering personalized
-              experiences at every stage of the customer journey.
+              Whether you have a question about anything, SILEC Sri Lanka Language Academy is ready to answer all your questions.
             </chakra.p>
           </Flex>
         </>

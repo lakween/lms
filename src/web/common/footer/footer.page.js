@@ -10,7 +10,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
-import { FaInstagram, FaYoutube,FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaYoutube,FaLinkedin, FaFacebook } from "react-icons/fa";
 import Logo from "../component/logo.compo";
 
 
@@ -83,24 +83,26 @@ export default function LargeWithNewsletter() {
               <SocialButton label={"Instagram"} href={"#"}>
                 <FaInstagram />
               </SocialButton>
+              <SocialButton label={"Facebook"} href={"https://www.facebook.com/people/SILEC-Sri-Lanka-Language-Academy/100054501803147/"}>
+                <FaFacebook />
+              </SocialButton>
             </Stack>
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Company</ListHeader>
             <Link href={"#"}>About us</Link>
-            <Link href={"#"}>Blog</Link>
+            <Link href={"#"}>Courses</Link>
             <Link href={"#"}>Contact us</Link>
-            <Link href={"#"}>Pricing</Link>
-            <Link href={"#"}>Testimonials</Link>
+           
           </Stack>
           <Stack align={"flex-start"}>
-            <ListHeader>Support</ListHeader>
-            <Link href={"#"}>Help Center</Link>
-            <Link href={"#"}>Terms of Service</Link>
-            <Link href={"#"}>Legal</Link>
-            <Link href={"#"}>Privacy Policy</Link>
-            <Link href={"#"}>Satus</Link>
+            <ListHeader>Services</ListHeader>
+            <Link href={"#"}>Events</Link>
+            <Link href={"#"}>Classs</Link>
+            <Link href={"#"}>Field Visit</Link>
+           
           </Stack>
+          
           <Stack align={"flex-start"}>
             <ListHeader>Find us on Google</ListHeader>
             <Box>
