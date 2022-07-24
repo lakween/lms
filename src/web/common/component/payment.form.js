@@ -20,11 +20,19 @@ import {
   FormErrorMessage,
   FormHelperText,
   Stack,
-  Image
+  Image,
+  Heading,
 } from "@chakra-ui/react";
+import { useState } from "react";
 
 export default function BasicUsage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [input, setInput] = useState("");
+
+  const handleInputChange = (e) => setInput(e.target.value);
+
+  const isError = input === "";
   return (
     <>
       <Button onClick={onOpen}>Course Payment</Button>
@@ -67,11 +75,51 @@ export default function BasicUsage() {
                 <TabPanel>
                   <Stack direction="coloum">
                     <Image
-                      
                       objectFit="cover"
                       src="https://www.payhere.lk/downloads/images/payhere_square_banner.png"
                       alt="PayHere"
                     />
+                  </Stack>
+                  <Stack alignItems="center" pt="4">
+                    <Heading as="h4" size="md">
+                      Add Credit Card
+                    </Heading>
+                    <FormControl>
+                      <FormLabel>Card Holder Name</FormLabel>
+                      <Input
+                        type="text"
+                        name="cardholder_name"
+                        id="cardholder_name"
+                        placeContent={"David Beckem"}
+                      />
+                    </FormControl>
+                    <FormControl isInvalid={isError}>
+                      <FormLabel>Card Number</FormLabel>
+                      <Input
+                        type="number"
+                        value={input}                        
+                        onChange={handleInputChange}
+                      />
+                      {!isError ? (
+                        <FormHelperText>
+                          Card Verify Checking . . . 
+                        </FormHelperText>
+                      ) : (
+                        <FormErrorMessage>
+                          creadit card invalid !
+                        </FormErrorMessage>
+                      )}
+                    </FormControl>
+                    <Stack spacing={8} direction="row">
+                      <FormControl isRequired>
+                        <FormLabel>Expiration Date</FormLabel>
+                        <Input placeholder="First name" type={"date"}/>
+                      </FormControl>
+                      <FormControl isRequired>
+                        <FormLabel>CSV Pin</FormLabel>
+                        <Input placeholder="ex: 9xx" type={"number"} limit="3"/>
+                      </FormControl>
+                    </Stack>
                   </Stack>
                 </TabPanel>
               </TabPanels>
