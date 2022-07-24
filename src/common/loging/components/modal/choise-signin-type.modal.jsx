@@ -20,7 +20,7 @@ const ChoiseSigninTypeModal = ({modalMethod, State}) => {
     let navigate = useNavigate();
     let dispatch = useDispatch()
 
-    const onClickStudent = async () => {
+    const onClickStudent = async (e) => {
         onClose()
         let res = await dispatch(googleSignUp(navigate))
         if (res.isNewUser) {

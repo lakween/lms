@@ -21,7 +21,7 @@ const StudentProfile = () => {
     }, [currentUser])
 
     const getLocalProfileData = async () => {
-        let userData = await dispatch(getUserLocalAccount(currentUser?.uid))
+        let userData = await getUserLocalAccount(currentUser?.uid)
         setModel({...currentUser, ...userData})
     }
 

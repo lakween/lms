@@ -2,7 +2,6 @@ import firebase from "firebase/compat/app";
 import {collection, doc,getDoc, getDocs, query, where} from "firebase/firestore";
 import { getAuth, setPersistence,inMemoryPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
 
-
 export const googleSignUp = () => {
     return async (dispatch) => {
         let provider = new firebase.auth.GoogleAuthProvider();
@@ -42,8 +41,7 @@ export const signOut = () => {
     }
 }
 
-export const login = (form, navigate) => {
-    return async (dispatch) => {
+export const login = async (form, navigate) => {
         try {
             let res = await firebase.auth().signInWithEmailAndPassword(form.username, form.password)
             const auth = getAuth();
@@ -51,10 +49,8 @@ export const login = (form, navigate) => {
         }catch(e)
         {
         }
-    }
 }
-export const getUsrType = (id) => {
-    return async (dispatch) => {
+export const getUsrType = async (id) => {
         const db = firebase.firestore();
         // let userType =''
         // const accounts = collection(db, "accounts")
@@ -71,7 +67,6 @@ export const getUsrType = (id) => {
         } else {
             // doc.data() will be undefined in this case
         }
-    }
 }
 
 

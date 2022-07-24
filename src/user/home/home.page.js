@@ -1,15 +1,9 @@
 import MainCard from "./components/main-card.component";
-import {Center, useColorModeValue, Wrap, WrapItem} from "@chakra-ui/react";
 import CourseCardComponent from "./components/course-card.component";
 import {useEffect, useState} from "react";
-import {
-    filterDocsFromCollection, filterDocsWithRefFromCollection,
-    getAllDocFromCollection,
-    getRefFieldOnlyFromFilter
-} from "../../common/common-action/common-action";
+import {filterDocsFromCollection,} from "../../common/common-action/common-action";
 import {useDispatch} from "react-redux";
 import {getAllCourses, increaseCountofCourse} from "./actions/home.action";
-import {where} from "firebase/firestore";
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -22,9 +16,7 @@ const HomePage = () => {
     async function getCourses() {
         let courseByStudent = await dispatch(filterDocsFromCollection('courseByStudent',
             'CourseID', [["StudentID", "==", "dedkzbpbWPd1aQfvaGDN3Zn3DgW2"],["isPaid", "==", true]]))
-        console.log(courseByStudent,'jshdvbfjshvbf')
         let courses = await dispatch(getAllCourses(courseByStudent))
-        console.log(courses,'courses')
         setCourses(courses)
     }
 

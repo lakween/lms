@@ -41,10 +41,9 @@ const Login = () => {
     }
 
     const loginHandler = async () => {
-
         setIsLoading(true)
-        let res = await dispatch(login(form, navigate))
-        let userDetails = await dispatch(getUsrType(res.user.uid))
+        let res = await login(form, navigate)
+        let userDetails = await getUsrType(res.user.uid)
         setIsLoading(false)
         if (res) {
             dispatch(setUserLoginDetails(res.user))

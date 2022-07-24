@@ -30,8 +30,7 @@ export const updateStudentProfile = (id, model) => {
     }
 }
 
-export const getUserLocalAccount = (id) => {
-    return async (dispatch) => {
+export const getUserLocalAccount = async (id) => {
         const db = firebase.firestore();
         const docRef = doc(db, "accounts", id);
         const docSnap = await getDoc(docRef);
@@ -44,4 +43,3 @@ export const getUserLocalAccount = (id) => {
             console.log("No such document!");
         }
     }
-}
