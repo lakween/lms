@@ -1,14 +1,10 @@
 import firebase from "firebase/compat/app";
 import {collection, getDocs, addDoc, setDoc, doc, query, where, getDoc} from "firebase/firestore";
 
-export const getDocFromCollection = (collection, document) => {
-    return async (dispatch) => {
-        console.log(collection,'collection')
+export const getDocFromCollection = async (collection, document) => {
         const db = firebase.firestore();
         const snapshot = await db.collection(collection).doc(document).get()
-        console.log(snapshot,'snapshot')
         return snapshot.data() ? snapshot.data() : {}
-    }
 }
 
 export const createDocOfCollection = (collName, data) => {
@@ -23,8 +19,7 @@ export const createDocOfCollectionWithId = async (collName, id, data) => {
         const docRef = await setDoc(doc(db, collName, id), data);
 }
 
-export const getAllDocFromCollection = (collName) => {
-    return async (dispatch) => {
+export const getAllDocFromCollection = async (collName) => {
         const db = firebase.firestore();
         let array = []
         const querySnapshot = await getDocs(collection(db, collName));
@@ -32,12 +27,11 @@ export const getAllDocFromCollection = (collName) => {
             array.push({...doc.data(), id: doc.id})
         }
         return array
-    }
 }
 
 
-export const filterDocsFromCollection = (coll, fields, filters) => {
-    return async (dispatch) => {
+export const filterDocsFromCollection = async (coll, fields, filters) => {
+
         let a = filters.map((item) => (where(item[0], item[1], item[2])))
         const db = firebase.firestore();
         const collRef = await collection(db, coll);
@@ -48,7 +42,6 @@ export const filterDocsFromCollection = (coll, fields, filters) => {
             array.push(document.data())
         }
         return array
-    }
 }
 
 export const getRefFieldOnlyFromFilter = (coll, field, filters) => {

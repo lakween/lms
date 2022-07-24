@@ -27,21 +27,20 @@ const StudentProfile = () => {
 
     const onUpdateAuthHandler = async (path, form) => {
         setModel({...model,...currentUser, ...form})
-        await dispatch(updateAuthProfile(currentUser, form))
+        await updateAuthProfile(currentUser, form)
     }
 
     const onChangeProfilePicture = async (e) => {
         if (e.target.files[0]) {
-            dispatch(updateProfilePhoto(e.target.files[0], currentUser))
+            await updateProfilePhoto(e.target.files[0], currentUser)
             setPhoto(URL.createObjectURL(e.target.files[0]))
         }
     }
 
     const onUpdateHandler = async (path, form) => {
         setModel({...model,...form})
-        await dispatch(updateStudentProfile(currentUser.uid, form))
+        await updateStudentProfile(currentUser.uid, form)
     }
-
 
     return (
         <>

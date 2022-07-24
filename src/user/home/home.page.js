@@ -14,14 +14,14 @@ const HomePage = () => {
     }, [])
 
     async function getCourses() {
-        let courseByStudent = await dispatch(filterDocsFromCollection('courseByStudent',
-            'CourseID', [["StudentID", "==", "dedkzbpbWPd1aQfvaGDN3Zn3DgW2"],["isPaid", "==", true]]))
-        let courses = await dispatch(getAllCourses(courseByStudent))
+        let courseByStudent = await filterDocsFromCollection('courseByStudent',
+            'CourseID', [["StudentID", "==", "dedkzbpbWPd1aQfvaGDN3Zn3DgW2"], ["isPaid", "==", true]])
+        let courses = await getAllCourses(courseByStudent)
         setCourses(courses)
     }
 
     const onClickHandler = async (id) => {
-        await dispatch(increaseCountofCourse(id))
+        await increaseCountofCourse(id)
     }
 
     return (
