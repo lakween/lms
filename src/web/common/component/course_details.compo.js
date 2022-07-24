@@ -107,7 +107,8 @@ export default function CourseDetails(props) {
         });
       }
     }
-    setForm("");
+    setForm({});
+    setImage("")
   };
 
   const navigate = useNavigate();

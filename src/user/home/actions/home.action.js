@@ -1,15 +1,14 @@
 import {query, orderBy, collection, doc, updateDoc, increment, getDocs} from "firebase/firestore";
 import firebase from "firebase/compat/app";
+import {getDocFromCollection} from "../../../common/common-action/common-action";
 
-export const getAllCourses = () => {
+export const getAllCourses = (courseBystudent) => {
     return async (dispatch) => {
         const db = firebase.firestore();
         let array = []
-        const courses = collection(db, "courses")
-        const q = query(courses, orderBy("accsessCount", "desc"));
-        const querySnapshot = await getDocs(q);
-        for (let doc of querySnapshot.docs) {
-            array.push({...doc.data(), id: doc.id})
+        for(let item of courseBystudent){
+           let a =  await dispatch(getDocFromCollection('courses',item?.CourseID))
+          array.push(a)
         }
         return array
     }

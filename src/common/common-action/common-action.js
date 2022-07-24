@@ -3,9 +3,10 @@ import {collection, getDocs, addDoc, setDoc, doc, query, where, getDoc} from "fi
 
 export const getDocFromCollection = (collection, document) => {
     return async (dispatch) => {
-        let data = ''
+        console.log(collection,'collection')
         const db = firebase.firestore();
         const snapshot = await db.collection(collection).doc(document).get()
+        console.log(snapshot,'snapshot')
         return snapshot.data() ? snapshot.data() : {}
     }
 }
@@ -46,7 +47,6 @@ export const filterDocsFromCollection = (coll, fields, filters) => {
         let array = []
         const querySnapshot = await getDocs(queryData)
         for (let document of querySnapshot.docs) {
-            console.log(document.data(),'>>>>>')
             array.push(document.data())
         }
         return array

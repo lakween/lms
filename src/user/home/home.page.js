@@ -20,9 +20,12 @@ const HomePage = () => {
     }, [])
 
     async function getCourses() {
-        let allCourses = await dispatch(filterDocsFromCollection('courseByStudent',
+        let courseByStudent = await dispatch(filterDocsFromCollection('courseByStudent',
             'CourseID', [["StudentID", "==", "dedkzbpbWPd1aQfvaGDN3Zn3DgW2"],["isPaid", "==", true]]))
-        setCourses(allCourses)
+        console.log(courseByStudent,'jshdvbfjshvbf')
+        let courses = await dispatch(getAllCourses(courseByStudent))
+        console.log(courses,'courses')
+        setCourses(courses)
     }
 
     const onClickHandler = async (id) => {
@@ -37,8 +40,8 @@ const HomePage = () => {
                             if (index <= 4) {
                                 return (
                                     <CourseCardComponent
-                                        title={course?.CourseID.title}
-                                        description={course?.CourseID.description} img={''}
+                                        title={course?.title}
+                                        description={course?.description} img={''}
                                     />
                                 )
                             } else {
@@ -52,8 +55,8 @@ const HomePage = () => {
             <MainCard marginTop={5} innerText={'All Courses'}>
                 {
                     courses.map((course) => (
-                        <CourseCardComponent id={course?.CourseID.id} title={course?.CourseID.title}
-                                             description={course?.CourseID.description}
+                        <CourseCardComponent id={course?.id} title={course?.title}
+                                             description={course?.description}
                                              onClick={onClickHandler} img={''}/>))
                 }
             </MainCard>
