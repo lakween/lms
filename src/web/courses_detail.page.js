@@ -109,6 +109,7 @@ const Courses = () => {
         title={item.title}
         fee={item.fee}
         desc={item.description}  
+        cid={item.id}  
         ></CourseDetails>
         ))}
       </>

@@ -7,7 +7,6 @@ import Contact from "./web/contact.page";
 import Courses from "./web/courses.page";
 import Class from "./web/class.page";
 import CourseDeatils from "./web/courses_detail.page";
-import CoursePayment from "./web/course_payment.page";
 import SignUp from "./user/sign-up/sign-up.page";
 import Login from "./common/loging/loging.page";
 import useUserLoginInfo from "./hooks/useUserLoginInfo";
@@ -125,10 +124,6 @@ export let RouterConfig = () => {
         {
             path: "class/:id",
             element: <CourseDeatils/>,
-        },
-        {
-            path: "coursepayment",
-            element: <CoursePayment/>,
         },
         {
             path: "/",
