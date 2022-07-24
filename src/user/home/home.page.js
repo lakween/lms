@@ -3,7 +3,7 @@ import {Center, useColorModeValue, Wrap, WrapItem} from "@chakra-ui/react";
 import CourseCardComponent from "./components/course-card.component";
 import {useEffect, useState} from "react";
 import {
-    filterDocsFromCollection,
+    filterDocsFromCollection, filterDocsWithRefFromCollection,
     getAllDocFromCollection,
     getRefFieldOnlyFromFilter
 } from "../../common/common-action/common-action";
@@ -20,13 +20,12 @@ const HomePage = () => {
     }, [])
 
     async function getCourses() {
-        let allCourses = await dispatch(getRefFieldOnlyFromFilter('courseByStudent',
-            'CourseID', [["StudentID", "==", "accounts/dedkzbpbWPd1aQfvaGDN3Zn3DgW2"]]))
+        let allCourses = await dispatch(filterDocsFromCollection('courseByStudent',
+            'CourseID', [["StudentID", "==", "dedkzbpbWPd1aQfvaGDN3Zn3DgW2"],["isPaid", "==", true]]))
         setCourses(allCourses)
     }
 
     const onClickHandler = async (id) => {
-        console.log('clickef')
         await dispatch(increaseCountofCourse(id))
     }
 

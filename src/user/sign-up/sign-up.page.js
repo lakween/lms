@@ -27,17 +27,14 @@ const SignUp = (getNames) => {
 
     const signUpHandler = async () => {
         let res = await dispatch(emailAndPasswordAuth(form.email, form.password, toast,navigate))
-        console.log(res,'res')
         if (res.isNewUser) {
             let result = await dispatch(createDocOfCollectionWithId('accounts', res.uid, {
                 ...res,
                 userType: 'student',
                 status: 'pending'
             }))
-            console.log(result)
         }
         navigate('/unknownProfile')
-        console.log(res)
     }
 
     const signedButtonMarkup = (

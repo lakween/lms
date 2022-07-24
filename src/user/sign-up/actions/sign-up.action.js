@@ -20,7 +20,6 @@ export const emailAndPasswordAuth = (email, password, toast, navigate) => {
                 })
             }
         }catch (e) {
-            console.log(e,'>>>>>>')
             toast({
                 title: 'Something wrong',
                 description: [...e.message.split(":")][1],

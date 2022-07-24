@@ -17,7 +17,6 @@ const useUserLoginInfo = ()=>{
         firebase.auth().onAuthStateChanged(async function(user) {
             if (user) {
                 let userdetails = await dispatch(getUsrType(user.uid))
-                console.log(userdetails,'usersbf')
                 dispatch(setUserLoginDetails(user))
                 dispatch(setUserType(userdetails?.userType))
                 dispatch(setProfileStatus(userdetails?.status))

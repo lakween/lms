@@ -36,31 +36,6 @@ export const getAllDocFromCollection = (collName) => {
     }
 }
 
-export const filterDocsWithRefFromCollection = (coll, fields, filters) => {
-    return async (dispatch) => {
-        let a = filters.map((item) => (where(item[0], item[1], item[2])))
-        const db = firebase.firestore();
-        const collRef = await collection(db, coll);
-        const queryData = await query(collRef, ...a);
-        let array = []
-        const querySnapshot = await getDocs(queryData)
-        for (let document of querySnapshot.docs) {
-            let singleDoc = {}
-            for (let [key, value] of Object.entries(document._document?.data?.value?.mapValue?.fields)) {
-                if (value.referenceValue) {
-                    let splitArray = value.referenceValue.split("/")
-                    const docRef = await doc(db, splitArray[5], splitArray[6]);
-                    const docSnap = await getDoc(docRef);
-                    singleDoc[key] = docSnap.data()
-                } else {
-                    singleDoc[key] = Object.values(value)[0]
-                }
-            }
-            array.push(singleDoc)
-        }
-        return array
-    }
-}
 
 export const filterDocsFromCollection = (coll, fields, filters) => {
     return async (dispatch) => {
@@ -71,16 +46,8 @@ export const filterDocsFromCollection = (coll, fields, filters) => {
         let array = []
         const querySnapshot = await getDocs(queryData)
         for (let document of querySnapshot.docs) {
-            let singleDoc = {}
-            for (let [key, value] of Object.entries(document._document?.data?.value?.mapValue?.fields)) {
-                if (value.referenceValue) {
-                    let splitArray = value.referenceValue.split("/")
-                    singleDoc[key] = splitArray
-                } else {
-                    singleDoc[key] = Object.values(value)[0]
-                }
-            }
-            array.push(singleDoc)
+            console.log(document.data(),'>>>>>')
+            array.push(document.data())
         }
         return array
     }
@@ -88,6 +55,7 @@ export const filterDocsFromCollection = (coll, fields, filters) => {
 
 export const getRefFieldOnlyFromFilter = (coll, field, filters) => {
     return async (dispatch) => {
+
         let a = filters.map((item) => (where(item[0], item[1], item[2])))
         const db = firebase.firestore();
         const collRef = await collection(db, coll);

@@ -70,7 +70,6 @@ const Courses = () => {
   }
 
   const bg = useColorModeValue("white", "gray.800");
-  console.log(courseDetails);
 
   const Feature = (props) => {
     return (

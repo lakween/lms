@@ -29,10 +29,8 @@ const ChoiseSigninTypeModal = ({modalMethod, State}) => {
                 userType: 'student',
                 status: 'pending'
             }))
-            console.log(result)
         }
         navigate('/unknownProfile')
-        console.log(res)
     }
 
     const onClickTeacher = async () => {
@@ -44,10 +42,8 @@ const ChoiseSigninTypeModal = ({modalMethod, State}) => {
                 userType: 'teacher',
                 status: 'pending'
             }))
-            console.log(result)
         }
         navigate('/unknownProfile')
-        console.log(res)
     }
 
     return (
