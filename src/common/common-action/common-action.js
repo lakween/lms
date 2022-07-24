@@ -18,11 +18,9 @@ export const createDocOfCollection = (collName, data) => {
     }
 }
 
-export const createDocOfCollectionWithId = (collName, id, data) => {
-    return async (dispatch) => {
+export const createDocOfCollectionWithId = async (collName, id, data) => {
         const db = firebase.firestore();
         const docRef = await setDoc(doc(db, collName, id), data);
-    }
 }
 
 export const getAllDocFromCollection = (collName) => {

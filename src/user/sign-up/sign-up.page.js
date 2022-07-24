@@ -26,14 +26,14 @@ const SignUp = (getNames) => {
     const toast = useToast()
 
     const signUpHandler = async () => {
-        let res = await dispatch(emailAndPasswordAuth(form.email, form.password, toast,navigate))
+        let res = await emailAndPasswordAuth(form.email, form.password, toast,navigate)
         if (res.isNewUser) {
-            let result = await dispatch(createDocOfCollectionWithId('accounts', res.uid, {
+            let result = await createDocOfCollectionWithId('accounts', res.uid, {
                 ...res,
                 ...form,
                 userType: 'student',
                 status: 'pending'
-            }))
+            })
         }
         navigate('/unknownProfile')
     }

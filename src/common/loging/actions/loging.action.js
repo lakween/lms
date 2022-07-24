@@ -2,8 +2,7 @@ import firebase from "firebase/compat/app";
 import {collection, doc,getDoc, getDocs, query, where} from "firebase/firestore";
 import { getAuth, setPersistence,inMemoryPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
 
-export const googleSignUp = () => {
-    return async (dispatch) => {
+export const googleSignUp = async () => {
         let provider = new firebase.auth.GoogleAuthProvider();
         let result = await firebase.auth().signInWithPopup(provider).then(function (result) {
             return {email: result.user.email, fullName: result?.user?.displayName , uid:result?.user?.uid ,isNewUser: result?.additionalUserInfo?.isNewUser}
@@ -11,7 +10,6 @@ export const googleSignUp = () => {
             return {success: error}
         });
         return result
-    }
 }
 
 export const createDoc = (collection, toast, navigate, form) => {
