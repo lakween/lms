@@ -54,7 +54,7 @@ const SignUp = (getNames) => {
                     <Flex padding={3} width={'100%'} bg={useColorModeValue('white', 'gray.900')} gap={3} direction={'row'}>
                         <Box width={'100%'} bg={useColorModeValue('white', 'gray.900')}>
                             <FormControl>
-                                <FormLabel >First Name</FormLabel>
+                                <FormLabel>First Name</FormLabel>
                                 <Input  value={form.first_name} onChange={valueChangeHandler} name='first_name'
                                        type='text'/>
                             </FormControl>
@@ -74,20 +74,20 @@ const SignUp = (getNames) => {
                         </Box>
                         <Box width={'100%'}>
                             <FormControl>
-                                <FormLabel>State</FormLabel>
-                                <Input onChange={valueChangeHandler} name='state' type='text'/>
-                            </FormControl>
-                            <FormControl>
-                                <FormLabel>City</FormLabel>
-                                <Input onChange={valueChangeHandler} name='city' type='text'/>
+                                <FormLabel>Date of Birth</FormLabel>
+                                <Input onChange={valueChangeHandler} name='birthday' type='date'/>
                             </FormControl>
                             <FormControl>
                                 <FormLabel>Address</FormLabel>
-                                <Input onChange={valueChangeHandler} name='address' type='text'/>
+                                <Input onChange={valueChangeHandler} name='Address' type='text'/>
+                            </FormControl>
+                            <FormControl>
+                                <FormLabel>School</FormLabel>
+                                <Input onChange={valueChangeHandler} name='School' type='text'/>
                             </FormControl>
                             <FormControl>
                                 <FormLabel>Tel: NO</FormLabel>
-                                <Input onChange={valueChangeHandler} name='mobile_number' type='email'/>
+                                <Input onChange={valueChangeHandler} name='mobile_number' type='number'/>
                             </FormControl>
                         </Box>
                     </Flex>
