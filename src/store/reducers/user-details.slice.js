@@ -16,9 +16,16 @@ const userDetailsSlice = createSlice({
         },
         setProfileStatus:(state,{payload}) => {
             state.ProfileStatus = payload
+        },
+        clearUserDetails:(state,{payload}) => {
+            state.ProfileStatus = {
+                ProfileStatus:'',
+                userType:'',
+                loginDetails:''
+            }
         }
     },
 })
 
-export const { setUserLoginDetails,setUserType,setProfileStatus } = userDetailsSlice.actions
+export const { setUserLoginDetails,setUserType,setProfileStatus,clearUserDetails } = userDetailsSlice.actions
 export default userDetailsSlice.reducer
