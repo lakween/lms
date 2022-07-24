@@ -86,7 +86,7 @@ export default function CourseDetails(props) {
         CourseID: courseID,
         isEnrolled: "true",
         paymentSlip: photoURL,
-        payMethod: form.st_pay_ref ? "online" : "slip",
+        payMethod: form.st_pay_ref ? "slip" : "online",
         isPaid: "true",
       });
       if (docRef.id) {
