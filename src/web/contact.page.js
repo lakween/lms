@@ -57,7 +57,6 @@ const Contact = () => {
   const toast = useToast();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     setLoader(true);
 
     const db = firebase.firestore();
@@ -267,7 +266,6 @@ const Contact = () => {
                     <WrapItem>
                       <Box bg="white" borderRadius="lg">
                         <Box m={8} color="#0B0E3F">
-                          <form onSubmit={handleSubmit}>  
                           <VStack spacing={5}>
                             <FormControl id="user_name" isRequired>
                               <FormLabel>Your Name</FormLabel>
@@ -316,6 +314,9 @@ const Contact = () => {
                             </FormControl>
                             <FormControl id="name" float="right">
                               <Button
+                                  onClick={()=>{
+                                    handleSubmit()
+                                  }}
                                 variant="solid"
                                 bg="#0D74FF"
                                 color="white"
@@ -326,7 +327,6 @@ const Contact = () => {
                               </Button>
                             </FormControl>
                           </VStack>
-                          </form>
                         </Box>
                       </Box>
                     </WrapItem>

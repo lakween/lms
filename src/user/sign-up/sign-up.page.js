@@ -30,6 +30,7 @@ const SignUp = (getNames) => {
         if (res.isNewUser) {
             let result = await dispatch(createDocOfCollectionWithId('accounts', res.uid, {
                 ...res,
+                ...form,
                 userType: 'student',
                 status: 'pending'
             }))
