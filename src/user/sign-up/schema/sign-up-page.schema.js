@@ -8,7 +8,12 @@ let signSchema = yup.object().shape({
     birthday: yup.date().required('birthday is required'),
     Address: yup.string().required('address is required'),
     School: yup.string().required('school is required'),
-    mobile_number: yup.number().max(13,'Max 13').min(12,'min 10').required('mobile number is required'),
+    // mobile_number: yup.number().required('mobile number is required').max(13,'Must be 15 characters or less'),
+    mobile_number: yup.string()
+        .required('mobile number is required')
+        .matches(/^[0-9]+$/, "Must be only digits")
+        .min(10, 'Must be exactly 10 digits')
+        .max(13, 'Must be exactly 13 digits')
 });
 
 export default signSchema
