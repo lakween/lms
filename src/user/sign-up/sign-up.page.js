@@ -28,7 +28,6 @@ const SignUp = (getNames) => {
     const [showPassword, setShowPassword] = useState(false);
     let dispatch = useDispatch()
     const toast = useToast()
-    console.log(errors, 'errors')
 
     const signUpHandler = async () => {
         setErrors({})
@@ -157,16 +156,18 @@ const SignUp = (getNames) => {
                                 <FormControl id="school" isRequired isInvalid={!form.School}>
                                     <FormLabel>School</FormLabel>
                                     <Input onChange={valueChangeHandler} type="text" name="School"/>
-                                    {errors.School ? <FormErrorMessage color={'red'}>{errors.School}</FormErrorMessage> :
+                                    {errors.School ?
+                                        <FormErrorMessage color={'red'}>{errors.School}</FormErrorMessage> :
                                         <FormErrorMessage></FormErrorMessage>}
                                 </FormControl>
                             </Box>
                             <Box>
                                 <FormControl id="dateofbirth" isInvalid={!form.birthday}>
                                     <FormLabel>Date of Birth</FormLabel>
-                                    <Input   max={new Date().toISOString().split('T')[0]} onChange={valueChangeHandler} type="date" name="birthday"/>
+                                    <Input max={new Date().toISOString().split('T')[0]} onChange={valueChangeHandler}
+                                           type="date" name="birthday"/>
                                     {errors.birthday ?
-                                        <FormErrorMessage  color={'red'}>{errors.birthday}</FormErrorMessage> :
+                                        <FormErrorMessage color={'red'}>{errors.birthday}</FormErrorMessage> :
                                         <FormErrorMessage></FormErrorMessage>}
                                 </FormControl>
                             </Box>
@@ -176,7 +177,9 @@ const SignUp = (getNames) => {
                         </Stack>
                         <Stack pt={6}>
                             <Text align={"center"}>
-                                Already a user? <Link color={"blue.400"}>Login</Link>
+                                Already a user? <Link onClick={() => {
+                                navigate("/login")
+                            }} color={"blue.400"}>Login</Link>
                             </Text>
                         </Stack>
                     </Stack>
