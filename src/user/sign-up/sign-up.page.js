@@ -28,7 +28,7 @@ const SignUp = (getNames) => {
     const [showPassword, setShowPassword] = useState(false);
     let dispatch = useDispatch()
     const toast = useToast()
-    console.log(form, 'errors')
+    console.log(errors, 'errors')
 
     const signUpHandler = async () => {
         setErrors({})
@@ -115,7 +115,7 @@ const SignUp = (getNames) => {
                         <FormControl id="email" isRequired isInvalid={!form.email}>
                             <FormLabel>Email address</FormLabel>
                             <Input onChange={valueChangeHandler} type="email" name="email"/>
-                            {errors.email ? <FormErrorMessage color={'red'}>{errors.email}</FormErrorMessage> :
+                            {errors.email ? <Text size={'xs'} color={'red'}>{errors.email}</Text> :
                                 <FormErrorMessage></FormErrorMessage>}
                         </FormControl>
                         <FormControl id="password" isRequired isInvalid={!form.password}>
