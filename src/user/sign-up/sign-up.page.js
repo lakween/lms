@@ -22,13 +22,15 @@ import signSchema from "./schema/sign-up-page.schema";
 const SignUp = (getNames) => {
     const [isLoading, setIsLoading] = useState(false)
     let [valueChangeHandler, setValue, form, setForm] = useFormController()
+    let [errors,setErrors] = useState()
     let navigate = useNavigate();
     let dispatch = useDispatch()
     const toast = useToast()
 
     const signUpHandler = async () => {
+
         try {
-            await signSchema.validate(form);
+            await signSchema.validate(form, {abortEarly: false})
             let res = await emailAndPasswordAuth(form.email, form.password, toast, navigate)
             if (res.isNewUser) {
                 let result = await createDocOfCollectionWithId('accounts', res.uid, {
@@ -38,9 +40,11 @@ const SignUp = (getNames) => {
                     status: 'pending'
                 })
             }
-            navigate('/unknownProfile')
+            // navigate('/unknownProfile')
         } catch (e) {
-            console.log(e, 'err')
+            e.inner.forEach(e => {
+                setErrors({...errors, ...{[e.path]: e.message}})
+            });
         }
     }
 
