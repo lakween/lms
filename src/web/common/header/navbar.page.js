@@ -51,7 +51,7 @@ const HeaderNav = () => {
           <Box display={["none", , "flex"]} alignItems={{ md: "center" }}>
             <chakra.a
               onClick={() => {
-                navigate("/");
+                navigate("/index");
               }}
               display="block"
               mx={4}

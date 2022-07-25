@@ -129,6 +129,10 @@ export let RouterConfig = () => {
             path: "/",
             element: <WebHome/>,
         },
+        {
+            path: "/index",
+            element: <WebHome/>,
+        },
 
         ...getRoutesByUser()
         // ...(userType == "student" ? studentRoute : userType == "admin" ? adminRoute : [])
