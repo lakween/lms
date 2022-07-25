@@ -8,7 +8,7 @@ import {
     Input,
     useToast,
     LightMode,
-    useColorModeValue
+    useColorModeValue, Stack, Text, Link, HStack, InputGroup, InputRightElement, Heading
 } from '@chakra-ui/react'
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
@@ -18,12 +18,14 @@ import {useNavigate} from "react-router-dom";
 import Card from "../../common/card/card.component"
 import {createDocOfCollectionWithId} from "../../common/common-action/common-action";
 import signSchema from "./schema/sign-up-page.schema";
+import {AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
 
 const SignUp = (getNames) => {
     const [isLoading, setIsLoading] = useState(false)
     let [valueChangeHandler, setValue, form, setForm] = useFormController()
-    let [errors,setErrors] = useState()
+    let [errors,setErrors] = useState({})
     let navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
     let dispatch = useDispatch()
     const toast = useToast()
 
@@ -49,64 +51,116 @@ const SignUp = (getNames) => {
     }
 
     const signedButtonMarkup = (
-        <Flex justifyContent={'right'} mt={3} columnGap={'20px'} direction={'row'}>
-            <Button isLoading={isLoading} onClick={signUpHandler} width={'120px'} colorScheme="teal" size="sm">
-                Create Account
-            </Button>
-        </Flex>
-    )
+        <Button
+            loadingText="Submitting"
+            size="lg"
+            bg={"blue.400"}
+            color={"white"}
+            _hover={{
+                bg: "blue.500",
+            }}
+            isLoading={isLoading}
+            onClick={signUpHandler}
+        >
+            Sign up
+        </Button>
+    );
 
     return (
-
-        <Container marginTop={200} display={'flex'} justifyContent={"center"} height={'44vh'} centerContent padding={5}
-                   maxW='70%'
-                   bg={useColorModeValue('gray.100', 'gray.900')}>
-            <Box width={'100%'} inSideTitle={'Personal Informations'}>
-                <img/>
-                <Flex padding={3} width={'100%'} bg={useColorModeValue('white', 'gray.900')} gap={3} direction={'row'}>
-                    <Box width={'100%'} bg={useColorModeValue('white', 'gray.900')}>
-                        <FormControl>
-                            <FormLabel>First Name</FormLabel>
-                            <Input value={form.first_name} onChange={valueChangeHandler} name='first_name'
-                                   type='text'/>
+        <Flex
+            minH={"100vh"}
+            align={"center"}
+            justify={"center"}
+            bg={useColorModeValue("gray.50", "gray.800")}
+        >
+            <Stack spacing={8} mx={"auto"} maxW={"xl"} py={12} px={6}>
+                <Stack align={"center"}>
+                    <Heading fontSize={"4xl"} textAlign={"center"}>
+                        Sign up
+                    </Heading>
+                    <Text fontSize={"lg"} color={"gray.600"}>
+                        SILEC Sri Lanka Language Academy ✌️
+                    </Text>
+                </Stack>
+                <Box
+                    rounded={"lg"}
+                    bg={useColorModeValue("white", "gray.700")}
+                    boxShadow={"lg"}
+                    p={8}
+                >
+                    <Stack spacing={4}>
+                        <HStack>
+                            <Box>
+                                <FormControl id="firstName" isRequired>
+                                    <FormLabel>First Name</FormLabel>
+                                    <Input type="text" name="first_name" />
+                                </FormControl>
+                            </Box>
+                            <Box>
+                                <FormControl id="lastName">
+                                    <FormLabel>Last Name</FormLabel>
+                                    <Input type="text" name="last_name" />
+                                </FormControl>
+                            </Box>
+                        </HStack>
+                        <FormControl id="email" isRequired>
+                            <FormLabel>Email address</FormLabel>
+                            <Input type="email" name="email" />
                         </FormControl>
-                        <FormControl>
-                            <FormLabel>Last Name</FormLabel>
-                            <Input onChange={valueChangeHandler} value={form.last_name} name='last_name'
-                                   type='text'/>
+                        <FormControl id="tel" isRequired>
+                            <FormLabel>Mobile Number</FormLabel>
+                            <Input type="tel" name="mobile_number" />
                         </FormControl>
-                        <FormControl>
-                            <FormLabel>Email</FormLabel>
-                            <Input onChange={valueChangeHandler} value={form.email} name='email' type='email'/>
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Password</FormLabel>
-                            <Input onChange={valueChangeHandler} name='password' type='password'/>
-                        </FormControl>
-                    </Box>
-                    <Box width={'100%'}>
-                        <FormControl>
-                            <FormLabel>Date of Birth</FormLabel>
-                            <Input onChange={valueChangeHandler} name='birthday' type='date'/>
-                        </FormControl>
-                        <FormControl>
+                        <FormControl id="address" isRequired>
                             <FormLabel>Address</FormLabel>
-                            <Input onChange={valueChangeHandler} name='Address' type='text'/>
+                            <Input type="text" name="Address" />
                         </FormControl>
-                        <FormControl>
-                            <FormLabel>School</FormLabel>
-                            <Input onChange={valueChangeHandler} name='School' type='text'/>
+                        <FormControl id="password" isRequired>
+                            <FormLabel>Password</FormLabel>
+                            <InputGroup>
+                                <Input
+                                    type={showPassword ? "text" : "password"}
+                                    name="password"
+                                />
+                                <InputRightElement h={"full"}>
+                                    <Button
+                                        variant={"ghost"}
+                                        onClick={() =>
+                                            setShowPassword((showPassword) => !showPassword)
+                                        }
+                                    >
+                                        {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                                    </Button>
+                                </InputRightElement>
+                            </InputGroup>
                         </FormControl>
-                        <FormControl>
-                            <FormLabel>Tel: NO</FormLabel>
-                            <Input onChange={valueChangeHandler} name='mobile_number' type='number'/>
-                        </FormControl>
-                    </Box>
-                </Flex>
-                {signedButtonMarkup}
-            </Box>
-        </Container>
-    )
+                        <HStack>
+                            <Box>
+                                <FormControl id="school" isRequired>
+                                    <FormLabel>School</FormLabel>
+                                    <Input type="text" name="School" />
+                                </FormControl>
+                            </Box>
+                            <Box>
+                                <FormControl id="dateofbirth">
+                                    <FormLabel>Date of Birth</FormLabel>
+                                    <Input type="date" name="birthdayF" />
+                                </FormControl>
+                            </Box>
+                        </HStack>
+                        <Stack spacing={10} pt={2}>
+                            {signedButtonMarkup}
+                        </Stack>
+                        <Stack pt={6}>
+                            <Text align={"center"}>
+                                Already a user? <Link color={"blue.400"}>Login</Link>
+                            </Text>
+                        </Stack>
+                    </Stack>
+                </Box>
+            </Stack>
+        </Flex>
+    );
 }
 
 export default SignUp
