@@ -40,6 +40,7 @@ const Class = () => {
     setClasses(res || []);
   }
 
+  console.log(classes);
   const bg = useColorModeValue("white", "gray.800");
 
   return (

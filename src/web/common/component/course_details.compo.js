@@ -40,7 +40,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import useFormController from "../../../hooks/useFormController";
 import firebase from "firebase/compat/app";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes,getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
 
@@ -82,11 +82,11 @@ export default function CourseDetails(props) {
     } else {
       const db = firebase.firestore();
       const docRef = await addDoc(collection(db, "courseByStudent"), {
-        StudentID: stuID,
-        CourseID: courseID,
+        StudentID: "accounts/" + stuID,
+        CourseID: "courses/" + courseID,
         isEnrolled: "true",
         paymentSlip: photoURL,
-        payMethod: form.st_pay_ref ? "slip" : "online",
+        payMethod: form.st_pay_ref ? "online" : "slip",
         isPaid: "true",
       });
       if (docRef.id) {
@@ -107,8 +107,7 @@ export default function CourseDetails(props) {
         });
       }
     }
-    setForm({});
-    setImage("");
+    setForm("");
   };
 
   const navigate = useNavigate();
