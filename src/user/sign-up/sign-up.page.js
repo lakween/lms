@@ -164,7 +164,7 @@ const SignUp = (getNames) => {
                             <Box>
                                 <FormControl id="dateofbirth" isInvalid={!form.birthday}>
                                     <FormLabel>Date of Birth</FormLabel>
-                                    <Input onChange={valueChangeHandler} type="date" name="birthday"/>
+                                    <Input   max={new Date().toISOString().split('T')[0]} onChange={valueChangeHandler} type="date" name="birthday"/>
                                     {errors.birthday ?
                                         <FormErrorMessage  color={'red'}>{errors.birthday}</FormErrorMessage> :
                                         <FormErrorMessage></FormErrorMessage>}
