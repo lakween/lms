@@ -143,7 +143,7 @@ const SignUp = (getNames) => {
                             <FormLabel>Mobile Number</FormLabel>
                             <Input onChange={valueChangeHandler} type="tel" name="mobile_number"/>
                             {errors.mobile_number ?
-                                <FormErrorMessage color={'red'}>{errors.mobile_number}</FormErrorMessage> :
+                                <Text color={'red'}>{errors.mobile_number}</Text> :
                                 <FormErrorMessage></FormErrorMessage>}
                         </FormControl>
                         <FormControl id="address" isRequired isInvalid={!form.Address}>
@@ -157,16 +157,16 @@ const SignUp = (getNames) => {
                                 <FormControl id="school" isRequired isInvalid={!form.School}>
                                     <FormLabel>School</FormLabel>
                                     <Input onChange={valueChangeHandler} type="text" name="School"/>
+                                    {errors.School ? <FormErrorMessage color={'red'}>{errors.School}</FormErrorMessage> :
+                                        <FormErrorMessage></FormErrorMessage>}
                                 </FormControl>
-                                {errors.School ? <FormErrorMessage color={'red'}>{errors.Address}</FormErrorMessage> :
-                                    <FormErrorMessage></FormErrorMessage>}
                             </Box>
                             <Box>
                                 <FormControl id="dateofbirth" isInvalid={!form.birthday}>
                                     <FormLabel>Date of Birth</FormLabel>
                                     <Input onChange={valueChangeHandler} type="date" name="birthday"/>
                                     {errors.birthday ?
-                                        <FormErrorMessage color={'red'}>{errors.birthday}</FormErrorMessage> :
+                                        <FormErrorMessage  color={'red'}>{errors.birthday}</FormErrorMessage> :
                                         <FormErrorMessage></FormErrorMessage>}
                                 </FormControl>
                             </Box>

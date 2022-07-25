@@ -8,7 +8,7 @@ let signSchema = yup.object().shape({
     birthday: yup.date().required('birthday is required'),
     Address: yup.string().required('address is required'),
     School: yup.string().required('school is required'),
-    mobile_number: yup.number().required('mobile number is required'),
+    mobile_number: yup.number().required('mobile number is required').max(13,'Max 13').min(13,'min 13'),
 });
 
 export default signSchema
