@@ -29,6 +29,7 @@ import {useNavigate} from "react-router-dom";
 import {signOut} from "../../loging/actions/loging.action";
 import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
 import {getAuth} from "firebase/auth";
+import {clearUserDetails} from "../../../store/reducers/user-details.slice";
 
 export default function SidebarWithHeader({children}) {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -62,6 +63,7 @@ export default function SidebarWithHeader({children}) {
 
 const SidebarContent = ({onClose}) => {
     const [LinkItems, setLinkItems] = useState([])
+    const [userType, status, user] = useUserLoginInfo()
     let navigate = useNavigate();
     const dispatch = useDispatch()
 
@@ -71,11 +73,15 @@ const SidebarContent = ({onClose}) => {
 
     useEffect(() => {
         getData()
-    }, [])
+    }, [user?.uid])
 
     async function getData() {
-        let res = await dispatch(getAllDocFromCollection('userRoutes'))
-        setLinkItems([...res])
+        if (status == 'pending') {
+            setLinkItems([])
+        } else if (status == 'approved' || '') {
+            let res = await getAllDocFromCollection('userRoutes')
+            setLinkItems([...res])
+        }
     }
 
     return (
@@ -140,13 +146,14 @@ const NavItem = ({icon, link, navigate, children, ...rest}) => {
 
 const MobileNav = ({onOpen, ...rest}) => {
     const {colorMode, toggleColorMode} = useColorMode()
-    let [type, userDetails] = useUserLoginInfo()
+    let [type, status, userDetails] = useUserLoginInfo()
 
     let navigate = useNavigate();
     const dispatch = useDispatch()
 
     const signOutHandler = async () => {
-        await dispatch(signOut())
+        await signOut()
+        dispatch(clearUserDetails())
         navigate('/login')
     }
     return (

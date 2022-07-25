@@ -15,7 +15,7 @@ import {
     Link,
     Stack,
     useColorMode,
-    useColorModeValue
+    useColorModeValue, useDisclosure
 } from "@chakra-ui/react";
 import {FaLock, FaUserAlt} from "react-icons/fa";
 import {FcGoogle} from "react-icons/fc";
@@ -23,35 +23,34 @@ import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import useFormController from "../../hooks/useFormController";
-import {getUsrType, login} from "./actions/loging.action";
-import {setUserLoginDetails, setUserType} from "../../store/reducers/user-details.slice";
+import {getUsrType, googleSignUp, login} from "./actions/loging.action";
+import {setProfileStatus, setUserLoginDetails, setUserType} from "../../store/reducers/user-details.slice";
+import ChoiseSigninTypeModal from "./components/modal/choise-signin-type.modal";
 
 const Login = () => {
     // const {colorMode, toggleColorMode} = useColorMode()
+    const { isOpen, onOpen, onClose } = useDisclosure()
     let navigate = useNavigate();
     let dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(false)
-
+    const [modalState, setModalState] = useState({})
     let [valueChangeHandler, setValue, form, setForm] = useFormController()
 
     async function signUpwithGoogle() {
-        // setIsLoading(true)
-        // let res = await dispatch(googleSignUp(navigate))
-        // console.log(res)
-
+        onOpen()
     }
 
     const loginHandler = async () => {
-
         setIsLoading(true)
-        let res = await dispatch(login(form, navigate))
-        console.log(res,'res')
-        let userType = await dispatch(getUsrType(res.user.uid))
+        let res = await login(form, navigate)
+        let userDetails = await getUsrType(res.user.uid)
         setIsLoading(false)
         if (res) {
             dispatch(setUserLoginDetails(res.user))
-            dispatch(setUserType(userType))
-            navigate('/home')
+            dispatch(setUserType(userDetails.userType))
+            dispatch(setProfileStatus(userDetails.status))
+            if(userDetails.status == 'pending') navigate('/unknownProfile')
+            else navigate('/home')
         }
     }
 
@@ -147,6 +146,7 @@ const Login = () => {
                         Sign Up
                     </Link>
                 </Box>
+                <ChoiseSigninTypeModal modalMethod={{ isOpen, onOpen, onClose }} State={[modalState, setModalState]}/>
             </Flex>
     );
 };

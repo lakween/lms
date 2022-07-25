@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const userDetailsSlice = createSlice({
     name: 'userDetailsSlice',
     initialState: {
+        ProfileStatus:'',
         userType:'',
         loginDetails:''
     },
@@ -12,9 +13,19 @@ const userDetailsSlice = createSlice({
         },
         setUserType:(state,{payload}) => {
             state.userType = payload
+        },
+        setProfileStatus:(state,{payload}) => {
+            state.ProfileStatus = payload
+        },
+        clearUserDetails:(state,{payload}) => {
+            state.ProfileStatus = {
+                ProfileStatus:'',
+                userType:'',
+                loginDetails:''
+            }
         }
     },
 })
 
-export const { setUserLoginDetails,setUserType } = userDetailsSlice.actions
+export const { setUserLoginDetails,setUserType,setProfileStatus,clearUserDetails } = userDetailsSlice.actions
 export default userDetailsSlice.reducer
