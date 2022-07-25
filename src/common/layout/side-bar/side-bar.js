@@ -70,7 +70,6 @@ const SidebarContent = ({onClose}) => {
     let icons = {
         FiHome: FiHome
     }
-    console.log(LinkItems, 'LinkItems')
 
     useEffect(() => {
         getData()
@@ -78,12 +77,10 @@ const SidebarContent = ({onClose}) => {
 
     async function getData() {
         if (status == 'pending') {
-            console.log(status, 'pending')
             setLinkItems([])
         } else if (status == 'approved' || '') {
-            let res = await dispatch(getAllDocFromCollection('userRoutes'))
+            let res = await getAllDocFromCollection('userRoutes')
             setLinkItems([...res])
-
         }
     }
 
@@ -155,7 +152,7 @@ const MobileNav = ({onOpen, ...rest}) => {
     const dispatch = useDispatch()
 
     const signOutHandler = async () => {
-        await dispatch(signOut())
+        await signOut()
         dispatch(clearUserDetails())
         navigate('/login')
     }

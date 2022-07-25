@@ -38,24 +38,17 @@ const Login = () => {
 
     async function signUpwithGoogle() {
         onOpen()
-        // setIsLoading(true)
-        // let res = await dispatch(googleSignUp(navigate))
-        // console.log(res)
-
     }
 
     const loginHandler = async () => {
-
         setIsLoading(true)
-        let res = await dispatch(login(form, navigate))
-        console.log(res,'res')
-        let userDetails = await dispatch(getUsrType(res.user.uid))
+        let res = await login(form, navigate)
+        let userDetails = await getUsrType(res.user.uid)
         setIsLoading(false)
         if (res) {
             dispatch(setUserLoginDetails(res.user))
             dispatch(setUserType(userDetails.userType))
             dispatch(setProfileStatus(userDetails.status))
-            console.log(userDetails,'??????')
             if(userDetails.status == 'pending') navigate('/unknownProfile')
             else navigate('/home')
         }

@@ -1,18 +1,26 @@
 import firebase from "firebase/compat/app";
-import {collection, doc,getDoc, getDocs, query, where} from "firebase/firestore";
-import { getAuth, setPersistence,inMemoryPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
+import {collection, doc, getDoc, getDocs, query, where} from "firebase/firestore";
+import {
+    getAuth,
+    setPersistence,
+    inMemoryPersistence,
+    signInWithEmailAndPassword,
+    browserSessionPersistence
+} from "firebase/auth";
 
-
-export const googleSignUp = () => {
-    return async (dispatch) => {
-        let provider = new firebase.auth.GoogleAuthProvider();
-        let result = await firebase.auth().signInWithPopup(provider).then(function (result) {
-            return {email: result.user.email, fullName: result?.user?.displayName , uid:result?.user?.uid ,isNewUser: result?.additionalUserInfo?.isNewUser}
-        }).catch(function (error) {
-            return {success: error}
-        });
-        return result
-    }
+export const googleSignUp = async () => {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    let result = await firebase.auth().signInWithPopup(provider).then(function (result) {
+        return {
+            email: result.user.email,
+            fullName: result?.user?.displayName,
+            uid: result?.user?.uid,
+            isNewUser: result?.additionalUserInfo?.isNewUser
+        }
+    }).catch(function (error) {
+        return {success: error}
+    });
+    return result
 }
 
 export const createDoc = (collection, toast, navigate, form) => {
@@ -36,41 +44,34 @@ export const createDoc = (collection, toast, navigate, form) => {
     }
 }
 
-export const signOut = () => {
-    return async ()=>{
-        let res = await firebase.auth().signOut()
-    }
+export const signOut = async () => {
+    let res = await firebase.auth().signOut()
 }
 
-export const login = (form, navigate) => {
-    return async (dispatch) => {
-        try {
-            let res = await firebase.auth().signInWithEmailAndPassword(form.username, form.password)
-            const auth = getAuth();
-            return res
-        }catch(e)
-        {
-        }
+export const login = async (form, navigate) => {
+    try {
+        let res = await firebase.auth().signInWithEmailAndPassword(form.username, form.password)
+        const auth = getAuth();
+        return res
+    } catch (e) {
     }
 }
-export const getUsrType = (id) => {
-    return async (dispatch) => {
-        const db = firebase.firestore();
-        // let userType =''
-        // const accounts = collection(db, "accounts")
-        // const q = query(accounts, where("userId", "==", id));
-        // const querySnapshot = await getDocs(q);
-        // for (let doc of querySnapshot.docs){
-        //     userType = (doc.data()).userType
-        // }
-        const docRef = doc(db, "accounts", id);
-        const docSnap = await getDoc(docRef);
+export const getUsrType = async (id) => {
+    const db = firebase.firestore();
+    // let userType =''
+    // const accounts = collection(db, "accounts")
+    // const q = query(accounts, where("userId", "==", id));
+    // const querySnapshot = await getDocs(q);
+    // for (let doc of querySnapshot.docs){
+    //     userType = (doc.data()).userType
+    // }
+    const docRef = doc(db, "accounts", id);
+    const docSnap = await getDoc(docRef);
 
-        if (docSnap.exists()) {
-            return docSnap.data()
-        } else {
-            // doc.data() will be undefined in this case
-        }
+    if (docSnap.exists()) {
+        return docSnap.data()
+    } else {
+        // doc.data() will be undefined in this case
     }
 }
 
@@ -87,18 +88,5 @@ export const checkEmailExist = (form) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
             });
-    }
-}
-
-export const getAllDocuments = (CollectionName) => {
-    return async (dispatch) => {
-        let data = []
-        const db = firebase.firestore();
-        const querySnapshot = await getDocs(collection(db, CollectionName))
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            data.push({id: doc.id, ...doc.data()})
-        });
-        return data
     }
 }

@@ -1,8 +1,7 @@
 import firebase from "firebase/compat/app";
 import setUserLoginDetails from '../../../store/reducers/user-details.slice'
 
-export const emailAndPasswordAuth = (email, password, toast, navigate) => {
-    return async (dispatch) => {
+export const emailAndPasswordAuth = async (email, password, toast, navigate) => {
         try {
             let res = await firebase.auth().createUserWithEmailAndPassword(email, password)
             return {
@@ -20,7 +19,6 @@ export const emailAndPasswordAuth = (email, password, toast, navigate) => {
                 })
             }
         }catch (e) {
-            console.log(e,'>>>>>>')
             toast({
                 title: 'Something wrong',
                 description: [...e.message.split(":")][1],
@@ -56,5 +54,5 @@ export const emailAndPasswordAuth = (email, password, toast, navigate) => {
             //     }
             // });
        //return res
-    }
+
 }

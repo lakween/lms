@@ -76,6 +76,13 @@ export let RouterConfig = () => {
                 {index: true, element: <PendingProfilePage/>},
             ],
         },
+        {
+            path: "profile",
+            element: <Layout/>,
+            children: [
+                {index: true, element: <StudentProfile/>},
+            ],
+        },
     ]
 
     let routes = [

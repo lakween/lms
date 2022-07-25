@@ -20,34 +20,30 @@ const ChoiseSigninTypeModal = ({modalMethod, State}) => {
     let navigate = useNavigate();
     let dispatch = useDispatch()
 
-    const onClickStudent = async () => {
+    const onClickStudent = async (e) => {
         onClose()
-        let res = await dispatch(googleSignUp(navigate))
+        let res = await googleSignUp(navigate)
         if (res.isNewUser) {
-            let result = await dispatch(createDocOfCollectionWithId('accounts', res.uid, {
+            let result = await createDocOfCollectionWithId('accounts', res.uid, {
                 ...res,
                 userType: 'student',
                 status: 'pending'
-            }))
-            console.log(result)
+            })
         }
         navigate('/unknownProfile')
-        console.log(res)
     }
 
     const onClickTeacher = async () => {
         onClose()
-        let res = await dispatch(googleSignUp(navigate))
+        let res = await googleSignUp(navigate)
         if (res.isNewUser) {
-            let result = await dispatch(createDocOfCollectionWithId('accounts', res.uid, {
+            let result = await createDocOfCollectionWithId('accounts', res.uid, {
                 ...res,
                 userType: 'teacher',
                 status: 'pending'
-            }))
-            console.log(result)
+            })
         }
         navigate('/unknownProfile')
-        console.log(res)
     }
 
     return (

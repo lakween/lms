@@ -57,7 +57,6 @@ const Contact = () => {
   const toast = useToast();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     setLoader(true);
 
     const db = firebase.firestore();
@@ -188,7 +187,7 @@ const Contact = () => {
                   <Wrap spacing={{ base: 20, sm: 3, md: 5, lg: 20 }}>
                     <WrapItem>
                       <Box>
-                        <Heading>Contact</Heading>
+                        <Heading color="white">Contact</Heading>
                         <Text mt={{ sm: 3, md: 3, lg: 5 }} color="gray.500">
                           Fill up the form below to contact
                         </Text>
@@ -267,7 +266,6 @@ const Contact = () => {
                     <WrapItem>
                       <Box bg="white" borderRadius="lg">
                         <Box m={8} color="#0B0E3F">
-                          <form onSubmit={handleSubmit}>  
                           <VStack spacing={5}>
                             <FormControl id="user_name" isRequired>
                               <FormLabel>Your Name</FormLabel>
@@ -285,7 +283,7 @@ const Contact = () => {
                                 />
                               </InputGroup>
                             </FormControl>
-                            <FormControl id="email" isRequired>
+                            <FormControl id="email" isRequired > 
                               <FormLabel>Mail</FormLabel>
                               <InputGroup borderColor="#E0E1E7">
                                 <InputLeftElement
@@ -293,7 +291,7 @@ const Contact = () => {
                                   children={<MdOutlineEmail color="gray.800" />}
                                 />
                                 <Input
-                                  type="text"
+                                  type="email"
                                   size="md"
                                   value={email}
                                   onChange={(e) => setEmail(e.target.value)}
@@ -316,6 +314,9 @@ const Contact = () => {
                             </FormControl>
                             <FormControl id="name" float="right">
                               <Button
+                                  onClick={()=>{
+                                    handleSubmit()
+                                  }}
                                 variant="solid"
                                 bg="#0D74FF"
                                 color="white"
@@ -326,7 +327,6 @@ const Contact = () => {
                               </Button>
                             </FormControl>
                           </VStack>
-                          </form>
                         </Box>
                       </Box>
                     </WrapItem>
