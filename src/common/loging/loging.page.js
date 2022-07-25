@@ -11,8 +11,11 @@ import {
     InputGroup,
     InputLeftElement,
     InputRightElement,
-    Link, Text,
-    Stack, LightMode, useColorMode
+    LightMode,
+    Link,
+    Stack,
+    useColorMode,
+    useColorModeValue, useDisclosure
 } from "@chakra-ui/react";
 import {FaLock, FaUserAlt} from "react-icons/fa";
 import {FcGoogle} from "react-icons/fc";
@@ -20,31 +23,34 @@ import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import useFormController from "../../hooks/useFormController";
-import {login} from "./actions/loging.action";
-import {setCommonState} from "../../store/reducers/common-slice";
-import {setUserDetails} from "../../store/reducers/user-details.slice";
+import {getUsrType, googleSignUp, login} from "./actions/loging.action";
+import {setProfileStatus, setUserLoginDetails, setUserType} from "../../store/reducers/user-details.slice";
+import ChoiseSigninTypeModal from "./components/modal/choise-signin-type.modal";
 
 const Login = () => {
-    const {colorMode, toggleColorMode} = useColorMode()
+    // const {colorMode, toggleColorMode} = useColorMode()
+    const { isOpen, onOpen, onClose } = useDisclosure()
     let navigate = useNavigate();
     let dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(false)
-
+    const [modalState, setModalState] = useState({})
     let [valueChangeHandler, setValue, form, setForm] = useFormController()
 
     async function signUpwithGoogle() {
-        // setIsLoading(true)
-        // let res = await dispatch(googleSignUp(navigate))
-        // console.log(res)
-
+        onOpen()
     }
+
     const loginHandler = async () => {
         setIsLoading(true)
-        let res = await dispatch(login(form, navigate))
+        let res = await login(form, navigate)
+        let userDetails = await getUsrType(res.user.uid)
         setIsLoading(false)
-        if(res){
-            dispatch(setUserDetails(res))
-            navigate('/home')
+        if (res) {
+            dispatch(setUserLoginDetails(res.user))
+            dispatch(setUserType(userDetails.userType))
+            dispatch(setProfileStatus(userDetails.status))
+            if(userDetails.status == 'pending') navigate('/unknownProfile')
+            else navigate('/home')
         }
     }
 
@@ -55,13 +61,12 @@ const Login = () => {
     const handleShowClick = () => setShowPassword(!showPassword);
 
     return (
-        <LightMode>
-
             <Flex
+                bg={useColorModeValue('white', 'gray.900')}
                 flexDirection="column"
                 width="100wh"
                 height="100vh"
-                backgroundColor="gray.200"
+
                 justifyContent="center"
                 alignItems="center"
             >
@@ -73,13 +78,13 @@ const Login = () => {
                 >
                     <Avatar bg="teal.500"/>
                     <Heading color="teal.400">Welcome</Heading>
-                    <Box minW={{base: "90%", md: "468px"}}>
+                    <Box minW={{base: "90%", md: "468px"}}  bg={useColorModeValue('white', 'gray.900')}>
 
                         <Stack
                             spacing={4}
                             p="1rem"
-                            backgroundColor="whiteAlpha.900"
                             boxShadow="md"
+                            bg={useColorModeValue('white', 'gray.900')}
                         >
                             <FormControl>
                                 <InputGroup>
@@ -119,7 +124,7 @@ const Login = () => {
                                 borderRadius={0}
                                 type="submit"
                                 variant="solid"
-                                colorScheme="teal"
+                                colorScheme={useColorModeValue('teal', 'teal')}
                                 width="full"
                                 onClick={loginHandler}
                             >
@@ -141,9 +146,8 @@ const Login = () => {
                         Sign Up
                     </Link>
                 </Box>
+                <ChoiseSigninTypeModal modalMethod={{ isOpen, onOpen, onClose }} State={[modalState, setModalState]}/>
             </Flex>
-        </LightMode>
-
     );
 };
 

@@ -4,7 +4,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import firebase from 'firebase/compat/app';
-import {Provider} from "react-redux";
+import {Provider, useDispatch} from "react-redux";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import reportWebVitals from './reportWebVitals';
@@ -14,6 +14,8 @@ import {ChakraProvider, ColorModeProvider} from '@chakra-ui/react'
 import {RouterConfig} from "./route-config";
 import {BrowserRouter} from "react-router-dom";
 import {theme} from "./chakra-theme";
+import { getStorage } from "firebase/storage";
+import {getUsrType, login} from "./common/loging/actions/loging.action";
 
 firebase.initializeApp(firebaseConfig)
 firebase.firestore();

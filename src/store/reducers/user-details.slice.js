@@ -2,11 +2,30 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const userDetailsSlice = createSlice({
     name: 'userDetailsSlice',
-    initialState: {},
+    initialState: {
+        ProfileStatus:'',
+        userType:'',
+        loginDetails:''
+    },
     reducers: {
-        setUserDetails:(state,{payload}) => state = payload
+        setUserLoginDetails:(state,{payload}) => {
+            state.loginDetails = payload
+        },
+        setUserType:(state,{payload}) => {
+            state.userType = payload
+        },
+        setProfileStatus:(state,{payload}) => {
+            state.ProfileStatus = payload
+        },
+        clearUserDetails:(state,{payload}) => {
+            state.ProfileStatus = {
+                ProfileStatus:'',
+                userType:'',
+                loginDetails:''
+            }
+        }
     },
 })
 
-export const { setUserDetails } = userDetailsSlice.actions
+export const { setUserLoginDetails,setUserType,setProfileStatus,clearUserDetails } = userDetailsSlice.actions
 export default userDetailsSlice.reducer

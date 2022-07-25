@@ -7,6 +7,7 @@
     "@chakra-ui/theme-tools": "^2.0.2",
     "@emotion/react": "11",
     "@emotion/styled": "11",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -22,7 +23,8 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
-    "yarn": "^1.22.19"
+    "yarn": "^1.22.19",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
