@@ -78,6 +78,38 @@ export const theme = extendTheme({
                 _focus: { bg: mode("blue.50", "transparent")(props) },
                 _active: { bg: mode("blue.50", "transparent")(props) },
             }),
+        },
+        table:{
+            baseStyle: (props) => ({
+                borderColor: mode("black", "black")(props),
+                backgroundColor: mode("black", "black")(props)
+            }),
+            outlined: (props) => ({
+                color: mode("blue.400", "white")(props),
+                bg: "transparent",
+                fontSize: "10px",
+                border: "1px solid",
+                borderColor: { bg: mode("blue.400", "white")(props)},
+                _hover: { bg: mode("blue.50", "transparent")(props) },
+                _focus: { bg: mode("blue.50", "transparent")(props) },
+                _active: { bg: mode("blue.50", "transparent")(props) },
+            }),
+        },
+        thead:{
+            baseStyle: (props) => ({
+                borderColor: mode("black", "black")(props),
+                backgroundColor: mode("black", "black")(props)
+            }),
+            outlined: (props) => ({
+                color: mode("blue.400", "white")(props),
+                bg: "transparent",
+                fontSize: "10px",
+                border: "1px solid",
+                borderColor: { bg: mode("blue.400", "white")(props)},
+                _hover: { bg: mode("blue.50", "transparent")(props) },
+                _focus: { bg: mode("blue.50", "transparent")(props) },
+                _active: { bg: mode("blue.50", "transparent")(props) },
+            }),
         }
 
     },
