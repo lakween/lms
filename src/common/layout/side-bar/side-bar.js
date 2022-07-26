@@ -81,6 +81,9 @@ const SidebarContent = ({onClose}) => {
         } else if (status == 'approved' || '') {
             let res = await getAllDocFromCollection('userRoutes')
             setLinkItems([...res])
+        }else if(userType=='admin'){
+            let res = await getAllDocFromCollection('adminRoutes')
+            setLinkItems([...res])
         }
     }
 

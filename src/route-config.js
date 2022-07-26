@@ -13,6 +13,8 @@ import useUserLoginInfo from "./hooks/useUserLoginInfo";
 import StudentProfile from "./user/student-profile/student-profile";
 import PageLoadingIndicator from "./common/page-loading-indicator/page-loading-indicator";
 import PendingProfilePage from "./user/pending-profile/pending-profile.page";
+import AdminHomePage from "./admin/home/home.page";
+import ListUsersPage from "./admin/Users/list-users/list-users.page";
 
 export let RouterConfig = () => {
 
@@ -64,7 +66,14 @@ export let RouterConfig = () => {
             path: "home",
             element: <Layout/>,
             children: [
-                {index: true, element: <HomePage/>},
+                {index: true, element: <AdminHomePage/>},
+            ],
+        },
+        {
+            path: "users",
+            element: <Layout/>,
+            children: [
+                {index: true, path: "list", element: <ListUsersPage/>},
             ],
         },
     ]
