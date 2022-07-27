@@ -2,7 +2,7 @@ import {Button, Table, Tbody, Td, Th, Thead, Tr, useColorMode, useColorModeValue
 import {doc, setDoc, updateDoc} from "firebase/firestore";
 import firebase from "firebase/compat/app";
 
-const PendingUserListTable = ({columns = [], data = []}) => {
+const PendingUserListTable = ({columns = [], data = [] , setRefetch ,refetch}) => {
     const {colorMode, toggleColorMode} = useColorMode();
     const toast = useToast()
 
@@ -10,6 +10,7 @@ const PendingUserListTable = ({columns = [], data = []}) => {
         const db = firebase.firestore();
         const accountRef = await doc(db, 'accounts', item.id);
         await updateDoc(accountRef, { status: "accept"});
+        setRefetch(refetch? false : true)
         toast({
             title: 'Account created.',
             status: 'success',
