@@ -8,19 +8,16 @@ const ListUsersPage = () => {
     const [users, setUsers] = useState()
 
     useEffect(() => {
-        // const html = document.querySelector("html");
-        // html.classList.add("dark")
         getUsers()
     }, [])
 
     let columns = ["UID", "First Name", "Last Name", 'Email', "Birth Day", "Email", "School", "Action"]
 
     const getUsers = async () => {
-        let result = await filterDocsFromCollection('accounts',[],[[]])
-        console.log(result, 'asasas')
+        let result = await filterDocsFromCollection('accounts',
+            [], [["status", "==", "pending"]])
         setUsers(result)
     }
-
 
     return (
         <>
