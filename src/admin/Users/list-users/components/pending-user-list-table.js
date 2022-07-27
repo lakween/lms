@@ -1,12 +1,21 @@
-import {Button, Table, Tbody, Td, Th, Thead, Tr, useColorMode, useColorModeValue} from "@chakra-ui/react";
-import {useEffect, useState} from "react";
-import {getAllDocFromCollection} from "../../../../common/common-action/common-action";
+import {Button, Table, Tbody, Td, Th, Thead, Tr, useColorMode, useColorModeValue, useToast} from "@chakra-ui/react";
+import {doc, setDoc, updateDoc} from "firebase/firestore";
+import firebase from "firebase/compat/app";
 
-const UserListTable = ({columns = [], data = []}) => {
+const PendingUserListTable = ({columns = [], data = []}) => {
     const {colorMode, toggleColorMode} = useColorMode();
+    const toast = useToast()
 
-    const onClickAcceptHandler = (item)=>{
-
+    const onClickAcceptHandler = async (item)=>{
+        const db = firebase.firestore();
+        const accountRef = await doc(db, 'accounts', item.id);
+        await updateDoc(accountRef, { status: "accept"});
+        toast({
+            title: 'Account created.',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+        })
     }
 
     return (
@@ -68,4 +77,4 @@ const UserListTable = ({columns = [], data = []}) => {
     )
 }
 
-export default UserListTable
+export default PendingUserListTable

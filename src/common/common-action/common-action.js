@@ -39,7 +39,7 @@ export const filterDocsFromCollection = async (coll, fields, filters) => {
     let array = []
     const querySnapshot = await getDocs(queryData)
     for (let document of querySnapshot.docs) {
-        array.push(document.data())
+        array.push({...document.data(), id: document.id})
     }
     return array
 }
