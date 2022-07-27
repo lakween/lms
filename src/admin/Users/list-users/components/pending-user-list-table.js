@@ -18,6 +18,18 @@ const PendingUserListTable = ({columns = [], data = [] , setRefetch ,refetch}) =
             isClosable: true,
         })
     }
+    const onClickRejectHandler = async (item)=>{
+        const db = firebase.firestore();
+        const accountRef = await doc(db, 'accounts', item.id);
+        await updateDoc(accountRef, { status: "rejected"});
+        setRefetch(refetch? false : true)
+        toast({
+            title: 'Account Rejected.',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+        })
+    }
 
     return (
         <div className={'min-w-full'}>
@@ -66,7 +78,7 @@ const PendingUserListTable = ({columns = [], data = [] , setRefetch ,refetch}) =
                             </td>
                             <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
                                 <Button onClick={()=>onClickAcceptHandler(item)} marginRight={1} size={'xs'}> Accept</Button>
-                                <Button size={'xs'}> Reject</Button>
+                                <Button size={'xs'} onClick={()=> onClickRejectHandler(item)}> Reject</Button>
                             </td>
                         </tr>
                     ))
