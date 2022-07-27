@@ -5,7 +5,7 @@ import {getAllDocFromCollection} from "../../../../common/common-action/common-a
 const UserListTable = ({columns = [], data = []}) => {
 
     return (
-        <div className=" overflow-x-auto relative shadow-md sm:rounded-lg">
+        <div className=" overflow-y-scroll relative shadow-md sm:rounded-lg" style={{maxHeight:'50vh'}}>
             <Table variant='striped' colorScheme='teal'>
                 <Thead className="text-xs uppercase">
                 <Tr>
@@ -24,20 +24,25 @@ const UserListTable = ({columns = [], data = []}) => {
                         <Tr className="bg-white border-b dark: ${} bg-gray-900 dark:border-gray-700">
                             <Td scope="row"
                                 className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Apple MacBook Pro 17"
+                                {item.uid}
                             </Td>
                             <Td className="py-4 px-6">
-                                Sliver
+                                {item.first_name}
                             </Td>
                             <Td className="py-4 px-6">
-                                Laptop
+                                {item.last_name}
                             </Td>
                             <Td className="py-4 px-6">
-                                $2999
+                                {item.Address}
                             </Td>
                             <Td className="py-4 px-6">
-                                <a href="#"
-                                   className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                {item.birthday}
+                            </Td>
+                            <Td className="py-4 px-6">
+                                {item.email}
+                            </Td>
+                            <Td className="py-4 px-6">
+                                {item.School}
                             </Td>
                         </Tr>
                     ))
