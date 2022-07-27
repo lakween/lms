@@ -1,6 +1,8 @@
 import UserListTable from "./components/user-list-table";
 import {useEffect, useState} from "react";
-import {getAllDocFromCollection} from "../../../common/common-action/common-action";
+import {filterDocsFromCollection, getAllDocFromCollection} from "../../../common/common-action/common-action";
+import Card from "../../../common/card/card.component";
+import {Box, Text} from "@chakra-ui/react";
 
 const ListUsersPage = () => {
     const [users, setUsers] = useState()
@@ -11,17 +13,23 @@ const ListUsersPage = () => {
         getUsers()
     }, [])
 
-    let columns = ["UID", "First Name", "Last Name", 'Email', "Birth Day", "Email","School"]
+    let columns = ["UID", "First Name", "Last Name", 'Email', "Birth Day", "Email", "School", "Action"]
 
     const getUsers = async () => {
-        let result = await getAllDocFromCollection('accounts')
-        console.log(result,'asasas')
+        let result = await filterDocsFromCollection('accounts',[],[[]])
+        console.log(result, 'asasas')
         setUsers(result)
     }
 
 
     return (
-        <><UserListTable columns={columns} data={users}/></>
+        <>
+            <Box width={'100%'} display={'flex'} flexDirection={'column'} alignItems={'center'} justifyItems={'center'}>
+                <Text className={'text-xl'}>Pending User Requests</Text>
+                <UserListTable columns={columns} data={users}/>
+            </Box>
+
+        </>
     )
 }
 export default ListUsersPage
