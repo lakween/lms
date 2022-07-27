@@ -1,6 +1,9 @@
 import {Table,Tbody, Td, Th, Thead, Tr} from "@chakra-ui/react";
+import {useEffect, useState} from "react";
+import {getAllDocFromCollection} from "../../../../common/common-action/common-action";
 
 const UserListTable = ({columns = [], data = []}) => {
+
     return (
         <div className=" overflow-x-auto relative shadow-md sm:rounded-lg">
             <Table variant='striped' colorScheme='teal'>
