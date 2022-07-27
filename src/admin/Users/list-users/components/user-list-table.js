@@ -25,9 +25,9 @@ const UserListTable = ({columns = [], data = []}) => {
                         <tbody className="bg-white">
                         {
                             data?.map((item) => (
-                                <tr className="p-0 bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 border-2 border-sky-500">
+                                <tr className={`p-0 ${colorMode ==="dark" ? 'bg-gray-700':'bg-white'} border-b transition duration-300 ease-in-out dark:bg-gray-100 border-2 border-sky-500`}>
                                     <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm ">
-                                        <p className={"bg-white bg-white"} > {item.uid} </p>
+                                        <p className={''} > {item.uid} </p>
                                     </td>
                                     <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
                                         {item.first_name}
