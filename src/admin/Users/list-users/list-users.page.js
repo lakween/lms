@@ -6,10 +6,12 @@ const ListUsersPage = () => {
     const [users, setUsers] = useState()
 
     useEffect(() => {
+        // const html = document.querySelector("html");
+        // html.classList.add("dark")
         getUsers()
     }, [])
 
-    let columns = ["uid", "first_name", "last_name", 'email', "Birth Day", "Email","School"]
+    let columns = ["UID", "First Name", "Last Name", 'Email', "Birth Day", "Email","School"]
 
     const getUsers = async () => {
         let result = await getAllDocFromCollection('accounts')
