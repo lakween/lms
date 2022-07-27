@@ -4,7 +4,10 @@ import {getAllDocFromCollection} from "../../../../common/common-action/common-a
 
 const UserListTable = ({columns = [], data = []}) => {
     const {colorMode, toggleColorMode} = useColorMode();
-    // let bgColuor = useColorModeValue('bg-white','bg-black')
+
+    const onClickAcceptHandler = (item)=>{
+
+    }
 
     return (
         <div className={'min-w-full'}>
@@ -49,7 +52,11 @@ const UserListTable = ({columns = [], data = []}) => {
                                 {item.School}
                             </td>
                             <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
-                                <Button size={'xs'}> Accept</Button>
+                                {item.userType}
+                            </td>
+                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                                <Button onClick={()=>onClickAcceptHandler(item)} marginRight={1} size={'xs'}> Accept</Button>
+                                <Button size={'xs'}> Reject</Button>
                             </td>
                         </tr>
                     ))

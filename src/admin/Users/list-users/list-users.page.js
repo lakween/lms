@@ -11,7 +11,7 @@ const ListUsersPage = () => {
         getUsers()
     }, [])
 
-    let columns = ["UID", "First Name", "Last Name", 'Email', "Birth Day", "Email", "School", "Action"]
+    let columns = ["UID", "First Name", "Last Name", 'Address', "Birth Day", "Email", "School", "Type" ," Action"]
 
     const getUsers = async () => {
         let result = await filterDocsFromCollection('accounts',
