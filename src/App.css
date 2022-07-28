@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 .App {
   text-align: center;
 }
@@ -26,6 +27,12 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.sidebarArea {
+  flex-shrink: 0;
+  width: 260px;
+  background-color: #fff;
 }
 
 @keyframes App-logo-spin {
