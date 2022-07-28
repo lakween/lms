@@ -2,15 +2,15 @@ import {Button, Table, Tbody, Td, Th, Thead, Tr, useColorMode, useColorModeValue
 import {doc, setDoc, updateDoc} from "firebase/firestore";
 import firebase from "firebase/compat/app";
 
-const PendingUserListTable = ({columns = [], data = [] , setRefetch ,refetch}) => {
+const PendingUserListTable = ({columns = [], data = [], setRefetch, refetch}) => {
     const {colorMode, toggleColorMode} = useColorMode();
     const toast = useToast()
 
-    const onClickAcceptHandler = async (item)=>{
+    const onClickAcceptHandler = async (item) => {
         const db = firebase.firestore();
         const accountRef = await doc(db, 'accounts', item.id);
-        await updateDoc(accountRef, { status: "accept"});
-        setRefetch(refetch? false : true)
+        await updateDoc(accountRef, {status: "accept"});
+        setRefetch(refetch ? false : true)
         toast({
             title: 'Account created.',
             status: 'success',
@@ -18,11 +18,11 @@ const PendingUserListTable = ({columns = [], data = [] , setRefetch ,refetch}) =
             isClosable: true,
         })
     }
-    const onClickRejectHandler = async (item)=>{
+    const onClickRejectHandler = async (item) => {
         const db = firebase.firestore();
         const accountRef = await doc(db, 'accounts', item.id);
-        await updateDoc(accountRef, { status: "rejected"});
-        setRefetch(refetch? false : true)
+        await updateDoc(accountRef, {status: "rejected"});
+        setRefetch(refetch ? false : true)
         toast({
             title: 'Account Rejected.',
             status: 'success',
@@ -77,8 +77,9 @@ const PendingUserListTable = ({columns = [], data = [] , setRefetch ,refetch}) =
                                 {item.userType}
                             </td>
                             <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
-                                <Button onClick={()=>onClickAcceptHandler(item)} marginRight={1} size={'xs'}> Accept</Button>
-                                <Button size={'xs'} onClick={()=> onClickRejectHandler(item)}> Reject</Button>
+                                <Button onClick={() => onClickAcceptHandler(item)} marginRight={1}
+                                        size={'xs'}> Accept</Button>
+                                <Button size={'xs'} onClick={() => onClickRejectHandler(item)}> Reject</Button>
                             </td>
                         </tr>
                     ))
