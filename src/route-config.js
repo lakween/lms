@@ -15,6 +15,7 @@ import PageLoadingIndicator from "./common/page-loading-indicator/page-loading-i
 import PendingProfilePage from "./user/pending-profile/pending-profile.page";
 import AdminHomePage from "./admin/home/home.page";
 import ListUsersPage from "./admin/Users/list-users/list-users.page";
+import AddNewCourse from "./admin/Course/add-course/add-courses.page";
 
 export let RouterConfig = () => {
 
@@ -74,6 +75,13 @@ export let RouterConfig = () => {
             element: <Layout/>,
             children: [
                 {index: true, path: "list", element: <ListUsersPage/>},
+            ],
+        },
+        {
+            path: "courses-manage",
+            element: <Layout/>,
+            children: [
+                {index: true, path: "add", element: <AddNewCourse/>},
             ],
         },
     ]

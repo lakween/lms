@@ -9,10 +9,15 @@ const navigation = [
     icon: "bi bi-speedometer2",
   },
   {
-    title: "My Courses",
+    title: "User",
     href: "/alerts",
     icon: "bi bi-bell",
-  }
+  },
+  {
+    title: "Courses",
+    href: "/courses-manage/add",
+    icon: "bi bi-bell",
+  },
 ];
 
 const Sidebar = () => {
@@ -22,7 +27,7 @@ const Sidebar = () => {
   let location = useLocation();
 
   return (
-    <div className="p-3">
+    <div className="p-3 ">
       <div className="d-flex align-items-center">
         <Logo />
         <Button
