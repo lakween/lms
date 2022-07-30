@@ -5,11 +5,13 @@ import {useEffect, useState} from "react";
 import {filterDocsFromCollection, getAllDocFromCollection} from "../../../../common/common-action/common-action";
 import useFormController from "../../../../hooks/useFormController";
 
-const AllUserListTable = ({columns = [], setRefetch, refetch}) => {
+const AllUserListTable = ({setRefetch, refetch}) => {
     const {colorMode, toggleColorMode} = useColorMode();
-    let [valueChangeHandler, setValue, form, setForm] = useFormController()
+    let [valueChangeHandler, setValue, form, setForm] = useFormController({type:'',status:''})
     const [data, setData] = useState([])
     const toast = useToast()
+
+    let columns = ["UID", "First Name", "Last Name", 'Address', "Birth Day", "Email", "School", "Type", "status", " Action"]
 
     useEffect(() => {
         getAllUsers()
@@ -63,7 +65,7 @@ const AllUserListTable = ({columns = [], setRefetch, refetch}) => {
                         <option value=''>All status</option>
                         <option value='pending'>Pending</option>
                         <option value='deactivated'>deactivated</option>
-                        <option value='accepted'>Accepted</option>
+                        <option value='approved'>approved</option>
                         <option value='rejected'>Rejected</option>
                     </Select>
                 </div>
@@ -110,6 +112,9 @@ const AllUserListTable = ({columns = [], setRefetch, refetch}) => {
                             </td>
                             <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
                                 {item.userType}
+                            </td>
+                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                                {item.status}
                             </td>
                             <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
                                 <Button onClick={() => onClickDeleteHandler(item)} marginRight={1}

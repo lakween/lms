@@ -9,7 +9,7 @@ const PendingUserListTable = ({columns = [], data = [], setRefetch, refetch}) =>
     const onClickAcceptHandler = async (item) => {
         const db = firebase.firestore();
         const accountRef = await doc(db, 'accounts', item.id);
-        await updateDoc(accountRef, {status: "accept"});
+        await updateDoc(accountRef, {status: "approved"});
         setRefetch(refetch ? false : true)
         toast({
             title: 'Account created.',
