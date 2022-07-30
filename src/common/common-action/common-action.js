@@ -33,9 +33,15 @@ export const getAllDocFromCollection = async (collName) => {
 
 export const filterDocsFromCollection = async (coll, fields, filters) => {
     const db = firebase.firestore();
-    let a = filters.map((item) => (where(item[0], item[1], item[2])))
+    let filterArray = []
+    for (let item of filters) {
+        if (item[2] == '') {
+            continue
+        }
+        filterArray.push(where(item[0], item[1], item[2]))
+    }
     const collRef = await collection(db, coll);
-    const queryData = await query(collRef, ...a);
+    const queryData = await query(collRef, ...filterArray);
     let array = []
     const querySnapshot = await getDocs(queryData)
     for (let document of querySnapshot.docs) {

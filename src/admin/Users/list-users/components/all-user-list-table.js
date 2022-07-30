@@ -2,17 +2,29 @@ import {Button, Select, useColorMode, useToast} from "@chakra-ui/react";
 import firebase from "firebase/compat/app";
 import {doc, updateDoc} from "firebase/firestore";
 import {useEffect, useState} from "react";
+import {filterDocsFromCollection, getAllDocFromCollection} from "../../../../common/common-action/common-action";
+import useFormController from "../../../../hooks/useFormController";
 
-const AllUserListTable = ({columns = [], data = [], setRefetch, refetch}) => {
+const AllUserListTable = ({columns = [], setRefetch, refetch}) => {
     const {colorMode, toggleColorMode} = useColorMode();
-    const [filterData, setFilterData] = useState([])
+    let [valueChangeHandler, setValue, form, setForm] = useFormController()
+    const [data, setData] = useState([])
     const toast = useToast()
 
     useEffect(() => {
-        setFilterData([...data])
-    }, [data])
+        getAllUsers()
+    }, [])
 
-    const onClickAcceptHandler = async (item) => {
+    useEffect(() => {
+        filter()
+    }, [form.type, form.status])
+
+    const getAllUsers = async () => {
+        let result = await getAllDocFromCollection('accounts')
+        setData(result)
+    }
+
+    const onClickDeleteHandler = async (item) => {
         const db = firebase.firestore();
         const accountRef = await doc(db, 'accounts', item.id);
         await updateDoc(accountRef, {status: "accept"});
@@ -25,32 +37,36 @@ const AllUserListTable = ({columns = [], data = [], setRefetch, refetch}) => {
         })
     }
 
-    const onClickRejectHandler = async (item) => {
-        const db = firebase.firestore();
-        const accountRef = await doc(db, 'accounts', item.id);
-        await updateDoc(accountRef, {status: "rejected"});
-        setRefetch(refetch ? false : true)
-        toast({
-            title: 'Account Rejected.',
-            status: 'success',
-            duration: 9000,
-            isClosable: true,
-        })
-    }
+    const filter = async (e) => {
+        let result = await filterDocsFromCollection('accounts',
+            [], [["status", "==", form.status], ["userType", "==", form.type]])
+        setData(result)
 
-    const filter = (e) => {
-        setFilterData(data?.filter((item) => (item.userType == e.target.value)))
     }
 
     return (
 
         <div className={'min-w-full'}>
-            <div style={{width: '20vw'}}>
-                filter
-                <Select placeholder='Select option' name={'type'} onChange={filter} size={'sm'} className={'mt-1 mb-1'}>
-                    <option value='student'>Student</option>
-                    <option value='teacher'>Teacher</option>
-                </Select>
+            <div className={'d-flex flex-row gap-3'}>
+                <div style={{width: '20vw'}}>
+                    Filter By User Role
+                    <Select name={'type'} placeholder={''} onChange={valueChangeHandler} size={'sm'}
+                            className={'mt-1 mb-1'}>
+                        <option value=''>All Users</option>
+                        <option value='student'>Student</option>
+                        <option value='teacher'>Teacher</option>
+                    </Select>
+                </div>
+                <div style={{width: '20vw'}}>
+                    Filter By User Status
+                    <Select name={'status'} onChange={valueChangeHandler} size={'sm'} className={'mt-1 mb-1'}>
+                        <option value=''>All status</option>
+                        <option value='pending'>Pending</option>
+                        <option value='deactivated'>deactivated</option>
+                        <option value='accepted'>Accepted</option>
+                        <option value='rejected'>Rejected</option>
+                    </Select>
+                </div>
             </div>
             <table className="min-w-full">
                 <thead>
@@ -68,7 +84,7 @@ const AllUserListTable = ({columns = [], data = [], setRefetch, refetch}) => {
 
                 <tbody className="bg-white">
                 {
-                    filterData?.map((item, index) => (
+                    data?.map((item, index) => (
                         <tr key={index}
                             className={`p-0 ${colorMode === "dark" ? 'bg-gray-800' : 'bg-white'} border-b transition duration-300 ease-in-out dark:bg-gray-100 border-2 border-sky-500`}>
                             <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm ">
@@ -96,9 +112,10 @@ const AllUserListTable = ({columns = [], data = [], setRefetch, refetch}) => {
                                 {item.userType}
                             </td>
                             <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
-                                <Button onClick={() => onClickAcceptHandler(item)} marginRight={1}
-                                        size={'xs'}> Accept</Button>
-                                <Button size={'xs'} onClick={() => onClickRejectHandler(item)}> Reject</Button>
+                                <Button onClick={() => onClickDeleteHandler(item)} marginRight={1}
+                                        size={'xs'}> Deactivate </Button>
+                                <Button onClick={() => onClickDeleteHandler(item)} marginRight={1}
+                                        size={'xs'}> Delete </Button>
                             </td>
                         </tr>
                     ))

@@ -3,32 +3,40 @@ import {filterDocsFromCollection, getAllDocFromCollection} from "../../../common
 import {Box, Text} from "@chakra-ui/react";
 import PendingUserListTable from "./components/pending-user-list-table";
 import AllUserListTable from "./components/all-user-list-table";
+import useFormController from "../../../hooks/useFormController";
 
 const ListUsersPage = () => {
-    const [users, setUsers] = useState()
+    const [pendingUsers, setPendingUsers] = useState()
+    const [allUsers, setAllUsers] = useState()
     const [refetch, setRefetch] = useState(false)
 
     useEffect(() => {
-        getUsers()
+        getPendingUsers()
+        getAllUsers()
     }, [refetch])
 
     let columns = ["UID", "First Name", "Last Name", 'Address', "Birth Day", "Email", "School", "Type" ," Action"]
 
-    const getUsers = async () => {
+    const getPendingUsers = async () => {
         let result = await filterDocsFromCollection('accounts',
             [], [["status", "==", "pending"]])
-        setUsers(result)
+        setPendingUsers(result)
+    }
+
+    const getAllUsers = async () => {
+        let result = await getAllDocFromCollection('accounts')
+        setAllUsers(result)
     }
 
     return (
         <>
             <Box width={'100%'} display={'flex'} flexDirection={'column'} alignItems={'center'} justifyItems={'center'}>
                 <Text className={'text-xl'}>Pending User Requests</Text>
-                <PendingUserListTable columns={columns} data={users} setRefetch={setRefetch} refetch={refetch}/>
+                <PendingUserListTable columns={columns} data={pendingUsers} setRefetch={setRefetch} refetch={refetch}/>
             </Box>
             <Box width={'100%'} display={'flex'} flexDirection={'column'} alignItems={'center'} justifyItems={'center'}>
                 <Text className={'text-xl'}>All Users</Text>
-                <AllUserListTable columns={columns} data={users} setRefetch={setRefetch} refetch={refetch}/>
+                <AllUserListTable columns={columns} data={allUsers} setRefetch={setRefetch} refetch={refetch}/>
             </Box>
 
         </>
