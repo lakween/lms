@@ -24,6 +24,7 @@ const AllUserListTable = ({columns = [], data = [], setRefetch, refetch}) => {
             isClosable: true,
         })
     }
+
     const onClickRejectHandler = async (item) => {
         const db = firebase.firestore();
         const accountRef = await doc(db, 'accounts', item.id);
