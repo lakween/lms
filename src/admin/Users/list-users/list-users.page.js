@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {filterDocsFromCollection, getAllDocFromCollection} from "../../../common/common-action/common-action";
 import {Box, Text} from "@chakra-ui/react";
 import PendingUserListTable from "./components/pending-user-list-table";
+import AllUserListTable from "./components/all-user-list-table";
 
 const ListUsersPage = () => {
     const [users, setUsers] = useState()
@@ -24,6 +25,10 @@ const ListUsersPage = () => {
             <Box width={'100%'} display={'flex'} flexDirection={'column'} alignItems={'center'} justifyItems={'center'}>
                 <Text className={'text-xl'}>Pending User Requests</Text>
                 <PendingUserListTable columns={columns} data={users} setRefetch={setRefetch} refetch={refetch}/>
+            </Box>
+            <Box width={'100%'} display={'flex'} flexDirection={'column'} alignItems={'center'} justifyItems={'center'}>
+                <Text className={'text-xl'}>All Users</Text>
+                <AllUserListTable columns={columns} data={users} setRefetch={setRefetch} refetch={refetch}/>
             </Box>
 
         </>
