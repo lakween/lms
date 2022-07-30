@@ -65,7 +65,7 @@ const Sidebar = () => {
                             <Link
                                 to={navi.link}
                                 className={
-                                    location.pathname === navi.href
+                                    location.pathname === navi.link
                                         ? "text-primary nav-link py-3"
                                         : "nav-link text-secondary py-3"
                                 }
@@ -75,15 +75,15 @@ const Sidebar = () => {
                             </Link>
                         </NavItem>
                     ))}
-                    <Button
-                        color="danger"
-                        tag="a"
-                        target="_blank"
-                        className="mt-3"
-                        href="https://www.wrappixel.com/templates/xtreme-react-redux-admin/?ref=33"
-                    >
-                        Upgrade To Pro
-                    </Button>
+                    {/*<Button*/}
+                    {/*    color="danger"*/}
+                    {/*    tag="a"*/}
+                    {/*    target="_blank"*/}
+                    {/*    className="mt-3"*/}
+                    {/*    href="https://www.wrappixel.com/templates/xtreme-react-redux-admin/?ref=33"*/}
+                    {/*>*/}
+                    {/*    Upgrade To Pro*/}
+                    {/*</Button>*/}
                 </Nav>
             </div>
         </div>
