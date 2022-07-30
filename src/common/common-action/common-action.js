@@ -1,10 +1,11 @@
 import firebase from "firebase/compat/app";
 import {collection, getDocs, addDoc, setDoc, doc, query, where, getDoc} from "firebase/firestore";
+import {selectOptions} from "@testing-library/user-event/dist/select-options";
 
 export const getDocFromCollection = async (collection, document) => {
-        const db = firebase.firestore();
-        const snapshot = await db.collection(collection).doc(document).get()
-        return snapshot.data() ? snapshot.data() : {}
+    const db = firebase.firestore();
+    const snapshot = await db.collection(collection).doc(document).get()
+    return snapshot.data() ? snapshot.data() : {}
 }
 
 export const createDocOfCollection = (collName, data) => {
@@ -15,33 +16,38 @@ export const createDocOfCollection = (collName, data) => {
 }
 
 export const createDocOfCollectionWithId = async (collName, id, data) => {
-        const db = firebase.firestore();
-        const docRef = await setDoc(doc(db, collName, id), data);
+    const db = firebase.firestore();
+    const docRef = await setDoc(doc(db, collName, id), data);
 }
 
 export const getAllDocFromCollection = async (collName) => {
-        const db = firebase.firestore();
-        let array = []
-        const querySnapshot = await getDocs(collection(db, collName));
-        for (let doc of querySnapshot.docs) {
-            array.push({...doc.data(), id: doc.id})
-        }
-        return array
+    const db = firebase.firestore();
+    let array = []
+    const querySnapshot = await getDocs(collection(db, collName));
+    for (let doc of querySnapshot.docs) {
+        array.push({...doc.data(), id: doc.id})
+    }
+    return array
 }
 
 
 export const filterDocsFromCollection = async (coll, fields, filters) => {
-
-        let a = filters.map((item) => (where(item[0], item[1], item[2])))
-        const db = firebase.firestore();
-        const collRef = await collection(db, coll);
-        const queryData = await query(collRef, ...a);
-        let array = []
-        const querySnapshot = await getDocs(queryData)
-        for (let document of querySnapshot.docs) {
-            array.push(document.data())
+    const db = firebase.firestore();
+    let filterArray = []
+    for (let item of filters) {
+        if (item[2] == '') {
+            continue
         }
-        return array
+        filterArray.push(where(item[0], item[1], item[2]))
+    }
+    const collRef = await collection(db, coll);
+    const queryData = await query(collRef, ...filterArray);
+    let array = []
+    const querySnapshot = await getDocs(queryData)
+    for (let document of querySnapshot.docs) {
+        array.push({...document.data(), id: document.id})
+    }
+    return array
 }
 
 export const getRefFieldOnlyFromFilter = (coll, field, filters) => {
