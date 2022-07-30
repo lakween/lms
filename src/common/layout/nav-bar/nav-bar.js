@@ -1,18 +1,118 @@
-import {Container, Nav, Navbar} from "react-bootstrap";
+import React from "react";
+import { Link } from "react-router-dom";
+import { clearUserDetails } from "../../../store/reducers/user-details.slice";
+import { signOut } from "../../loging/actions/loging.action";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  Navbar,
+  Collapse,
+  Nav,
+  NavItem,
+  NavbarBrand,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Dropdown,
+  Button,
+} from "reactstrap";
+import { ReactComponent as LogoWhite } from "../../../assets/images/logos/xtremelogowhite.svg";
+import user1 from "../../../assets/images/users/user1.jpg";
 
-const NavBar = () => {
-    return (
-        <>
-            <Navbar bg="dark" variant="dark">
-                <Navbar.Brand className={'ms-2'} href="#home">Learning Management System</Navbar.Brand>
-                <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
-                </Nav>
-            </Navbar>
-        </>
-    )
-}
+const Header = () => {
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
 
-export default NavBar
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [dropdownOpen, setDropdownOpen] = React.useState(false);
+
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
+  const Handletoggle = () => {
+    setIsOpen(!isOpen);
+  };
+  const showMobilemenu = () => {
+    document.getElementById("sidebarArea").classList.toggle("showSidebar");
+  };
+
+  const signOutHandler = async () => {
+    await signOut();
+    dispatch(clearUserDetails());
+    navigate("/login");
+  };
+  return (
+    <Navbar color="primary" dark expand="md">
+      <div className="d-flex align-items-center">
+        <NavbarBrand href="/" className="d-lg-none">
+          <LogoWhite />
+        </NavbarBrand>
+        <Button
+          color="primary"
+          className="d-lg-none"
+          onClick={() => showMobilemenu()}
+        >
+          <i className="bi bi-list"></i>
+        </Button>
+      </div>
+      <div className="hstack gap-2">
+        <Button
+          color="primary"
+          size="sm"
+          className="d-sm-block d-md-none"
+          onClick={Handletoggle}
+        >
+          {isOpen ? (
+            <i className="bi bi-x"></i>
+          ) : (
+            <i className="bi bi-three-dots-vertical"></i>
+          )}
+        </Button>
+      </div>
+
+      <Collapse navbar isOpen={isOpen}>
+        <Nav className="me-auto" navbar>
+          <NavItem>
+            <Link to="/starter" className="nav-link">
+              Starter
+            </Link>
+          </NavItem>
+          <NavItem>
+            <Link to="/about" className="nav-link">
+              About
+            </Link>
+          </NavItem>
+          <UncontrolledDropdown inNavbar nav>
+            <DropdownToggle caret nav>
+              DD Menu
+            </DropdownToggle>
+            <DropdownMenu end>
+              <DropdownItem>Option 1</DropdownItem>
+              <DropdownItem>Option 2</DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>Reset</DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </Nav>
+        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+          <DropdownToggle color="primary">
+            <img
+              src={user1}
+              alt="profile"
+              className="rounded-circle"
+              width="30"
+            ></img>
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem header>Info</DropdownItem>
+            <DropdownItem>My Account</DropdownItem>
+            <DropdownItem onClick={() => navigate('/profile')}>Edit Profile</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem onClick={signOutHandler}>Logout</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </Collapse>
+    </Navbar>
+  );
+};
+
+export default Header;
