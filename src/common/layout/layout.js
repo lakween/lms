@@ -17,7 +17,7 @@ const Layout = () => {
           {/********header**********/}
           <Header />
           {/********Middle Content**********/}
-          <Container className="p-4 wrapper" fluid>
+          <Container className="p-4 wrapper" style= {{backgroundColor: "#eee"}} fluid>
             <Outlet />
           </Container>
         </div>

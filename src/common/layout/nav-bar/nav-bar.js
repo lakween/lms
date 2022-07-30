@@ -1,5 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { clearUserDetails } from "../../../store/reducers/user-details.slice";
+import { signOut } from "../../loging/actions/loging.action";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   Navbar,
   Collapse,
@@ -17,6 +21,9 @@ import { ReactComponent as LogoWhite } from "../../../assets/images/logos/xtreme
 import user1 from "../../../assets/images/users/user1.jpg";
 
 const Header = () => {
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
@@ -26,6 +33,12 @@ const Header = () => {
   };
   const showMobilemenu = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
+  };
+
+  const signOutHandler = async () => {
+    await signOut();
+    dispatch(clearUserDetails());
+    navigate("/login");
   };
   return (
     <Navbar color="primary" dark expand="md">
@@ -92,11 +105,9 @@ const Header = () => {
           <DropdownMenu>
             <DropdownItem header>Info</DropdownItem>
             <DropdownItem>My Account</DropdownItem>
-            <DropdownItem>Edit Profile</DropdownItem>
+            <DropdownItem onClick={() => navigate('/profile')}>Edit Profile</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem>My Balance</DropdownItem>
-            <DropdownItem>Inbox</DropdownItem>
-            <DropdownItem>Logout</DropdownItem>
+            <DropdownItem onClick={signOutHandler}>Logout</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </Collapse>
