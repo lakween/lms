@@ -1,8 +1,13 @@
-import { Button, Nav, NavItem } from "reactstrap";
+import {Button, Nav, NavItem} from "reactstrap";
 import Logo from "./Logo";
-import { Link, useLocation } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
+import {useEffect, useState} from "react";
+import {getAllDocFromCollection} from "../../common-action/common-action";
 
 const navigation = [
+<<<<<<< HEAD
   {
     title: "Dashboard",
     href: "/home",
@@ -18,55 +23,89 @@ const navigation = [
     href: "/courses-manage/add",
     icon: "bi bi-bell",
   },
+=======
+    {
+        title: "Dashboard",
+        href: "/home",
+        icon: "bi bi-speedometer2",
+    },
+    {
+        title: "My Courses",
+        href: "/alerts",
+        icon: "bi bi-bell",
+    }
+>>>>>>> c94d36c5e09100e19a7c31f61c9630f9adff565a
 ];
 
 const Sidebar = () => {
-  const showMobilemenu = () => {
-    document.getElementById("sidebarArea").classList.toggle("showSidebar");
-  };
-  let location = useLocation();
+    const showMobilemenu = () => {
+        document.getElementById("sidebarArea").classList.toggle("showSidebar");
+    };
+    let location = useLocation();
+    const [LinkItems, setLinkItems] = useState([])
+    const [userType, status, user] = useUserLoginInfo()
+    let navigate = useNavigate();
+    const dispatch = useDispatch()
 
-  return (
-    <div className="p-3 ">
-      <div className="d-flex align-items-center">
-        <Logo />
-        <Button
-          close
-          size="sm"
-          className="ms-auto d-lg-none d-none"
-          onClick={() => showMobilemenu()}
-        ></Button>
-      </div>
-      <div className="pt-4 mt-2">
-        <Nav vertical className="sidebarNav">
-          {navigation.map((navi, index) => (
-            <NavItem key={index} className="sidenav-bg">
-              <Link
-                to={navi.href}
-                className={
-                  location.pathname === navi.href
-                    ? "text-primary nav-link py-3"
-                    : "nav-link text-secondary py-3"
-                }
-              >
-                <i className={navi.icon}></i>
-                <span className="ms-3 d-inline-block">{navi.title}</span>
-              </Link>
-            </NavItem>
-          ))}
-          <Button
-            color="danger"
-            tag="a"
-            target="_blank"
-            className="mt-3"
-            href="https://www.wrappixel.com/templates/xtreme-react-redux-admin/?ref=33"
-          >
-            Upgrade To Pro
-          </Button>
-        </Nav>
-      </div>
-    </div>
-  );
+    useEffect(() => {
+        getData()
+    }, [user?.uid])
+
+    async function getData() {
+        if (status == 'pending') {
+            setLinkItems([])
+
+        } else if (status == 'approved' || '') {
+            let res = await getAllDocFromCollection('userRoutes')
+            setLinkItems([...res])
+
+        } else if (userType == 'admin') {
+            let res = await getAllDocFromCollection('adminRoutes')
+            setLinkItems([...res])
+        }
+    }
+
+    return (
+        <div className="p-3" style={{minHeight: '100vh'}}>
+            <div className="d-flex align-items-center">
+                <Logo/>
+                <Button
+                    close
+                    size="sm"
+                    className="ms-auto d-lg-none d-none"
+                    onClick={() => showMobilemenu()}
+                ></Button>
+            </div>
+            <div className="pt-4 mt-2">
+                <Nav vertical className="sidebarNav">
+                    {LinkItems.map((navi, index) => (
+                        <NavItem key={index} className="sidenav-bg">
+                            <Link
+                                to={navi.link}
+                                className={
+                                    location.pathname === navi.link
+                                        ? "text-primary nav-link py-3"
+                                        : "nav-link text-secondary py-3"
+                                }
+                            >
+                                <i className={navi.icon}></i>
+                                <span className="ms-3 d-inline-block">{navi.name}</span>
+                            </Link>
+                        </NavItem>
+                    ))}
+                    {/*<Button*/}
+                    {/*    color="danger"*/}
+                    {/*    tag="a"*/}
+                    {/*    target="_blank"*/}
+                    {/*    className="mt-3"*/}
+                    {/*    href="https://www.wrappixel.com/templates/xtreme-react-redux-admin/?ref=33"*/}
+                    {/*>*/}
+                    {/*    Upgrade To Pro*/}
+                    {/*</Button>*/}
+                </Nav>
+            </div>
+        </div>
+    );
 };
 
 export default Sidebar;
