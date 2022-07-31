@@ -33,7 +33,7 @@ export let RouterConfig = () => {
                 return [{
                     path: "/",
                     element: <WebHome/>,
-                },]
+                }]
         }
     }
 
