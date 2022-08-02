@@ -56,6 +56,27 @@ const AllUserListTable = ({setRefetch, refetch}) => {
     return (
 
         <div className={'min-w-full'}>
+            <div className={'d-flex flex-row gap-3'}>
+                <div style={{width: '20vw'}}>
+                    Filter By User Role
+                    <Select name={'type'} placeholder={''} onChange={valueChangeHandler} size={'sm'}
+                            className={'mt-1 mb-1'}>
+                        <option value=''>All Users</option>
+                        <option value='student'>Student</option>
+                        <option value='teacher'>Teacher</option>
+                    </Select>
+                </div>
+                <div style={{width: '20vw'}}>
+                    Filter By User Status
+                    <Select name={'status'} onChange={valueChangeHandler} size={'sm'} className={'mt-1 mb-1'}>
+                        <option value=''>All status</option>
+                        <option value='pending'>Pending</option>
+                        <option value='deactivated'>deactivated</option>
+                        <option value='approved'>approved</option>
+                        <option value='rejected'>Rejected</option>
+                    </Select>
+                </div>
+            </div>
             {/*<div className={'d-flex flex-row gap-3'}>*/}
             <Table hover>
                 <thead>

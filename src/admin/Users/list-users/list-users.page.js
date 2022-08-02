@@ -4,6 +4,7 @@ import {Box, Text} from "@chakra-ui/react";
 import PendingUserListTable from "./components/pending-user-list-table";
 import AllUserListTable from "./components/all-user-list-table";
 import useFormController from "../../../hooks/useFormController";
+import {Button, Card, CardBody, CardSubtitle, CardTitle} from "reactstrap";
 
 const ListUsersPage = () => {
     const [pendingUsers, setPendingUsers] = useState()
@@ -34,11 +35,15 @@ const ListUsersPage = () => {
                 <Text className={'text-xl'}>Pending User Requests</Text>
                 <PendingUserListTable columns={columns} data={pendingUsers} setRefetch={setRefetch} refetch={refetch}/>
             </Box>
-            <Box width={'100%'} display={'flex'} flexDirection={'column'} alignItems={'center'} justifyItems={'center'}>
-                <Text className={'text-xl'}>All Users</Text>
-                <AllUserListTable columns={columns} data={allUsers} setRefetch={setRefetch} refetch={refetch}/>
-            </Box>
 
+            <Card className="mt-2">
+                <CardBody>
+                    <CardTitle className="mb-2" tag="h2">All Users</CardTitle>
+                    <CardSubtitle className="mt-3 text-muted text-weight-bold" tag="h6">
+                    </CardSubtitle>
+                    <AllUserListTable columns={columns} data={allUsers} setRefetch={setRefetch} refetch={refetch}/>
+                </CardBody>
+            </Card>
         </>
     )
 }
