@@ -1,17 +1,24 @@
-import {Button, Select, useColorMode, useToast} from "@chakra-ui/react";
+import { Button, Select, useColorMode, useToast} from "@chakra-ui/react";
 import firebase from "firebase/compat/app";
 import {doc, updateDoc} from "firebase/firestore";
 import {useEffect, useState} from "react";
 import {filterDocsFromCollection, getAllDocFromCollection} from "../../../../common/common-action/common-action";
 import useFormController from "../../../../hooks/useFormController";
+import {Table,Badge} from "reactstrap";
 
 const AllUserListTable = ({setRefetch, refetch}) => {
     const {colorMode, toggleColorMode} = useColorMode();
-    let [valueChangeHandler, setValue, form, setForm] = useFormController({type:'',status:''})
+    let [valueChangeHandler, setValue, form, setForm] = useFormController({type: '', status: ''})
     const [data, setData] = useState([])
     const toast = useToast()
 
     let columns = ["UID", "First Name", "Last Name", 'Address', "Birth Day", "Email", "School", "Type", "status", " Action"]
+
+    let badgeColor = {
+        accept:'primary',
+        pending:'danger',
+        reject:'dark'
+    }
 
     useEffect(() => {
         getAllUsers()
@@ -70,53 +77,54 @@ const AllUserListTable = ({setRefetch, refetch}) => {
                     </Select>
                 </div>
             </div>
-            <table className="min-w-full">
+            {/*<div className={'d-flex flex-row gap-3'}>*/}
+            <Table hover>
                 <thead>
                 <tr>
                     {
                         columns?.map((item) => (
-                            <th scope="col"
-                                className={`px-6  py-3 ${colorMode === "dark" ? 'bg-black' : 'bg-white'} text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200`}>
+                            <th>
                                 {item}
                             </th>
                         ))
                     }
                 </tr>
                 </thead>
-
-                <tbody className="bg-white">
+                <tbody>
                 {
                     data?.map((item, index) => (
-                        <tr key={index}
-                            className={`p-0 ${colorMode === "dark" ? 'bg-gray-800' : 'bg-white'} border-b transition duration-300 ease-in-out dark:bg-gray-100 border-2 border-sky-500`}>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm ">
+                        <tr key={index}>
+                            <th scope="row">
                                 <p className={''}> {item.uid} </p>
-                            </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            </th>
+                            <td>
                                 {item.first_name}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.last_name}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.Address}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.birthday}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.email}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.School}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.userType}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
-                                {item.status}
+                            <td className={'text-sm'}>
+                                <Badge
+                                    color={`${badgeColor[item.status]}`}
+                                >{item.status}</Badge>
+
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 <Button onClick={() => onClickDeleteHandler(item)} marginRight={1}
                                         size={'xs'}> Deactivate </Button>
                                 <Button onClick={() => onClickDeleteHandler(item)} marginRight={1}
@@ -126,7 +134,7 @@ const AllUserListTable = ({setRefetch, refetch}) => {
                     ))
                 }
                 </tbody>
-            </table>
+            </Table>
         </div>
     )
 }
