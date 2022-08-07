@@ -61,8 +61,6 @@ const PendingUserListTable = ({columns = [], data = [], setRefetch, refetch}) =>
                                  {item.uid}
                             </th>
                             <td>
-                            </td>
-                            <td>
                                 {item.first_name}
                             </td>
                             <td>
