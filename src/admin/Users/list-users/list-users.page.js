@@ -31,10 +31,14 @@ const ListUsersPage = () => {
 
     return (
         <>
-            <Box width={'100%'} display={'flex'} flexDirection={'column'} alignItems={'center'} justifyItems={'center'}>
-                <Text className={'text-xl'}>Pending User Requests</Text>
-                <PendingUserListTable columns={columns} data={pendingUsers} setRefetch={setRefetch} refetch={refetch}/>
-            </Box>
+            <Card className="">
+                <CardBody>
+                    <CardTitle className="mb-2" tag="h2">Pending Users</CardTitle>
+                    <CardSubtitle className="mt-3 text-muted text-weight-bold" tag="h6">
+                    </CardSubtitle>
+                    <PendingUserListTable columns={columns} data={pendingUsers} setRefetch={setRefetch} refetch={refetch}/>
+                </CardBody>
+            </Card>
 
             <Card className="mt-2">
                 <CardBody>
