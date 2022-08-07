@@ -16,6 +16,8 @@ import PendingProfilePage from "./user/pending-profile/pending-profile.page";
 import AdminHomePage from "./admin/home/home.page";
 import ListUsersPage from "./admin/Users/list-users/list-users.page";
 import AddNewCourse from "./admin/Course/add-course/add-courses.page";
+import PaymentCancel from "./web/common/payment/cancel.page";
+import PaymentSuccess from "./web/common/payment/success.page";
 
 export let RouterConfig = () => {
 
@@ -149,6 +151,14 @@ export let RouterConfig = () => {
         {
             path: "/index",
             element: <WebHome/>,
+        },
+        {
+            path: "/payment/cancel",
+            element: <PaymentCancel/>,
+        },
+        {
+            path: "/payment/success",
+            element: <PaymentSuccess/>,
         },
 
         ...getRoutesByUser()

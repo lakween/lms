@@ -40,9 +40,10 @@ import {
 import { useNavigate } from "react-router-dom";
 import useFormController from "../../../hooks/useFormController";
 import firebase from "firebase/compat/app";
-import { getStorage, ref, uploadBytes,getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
+import CheckoutForm from "./payment.checkout.compo";
 
 export default function CourseDetails(props) {
   let dispatch = useDispatch();
@@ -288,6 +289,9 @@ export default function CourseDetails(props) {
                           Note : Upload your payment slip here with student Name
                         </FormHelperText>
                       </FormControl>
+                      <div className="d-flex align-items-end justify-content-end mt-4">
+                        {signedButtonMarkup}
+                      </div>
                     </TabPanel>
                     <TabPanel>
                       <Stack direction="coloum">
@@ -297,74 +301,17 @@ export default function CourseDetails(props) {
                           alt="PayHere"
                         />
                       </Stack>
-                      <Stack alignItems="center" pt="4">
-                        <Heading as="h4" size="md">
-                          Add Credit Card
-                        </Heading>
-                        <FormControl>
-                          <FormLabel>Card Holder Name</FormLabel>
-                          <Input
-                            type="text"
-                            name="cardholder_name"
-                            id="cardholder_name"
-                            placeContent={"David Beckem"}
-                            onChange={valueChangeHandler}
-                          />
-                        </FormControl>
-                        <FormControl isInvalid={form.card_number}>
-                          <FormLabel>Card Number</FormLabel>
-                          <Input
-                            type="number"
-                            onChange={valueChangeHandler}
-                            name="card_number"
-                          />
-                          {!form.cardName ? (
-                            <FormHelperText>
-                              Card Verify Checking . . .
-                            </FormHelperText>
-                          ) : (
-                            <FormErrorMessage>
-                              creadit card invalid !
-                            </FormErrorMessage>
-                          )}
-                        </FormControl>
-                        <Stack spacing={8} direction="row">
-                          <FormControl isRequired>
-                            <FormLabel>Expiration Date</FormLabel>
-                            <Input
-                              placeholder="First name"
-                              type={"date"}
-                              onChange={valueChangeHandler}
-                              name="expire_date"
-                            />
-                          </FormControl>
-                          <FormControl isRequired isInvalid={form.csv_pin}>
-                            <FormLabel>CSV Pin</FormLabel>
-                            <Input
-                              placeholder="ex: 9xx"
-                              type={"number"}
-                              limit="3"
-                              onChange={valueChangeHandler}
-                              name="csv_pin"
-                            />
-                            {!form.cardPin ? (
-                              <FormHelperText>
-                                Card Verify Checking . . .
-                              </FormHelperText>
-                            ) : (
-                              <FormErrorMessage>
-                                creadit card invalid !
-                              </FormErrorMessage>
-                            )}
-                          </FormControl>
-                        </Stack>
-                      </Stack>
+                      <Box>
+                        <div className="d-flex align-items-end justify-content-end">
+                          <CheckoutForm />
+                        </div>
+                      </Box>
                     </TabPanel>
                   </TabPanels>
                 </Tabs>
               </ModalBody>
 
-              <ModalFooter>{signedButtonMarkup}</ModalFooter>
+              <ModalFooter></ModalFooter>
             </ModalContent>
           </Modal>
         </Stack>
