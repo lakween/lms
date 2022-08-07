@@ -21,7 +21,7 @@ import {
   InputGroup,
   InputLeftElement,
   Textarea,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import {
   MdPhone,
@@ -71,21 +71,21 @@ const Contact = () => {
       .then(() => {
         setLoader(false);
         toast({
-          title: 'Your message has been submitted👍',
-          description: 'Our representive contact you soon!',
-          status: 'success',
+          title: "Your message has been submitted👍",
+          description: "Our representive contact you soon!",
+          status: "success",
           duration: 5000,
           isClosable: true,
-      })
+        });
       })
       .catch((error) => {
         toast({
-          title: 'Something wrong',
+          title: "Something wrong",
           description: error.message,
-          status: 'error',
+          status: "error",
           duration: 9000,
           isClosable: true,
-      })
+        });
         setLoader(false);
       });
 
@@ -141,9 +141,7 @@ const Contact = () => {
               fontSize="lg"
               textTransform="uppercase"
               fontWeight="extrabold"
-            >
-             
-            </chakra.span>
+            ></chakra.span>
             <chakra.h1
               mb={4}
               fontSize={{ base: "4xl", md: "4xl", lg: "5xl" }}
@@ -163,7 +161,8 @@ const Contact = () => {
               _dark={{ color: "gray.400" }}
               letterSpacing="wider"
             >
-              Whether you have a question about anything, SILEC Sri Lanka Language Academy is ready to answer all your questions.
+              Whether you have a question about anything, SILEC Sri Lanka
+              Language Academy is ready to answer all your questions.
             </chakra.p>
           </Flex>
         </>
@@ -267,65 +266,67 @@ const Contact = () => {
                     <WrapItem>
                       <Box bg="white" borderRadius="lg">
                         <Box m={8} color="#0B0E3F">
-                          <form onSubmit={handleSubmit}>  
-                          <VStack spacing={5}>
-                            <FormControl id="user_name" isRequired>
-                              <FormLabel>Your Name</FormLabel>
-                              <InputGroup borderColor="#E0E1E7">
-                                <InputLeftElement
-                                  pointerEvents="none"
-                                  children={<BsPerson color="gray.800" />}
+                          <form onSubmit={handleSubmit}>
+                            <VStack spacing={5}>
+                              <FormControl id="user_name" isRequired>
+                                <FormLabel>Your Name</FormLabel>
+                                <InputGroup borderColor="#E0E1E7">
+                                  <InputLeftElement
+                                    pointerEvents="none"
+                                    children={<BsPerson color="gray.800" />}
+                                  />
+                                  <Input
+                                    type="text"
+                                    size="md"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    name="user_name"
+                                  />
+                                </InputGroup>
+                              </FormControl>
+                              <FormControl id="email" isRequired>
+                                <FormLabel>Mail</FormLabel>
+                                <InputGroup borderColor="#E0E1E7">
+                                  <InputLeftElement
+                                    pointerEvents="none"
+                                    children={
+                                      <MdOutlineEmail color="gray.800" />
+                                    }
+                                  />
+                                  <Input
+                                    type="email"
+                                    size="md"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    name="email"
+                                  />
+                                </InputGroup>
+                              </FormControl>
+                              <FormControl id="comment" isRequired>
+                                <FormLabel>Message</FormLabel>
+                                <Textarea
+                                  value={message}
+                                  onChange={(e) => setMessage(e.target.value)}
+                                  name="comment"
+                                  borderColor="gray.300"
+                                  _hover={{
+                                    borderRadius: "gray.300",
+                                  }}
+                                  placeholder="message"
                                 />
-                                <Input
-                                  type="text"
-                                  size="md"
-                                  value={name}
-                                  onChange={(e) => setName(e.target.value)}
-                                  name="user_name"
-                                />
-                              </InputGroup>
-                            </FormControl>
-                            <FormControl id="email" isRequired>
-                              <FormLabel>Mail</FormLabel>
-                              <InputGroup borderColor="#E0E1E7">
-                                <InputLeftElement
-                                  pointerEvents="none"
-                                  children={<MdOutlineEmail color="gray.800" />}
-                                />
-                                <Input
-                                  type="email"
-                                  size="md"
-                                  value={email}
-                                  onChange={(e) => setEmail(e.target.value)}
-                                  name="email"
-                                />
-                              </InputGroup>
-                            </FormControl>
-                            <FormControl id="comment" isRequired>
-                              <FormLabel>Message</FormLabel>
-                              <Textarea
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
-                                name="comment"
-                                borderColor="gray.300"
-                                _hover={{
-                                  borderRadius: "gray.300",
-                                }}
-                                placeholder="message"
-                              />
-                            </FormControl>
-                            <FormControl id="name" float="right">
-                              <Button
-                                variant="solid"
-                                bg="#0D74FF"
-                                color="white"
-                                type="submit"
-                                _hover={{}}
-                              >
-                                Send Message
-                              </Button>
-                            </FormControl>
-                          </VStack>
+                              </FormControl>
+                              <FormControl id="name" float="right">
+                                <Button
+                                  variant="solid"
+                                  bg="#0D74FF"
+                                  color="white"
+                                  type="submit"
+                                  _hover={{}}
+                                >
+                                  Send Message
+                                </Button>
+                              </FormControl>
+                            </VStack>
                           </form>
                         </Box>
                       </Box>

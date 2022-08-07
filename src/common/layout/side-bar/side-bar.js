@@ -6,34 +6,6 @@ import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
 import {useEffect, useState} from "react";
 import {getAllDocFromCollection} from "../../common-action/common-action";
 
-const navigation = [
-  {
-    title: "Dashboard",
-    href: "/home",
-    icon: "bi bi-speedometer2",
-  },
-  {
-    title: "User",
-    href: "/alerts",
-    icon: "bi bi-bell",
-  },
-  {
-    title: "Courses",
-    href: "/courses-manage/add",
-    icon: "bi bi-bell",
-  },
-    {
-        title: "Dashboard",
-        href: "/home",
-        icon: "bi bi-speedometer2",
-    },
-    {
-        title: "My Courses",
-        href: "/alerts",
-        icon: "bi bi-bell",
-    }
-];
-
 const Sidebar = () => {
     const showMobilemenu = () => {
         document.getElementById("sidebarArea").classList.toggle("showSidebar");

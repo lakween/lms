@@ -3,7 +3,7 @@ import {
   filterDocsFromCollection,
   getAllDocFromCollection,
 } from "../../../common/common-action/common-action";
-import { useToast } from "@chakra-ui/react";
+import { useToast, FormErrorMessage } from "@chakra-ui/react";
 import firebase from "firebase/compat/app";
 import {
   Form,
@@ -30,8 +30,9 @@ import {
 import useFormController from "../../../hooks/useFormController";
 import { getAllCourses } from "../../../web/actions/course.actions";
 import { useDispatch } from "react-redux";
+import signSchema from "./schema/add-course-page.schema";
 
-const AddNewCourse = () => {
+const AddNewCourse = (getNames) => {
   let [errors, setErrors] = useState({});
   let [valueChangeHandler, setValue, form, setForm] = useFormController();
   const toast = useToast();
@@ -39,39 +40,49 @@ const AddNewCourse = () => {
 
   const toggle = () => setModal(!modal);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    setErrors({});
     e.preventDefault();
+    try {
+      await signSchema.validate(form, { abortEarly: false });
+      const db = firebase.firestore();
 
-    const db = firebase.firestore();
+      db.collection("courses")
+        .add({
+          title: form.course_name,
+          img: form.file,
+          description: form.course_desc,
+          accsessCount: 0,
+          shotDesc: form.course_details,
+          feature: form.course_feature,
+          fee: form.course_fee,
+        })
+        .then(() => {
+          toast({
+            title: "New Course Added Success 👍",
+            description: "Our representive contact you soon!",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+        })
+        .catch((error) => {
+          toast({
+            title: "Something wrong",
+            description: error.message,
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+        });
+    } catch (e) {
+      e.inner.forEach((e) => {
+        // console.log({[e.path]: e.message},'e')
+        setErrors((errors) => ({ ...errors, [e.path]: e.message }));
 
-    db.collection("courses")
-      .add({
-        title: form.course_name,
-        img: form.file,
-        description: form.course_desc,
-        accsessCount: 0,
-        shotDesc: form.course_details,
-        feature: form.course_feature,
-        fee: form.course_fee,
-      })
-      .then(() => {
-        toast({
-          title: "New Course Added Success 👍",
-          description: "Our representive contact you soon!",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-        });
-      })
-      .catch((error) => {
-        toast({
-          title: "Something wrong",
-          description: error.message,
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-        });
+        console.log(errors);
       });
+    }
   };
 
   const [course, setCourse] = useState([]);
@@ -121,60 +132,72 @@ const AddNewCourse = () => {
                     <FormGroup>
                       <Label for="course_name">Name</Label>
                       <Input
+                        invalid={!form.course_name}
                         id="course_name"
                         name="course_name"
                         placeholder="define course name ex : IOT Course"
                         type="text"
                         onChange={valueChangeHandler}
                       />
+                      <FormFeedback>{errors.course_name}</FormFeedback>
                     </FormGroup>
                     <FormGroup>
                       <Label for="course_fee">Course Fee</Label>
                       <Input
+                      invalid={!form.course_fee}
                         id="course_fee"
                         name="course_fee"
                         type="text"
                         onChange={valueChangeHandler}
                       />
+                      <FormFeedback></FormFeedback>
                     </FormGroup>
                     <FormGroup>
                       <Label for="course_desc">Short Description</Label>
                       <Input
+                        invalid={!form.course_desc}
                         id="course_desc"
                         name="course_desc"
                         type="textarea"
                         onChange={valueChangeHandler}
                       />
+                      <FormFeedback>{errors.course_desc}</FormFeedback>
                     </FormGroup>
                     <FormGroup>
                       <Label for="course description">Course Feature</Label>
                       <Input
+                        invalid={!form.course_feature}
                         id="course_feature"
                         name="course_feature"
                         placeholder="Course Feature"
                         type="text"
                         onChange={valueChangeHandler}
                       />
+                      <FormFeedback>{errors.course_desc}</FormFeedback>
                     </FormGroup>
                     <FormGroup>
                       <Label for="course_details">Details</Label>
                       <Input
+                        invalid={!form.course_details}
                         id="course_details"
                         name="course_details"
                         type="textarea"
                         onChange={valueChangeHandler}
                       />
+                      <FormFeedback>{errors.course_desc}</FormFeedback>
                     </FormGroup>
                     <FormGroup>
                       <Label for="exampleFile" sm={2}>
                         Banner
                       </Label>
                       <Input
+                        invalid={!form.file}
                         id="exampleFile"
                         name="file"
                         type="file"
                         onChange={valueChangeHandler}
                       />
+                      <FormFeedback>{errors.course_desc}</FormFeedback>
                       <FormText>
                         plase upload 5mb or smaller images for view !
                       </FormText>
