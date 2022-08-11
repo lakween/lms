@@ -157,7 +157,7 @@ export let RouterConfig = () => {
             element: <PaymentCancel/>,
         },
         {
-            path: "/payment/success",
+            path: "/payment/success/:id",
             element: <PaymentSuccess/>,
         },
 

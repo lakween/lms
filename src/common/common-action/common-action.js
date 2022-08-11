@@ -74,3 +74,8 @@ export const getRefFieldOnlyFromFilter = (coll, field, filters) => {
         return array
     }
 }
+
+// export const getCourseByStudent = (stID, courseID) => {
+//     const db = firebase.firestore();
+// }
+

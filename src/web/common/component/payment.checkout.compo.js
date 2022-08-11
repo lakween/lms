@@ -14,7 +14,7 @@ const getStripe = () => {
   return stripePromise;
 };
 
-const CheckoutForm = () => {
+const CheckoutForm = (props) => {
   const [stripeError, setStripeError] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const item = {
@@ -25,7 +25,7 @@ const CheckoutForm = () => {
   const checkoutOptions = {
     lineItems: [item],
     mode: "payment",
-    successUrl: `${window.location.origin}/payment/success`,
+    successUrl: `${window.location.origin}/payment/success/${props.courseid}`,
     cancelUrl: `${window.location.origin}/payment/cancel`,
   };
 
@@ -44,28 +44,6 @@ const CheckoutForm = () => {
   if (stripeError) alert(stripeError);
 
   return (
-    // <div className="checkout">
-    //   <h1>Stripe Checkout</h1>
-    //   <p className="checkout-title">Design+Code React Hooks Course</p>
-    //   <p className="checkout-description">
-    //     Learn how to build a website with React Hooks
-    //   </p>
-    //   <h1 className="checkout-price">$19</h1>
-
-    //   <button
-    //     className="checkout-button"
-    //     onClick={redirectToCheckout}
-    //     disabled={isLoading}
-    //   >
-    //     <div className="grey-circle">
-    //       <div className="purple-circle">
-    //       </div>
-    //     </div>
-    //     <div className="text-container">
-    //       <p className="text">{isLoading ? "Loading..." : "Buy"}</p>
-    //     </div>
-    //   </button>
-    // </div>
 
     <Button
       colorScheme="blue"
