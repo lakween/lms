@@ -1,6 +1,11 @@
-import {Button, Table, Tbody, Td, Th, Thead, Tr, useColorMode, useColorModeValue, useToast} from "@chakra-ui/react";
+import {
+    Button,
+    useColorMode,
+    useToast
+} from "@chakra-ui/react";
 import {doc, setDoc, updateDoc} from "firebase/firestore";
 import firebase from "firebase/compat/app";
+import {Table,Badge} from "reactstrap";
 
 const PendingUserListTable = ({columns = [], data = [], setRefetch, refetch}) => {
     const {colorMode, toggleColorMode} = useColorMode();
@@ -32,51 +37,51 @@ const PendingUserListTable = ({columns = [], data = [], setRefetch, refetch}) =>
     }
 
     return (
+
         <div className={'min-w-full'}>
-            <table className="min-w-full">
+            {/*<div className={'d-flex flex-row gap-3'}>*/}
+            <Table hover>
                 <thead>
                 <tr>
                     {
                         columns?.map((item) => (
-                            <th scope="col"
-                                className={`px-6  py-3 ${colorMode === "dark" ? 'bg-black' : 'bg-white'} text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200`}>
+                            <th>
                                 {item}
                             </th>
                         ))
                     }
+
                 </tr>
                 </thead>
-
-                <tbody className="bg-white">
+                <tbody>
                 {
                     data?.map((item, index) => (
-                        <tr key={index}
-                            className={`p-0 ${colorMode === "dark" ? 'bg-gray-800' : 'bg-white'} border-b transition duration-300 ease-in-out dark:bg-gray-100 border-2 border-sky-500`}>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm ">
-                                <p className={''}> {item.uid} </p>
-                            </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                        <tr key={index}>
+                            <th scope="row">
+                                 {item.uid}
+                            </th>
+                            <td>
                                 {item.first_name}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.last_name}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.Address}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.birthday}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.email}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.School}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 {item.userType}
                             </td>
-                            <td className="px-1 py-1 whitespace-no-wrap border-b border-gray-200 text-sm">
+                            <td>
                                 <Button onClick={() => onClickAcceptHandler(item)} marginRight={1}
                                         size={'xs'}> Accept</Button>
                                 <Button size={'xs'} onClick={() => onClickRejectHandler(item)}> Reject</Button>
@@ -85,7 +90,7 @@ const PendingUserListTable = ({columns = [], data = [], setRefetch, refetch}) =>
                     ))
                 }
                 </tbody>
-            </table>
+            </Table>
         </div>
 
     )
