@@ -28,9 +28,10 @@ import CourseCard from "./common/component/course_card.compo";
 import HeaderNav from "./common/header/navbar.page";
 import SmallCentered from "./common/footer/footer.page";
 import { getAllCourses } from "./actions/course.actions";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Redirect } from "react-router-dom";
 
-const Courses = () => {
+const Courses = () => { 
+
   let navigate = useNavigate();
   const [input, setInput] = useState("");
   const [course, setCourse] = useState([]);
@@ -46,6 +47,10 @@ const Courses = () => {
   }
 
   const bg = useColorModeValue("white", "gray.800");
+
+  if(course.length == '0'){
+    navigate("/login");
+  }
 
   return (
     <>
