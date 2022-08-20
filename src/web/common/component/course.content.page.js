@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   Box,
@@ -44,7 +44,6 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
 import CheckoutForm from "./payment.checkout.compo";
-import { getAllDocFromCollection } from "../../../common/common-action/common-action";
 
 // firebase extentions
 import { getDocs, setDoc, doc, query, where, getDoc } from "firebase/firestore";
@@ -123,18 +122,43 @@ export default function CourseContent(props) {
     </Button>
   );
 
-  // get all paid details
+  const [payRef, setpayRef] = useState([]);
 
-  const checkuserPay = async () => {
-    const db = firebase.firestore();
+  const checkPayment = () => {
+    return async (dispatch) => {
+      let array = [];
+      const db = firebase.firestore();
+      const q = query(
+        collection(db, "courseByStudent"),
+        where("StudentID", "==", stuID),
+        where("CourseID", "==", courseID)
+      );
 
-    const querySnapshot = await getDocs(collection(db, "courseByStudent"));
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
-    });
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        if (doc.data()) {
+          const userData = doc.data();
+          array.push({ id: doc.id });
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      });
+      return array;
+    };
   };
 
+  useEffect(() => {
+    getCourseDetails();
+  }, []);
+
+  async function getCourseDetails() {
+    let res = await dispatch(checkPayment());
+    setpayRef(res || []);
+  }
+
+  const readDataHere = payRef.map((items) => items.id);
   return (
     <>
       <section className="course-page-header  page-header-3">
@@ -224,10 +248,29 @@ export default function CourseContent(props) {
                     </ul>
 
                     <div className="buy-btn">
-                      <button className="btn btn-main rounded" onClick={onOpen}>
-                        <i className="far fa-shopping-cart me-2"></i> Enroll
-                        Course
-                      </button>
+                      {(() => {
+                        if (readDataHere.length == 0) {
+                          return (
+                            <button
+                              className="btn btn-main rounded"
+                              onClick={onOpen}
+                            >
+                              <i className="far fa-shopping-cart me-2"></i>
+                              Enroll Course
+                            </button>
+                          );
+                        } else {
+                          return (
+                            <button
+                              className="btn btn-primary rounded"
+                              onClick={onOpen}
+                            >
+                              <i class="fas fa-eye me-2"></i>
+                              View Course
+                            </button>
+                          );
+                        }
+                      })()}
                     </div>
 
                     <div className="course-meterial">
@@ -250,16 +293,16 @@ export default function CourseContent(props) {
                 </div>
               </div>
             </div>
-            <div className="col-xl-8 col-lg-7">
-              <div className="tutori-course-content">
-                <nav className="course-single-tabs learn-press-nav-tabs">
+            <div class="col-xl-8 col-lg-7">
+              <div class="tutori-course-content">
+                <nav class="course-single-tabs learn-press-nav-tabs">
                   <div
-                    className="nav nav-tabs course-nav"
+                    class="nav nav-tabs course-nav"
                     id="nav-tab"
                     role="tablist"
                   >
                     <a
-                      className="nav-item nav-link active"
+                      class="nav-item nav-link active"
                       id="nav-home-tab"
                       data-bs-toggle="tab"
                       href="#nav-home"
@@ -269,21 +312,196 @@ export default function CourseContent(props) {
                     >
                       Overview
                     </a>
+                    {(() => {
+                      if (readDataHere.length == 0) {
+                      } else {
+                        return (
+                          <a
+                            class="nav-item nav-link"
+                            id="nav-topics-tab"
+                            data-bs-toggle="tab"
+                            href="#nav-topics"
+                            role="tab"
+                            aria-controls="nav-topics-tab"
+                            aria-selected="false"
+                          >
+                            Curriculam
+                          </a>
+                        );
+                      }
+                    })()}
                   </div>
                 </nav>
                 <div
-                  className="tab-content tutori-course-content"
+                  class="tab-content tutori-course-content"
                   id="nav-tabContent"
                 >
                   <div
-                    className="tab-pane fade show active"
+                    class="tab-pane fade show active"
                     id="nav-home"
                     role="tabpanel"
                     aria-labelledby="nav-home-tab"
                   >
-                    <div className="single-course-details ">
-                      <h4 className="course-title">Description</h4>
+                    <div class="single-course-details ">
+                      <h4 class="course-title">Description</h4>
                       <p>{props.desc}</p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="tab-pane fade"
+                    id="nav-topics"
+                    role="tabpanel"
+                    aria-labelledby="nav-topics-tab"
+                  >
+                    <div class="tutori-course-curriculum">
+                      <div class="curriculum-scrollable">
+                        <ul class="curriculum-sections">
+                          <li class="section">
+                            <div class="section-header">
+                              <div class="section-left">
+                                <h5 class="section-title">
+                                  Change simplification
+                                </h5>
+                                <p class="section-desc">
+                                  Dacere agemusque constantius concessis elit
+                                  videmusne quia stoici constructio
+                                  dissimillimas audiunt homerus commendationes
+                                </p>
+                              </div>
+                            </div>
+
+                            <ul class="section-content">
+                              <li class="course-item has-status course-item-lp_lesson">
+                                <a class="section-item-link" href="#">
+                                  <span class="item-name">
+                                    The importance of data nowsaday
+                                  </span>
+                                  <div class="course-item-meta">
+                                    <span class="item-meta duration">
+                                      10.30 min
+                                    </span>
+                                    <i class="item-meta course-item-status"></i>
+                                  </div>
+                                </a>
+                              </li>
+
+                              <li class="course-item has-status course-item-lp_lesson">
+                                <a class="section-item-link" href="#">
+                                  <span class="item-name">
+                                    Why my organization should know about data
+                                  </span>
+                                  <div class="course-item-meta">
+                                    <span class="item-meta duration">
+                                      20.30 min
+                                    </span>
+                                    <i class="item-meta course-item-status"></i>
+                                  </div>
+                                </a>
+                              </li>
+
+                              <li class="course-item course-item-lp_assignment course-item-lp_lesson">
+                                <a class="section-item-link" href="#">
+                                  <span class="item-name">Assignments</span>
+                                  <div class="course-item-meta">
+                                    <span class="item-meta count-questions">
+                                      14 questions
+                                    </span>
+                                    <span class="item-meta duration">
+                                      10.21 min
+                                    </span>
+                                    <i class="fa item-meta course-item-status trans"></i>
+                                  </div>
+                                </a>
+                              </li>
+                              <li class="course-item course-item-lp_quiz course-item-lp_lesson">
+                                <a class="section-item-link" href="#">
+                                  <span class="item-name">Quiz 1</span>
+                                  <div class="course-item-meta">
+                                    <span class="item-meta count-questions">
+                                      14 questions
+                                    </span>
+                                    <span class="item-meta duration">
+                                      5.67 min
+                                    </span>
+                                    <i class="fa item-meta course-item-status trans"></i>
+                                  </div>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="section">
+                            <div class="section-header">
+                              <div class="section-left">
+                                <h5 class="section-title">Key concepts </h5>
+                                <p class="section-desc">
+                                  Dacere agemusque constantius concessis elit
+                                  videmusne quia stoici constructio
+                                  dissimillimas audiunt homerus commendationes
+                                </p>
+                              </div>
+                            </div>
+
+                            <ul class="section-content">
+                              <li class="course-item has-status course-item-lp_lesson">
+                                <a class="section-item-link" href="#">
+                                  <span class="item-name">
+                                    Basic understanding of data management
+                                    concepts
+                                  </span>
+                                  <div class="course-item-meta">
+                                    <span class="item-meta duration">
+                                      10 min
+                                    </span>
+                                    <i class="item-meta course-item-status"></i>
+                                  </div>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="section">
+                            <ul class="section-content">
+                              <li class="course-item has-status course-item-lp_lesson">
+                                <a class="section-item-link" href="#">
+                                  <span class="item-name">
+                                    Apply the principles{" "}
+                                  </span>
+                                  <div class="course-item-meta">
+                                    <span class="item-meta duration">
+                                      10 min
+                                    </span>
+                                    <i class="item-meta course-item-status"></i>
+                                  </div>
+                                </a>
+                              </li>
+
+                              <li class="course-item has-status course-item-lp_lesson">
+                                <a class="section-item-link" href="#">
+                                  <span class="item-name">Lesson 2</span>
+                                  <div class="course-item-meta">
+                                    <span class="item-meta duration">
+                                      20 min
+                                    </span>
+                                    <i class="item-meta course-item-status"></i>
+                                  </div>
+                                </a>
+                              </li>
+
+                              <li class="course-item has-status course-item-lp_lesson">
+                                <a class="section-item-link" href="#">
+                                  <span class="item-name">Lesson 3</span>
+                                  <div class="course-item-meta">
+                                    <span class="item-meta duration">
+                                      5 min
+                                    </span>
+                                    <i class="item-meta course-item-status"></i>
+                                  </div>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
