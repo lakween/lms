@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 
-import CourseDetails from "./common/component/course_details.compo";
 import CourseContent from "./common/course.content.page";
 import HeaderNav from "./common/header/navbar.page";
 import SmallCentered from "./common/footer/footer.page";
