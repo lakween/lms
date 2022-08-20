@@ -242,16 +242,16 @@ $('.popup').magnificPopup({
   /* ---------------------------------------------
         Course filtering
   --------------------------------------------- */
-  var $courses = $('.course-gallery');
-  if ($.fn.imagesLoaded && $portfolio.length > 0) {
-      imagesLoaded($courses, function () {
-          $courses.isotope({
-              itemSelector: '.course-item',
-              filter: '*'
-          });
-          $(window).trigger("resize");
-      });
-  }
+  // var $courses = $('.course-gallery');
+  // if ($.fn.imagesLoaded && $portfolio.length > 0) {
+  //     imagesLoaded($courses, function () {
+  //         $courses.isotope({
+  //             itemSelector: '.course-item',
+  //             filter: '*'
+  //         });
+  //         $(window).trigger("resize");
+  //     });
+  // }
 
   $('.course-filter').on('click', 'a', function (e) {
       e.preventDefault();

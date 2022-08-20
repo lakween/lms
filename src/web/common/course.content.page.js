@@ -121,110 +121,110 @@ export default function CourseContent(props) {
 
   return (
     <>
-      <section class="course-page-header  page-header-3">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-xl-8">
-              <div class="course-header-wrapper mb-0 bg-transparent">
-                <h1 class="fs-1">{props.title}</h1>
+      <section className="course-page-header  page-header-3">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8 col-xl-8">
+              <div className="course-header-wrapper mb-0 bg-transparent">
+                <h1 className="fs-1">{props.title}</h1>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="tutori-course-single tutori-course-layout-3 page-wrapper">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-4 col-lg-5">
-              <div class="course-sidebar course-sidebar-3 mt-5 mt-lg-0">
-                <div class="course-widget course-details-info ">
-                  <div class="course-thumbnail">
+      <section className="tutori-course-single tutori-course-layout-3 page-wrapper">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-4 col-lg-5">
+              <div className="course-sidebar course-sidebar-3 mt-5 mt-lg-0">
+                <div className="course-widget course-details-info ">
+                  <div className="course-thumbnail">
                     <img
                       src="assets/images/course/img_02.jpg"
                       alt=""
-                      class="img-fluid w-100"
+                      className="img-fluid w-100"
                     />
                   </div>
 
-                  <div class="course-sidebar-details">
-                    <div class="price-header">
-                      <h2 class="course-price">
+                  <div className="course-sidebar-details">
+                    <div className="price-header">
+                      <h2 className="course-price">
                         $120.00 <span>$150</span>
                       </h2>
-                      <span class="course-price-badge onsale">39% off</span>
+                      <span className="course-price-badge onsale">39% off</span>
                     </div>
-                    <ul class="course-sidebar-list">
+                    <ul className="course-sidebar-list">
                       <li>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div className="d-flex justify-content-between align-items-center">
                           <span>
-                            <i class="far fa-sliders-h"></i>Level
+                            <i className="far fa-sliders-h"></i>Level
                           </span>
                           Beginnner
                         </div>
                       </li>
 
                       <li>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div className="d-flex justify-content-between align-items-center">
                           <span>
-                            <i class="fas fa-play-circle"></i>Lectures
+                            <i className="fas fa-play-circle"></i>Lectures
                           </span>
                           2
                         </div>
                       </li>
                       <li>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div className="d-flex justify-content-between align-items-center">
                           <span>
-                            <i class="far fa-user"></i>Students
+                            <i className="far fa-user"></i>Students
                           </span>
                           20
                         </div>
                       </li>
                       <li>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div className="d-flex justify-content-between align-items-center">
                           <span>
-                            <i class="far fa-clock"></i>Duration
+                            <i className="far fa-clock"></i>Duration
                           </span>
                           6 hours
                         </div>
                       </li>
                       <li>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div className="d-flex justify-content-between align-items-center">
                           <span>
-                            <i class="far fa-globe"></i>Language
+                            <i className="far fa-globe"></i>Language
                           </span>
                           English
                         </div>
                       </li>
 
                       <li>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div className="d-flex justify-content-between align-items-center">
                           <span>
-                            <i class="far fa-calendar"></i>Updated{" "}
+                            <i className="far fa-calendar"></i>Updated{" "}
                           </span>
                           October 15, 2022
                         </div>
                       </li>
                     </ul>
 
-                    <div class="buy-btn">
-                      <button class="btn btn-main rounded" onClick={onOpen}>
-                        <i class="far fa-shopping-cart me-2"></i> Enroll Course
+                    <div className="buy-btn">
+                      <button className="btn btn-main rounded" onClick={onOpen}>
+                        <i className="far fa-shopping-cart me-2"></i> Enroll Course
                       </button>
                     </div>
 
-                    <div class="course-meterial">
-                      <h4 class="mb-3">Material Includes</h4>
-                      <ul class="course-meterial-list">
+                    <div className="course-meterial">
+                      <h4 className="mb-3">Material Includes</h4>
+                      <ul className="course-meterial-list">
                         <li>
-                          <i class="fal fa-long-arrow-right"></i>Videos
+                          <i className="fal fa-long-arrow-right"></i>Videos
                         </li>
                         <li>
-                          <i class="fal fa-long-arrow-right"></i>Files For
+                          <i className="fal fa-long-arrow-right"></i>Files For
                           Development
                         </li>
                         <li>
-                          <i class="fal fa-long-arrow-right"></i>Documentation
+                          <i className="fal fa-long-arrow-right"></i>Documentation
                           Files
                         </li>
                       </ul>
@@ -233,16 +233,16 @@ export default function CourseContent(props) {
                 </div>
               </div>
             </div>
-            <div class="col-xl-8 col-lg-7">
-              <div class="tutori-course-content">
-                <nav class="course-single-tabs learn-press-nav-tabs">
+            <div className="col-xl-8 col-lg-7">
+              <div className="tutori-course-content">
+                <nav className="course-single-tabs learn-press-nav-tabs">
                   <div
-                    class="nav nav-tabs course-nav"
+                    className="nav nav-tabs course-nav"
                     id="nav-tab"
                     role="tablist"
                   >
                     <a
-                      class="nav-item nav-link active"
+                      className="nav-item nav-link active"
                       id="nav-home-tab"
                       data-bs-toggle="tab"
                       href="#nav-home"
@@ -255,17 +255,17 @@ export default function CourseContent(props) {
                   </div>
                 </nav>
                 <div
-                  class="tab-content tutori-course-content"
+                  className="tab-content tutori-course-content"
                   id="nav-tabContent"
                 >
                   <div
-                    class="tab-pane fade show active"
+                    className="tab-pane fade show active"
                     id="nav-home"
                     role="tabpanel"
                     aria-labelledby="nav-home-tab"
                   >
-                    <div class="single-course-details ">
-                      <h4 class="course-title">Description</h4>
+                    <div className="single-course-details ">
+                      <h4 className="course-title">Description</h4>
                       <p>{props.desc}</p>
                     </div>
                   </div>

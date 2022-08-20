@@ -51,7 +51,7 @@ const Courses = () => {
       <>
         {courseDetails.map((item) => (
           <CourseContent
-            key="{item}"
+          key="{item}"
             title={item.title}
             fee={item.fee}
             desc={item.description}

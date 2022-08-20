@@ -57,22 +57,22 @@ const Courses = () => {
       <HeaderNav />
 
       <>
-        <section class="page-header">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-8 col-xl-8">
-                <div class="title-block">
+        <section className="page-header">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-8 col-xl-8">
+                <div className="title-block">
                   <h1>Courses</h1>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <section class="section-padding page">
-          <div class="container">
-            <div class="row justify-content-center">
+        <section className="section-padding page">
+          <div className="container">
+            <div className="row justify-content-center">
               {course.map((item) => (
-                <div class="col-xl-4 col-lg-4 col-md-6">
+                <div className="col-xl-4 col-lg-4 col-md-6">
                   <Card
                     name={item.title}
                     price={"200"}
