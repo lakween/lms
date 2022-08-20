@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {filterDocsFromCollection, getAllDocFromCollection} from "../../../../common/common-action/common-action";
 import useFormController from "../../../../hooks/useFormController";
 import {Table,Badge} from "reactstrap";
+import {deleteProfile} from "../../actions/users-actions";
 
 const AllUserListTable = ({setRefetch, refetch}) => {
     const {colorMode, toggleColorMode} = useColorMode();
@@ -34,10 +35,7 @@ const AllUserListTable = ({setRefetch, refetch}) => {
     }
 
     const onClickDeleteHandler = async (item) => {
-        const db = firebase.firestore();
-        const accountRef = await doc(db, 'accounts', item.id);
-        await updateDoc(accountRef, {status: "accept"});
-        setRefetch(refetch ? false : true)
+       let result = await  deleteProfile(item.id)
         toast({
             title: 'Account created.',
             status: 'success',
