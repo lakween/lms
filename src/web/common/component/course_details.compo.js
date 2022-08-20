@@ -45,10 +45,7 @@ import { collection, addDoc } from "firebase/firestore";
 import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
 import CheckoutForm from "./payment.checkout.compo";
 
-
 export default function CourseDetails(props) {
-
-
   let dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   let [valueChangeHandler, setValue, form, setForm] = useFormController();
@@ -68,7 +65,7 @@ export default function CourseDetails(props) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("start of upload"); 
+    console.log("start of upload");
 
     const storage = getStorage();
     const fileRef = ref(storage, `userPaymentSlip/${image.name}`);
@@ -306,7 +303,7 @@ export default function CourseDetails(props) {
                       </Stack>
                       <Box>
                         <div className="d-flex align-items-end justify-content-end">
-                          <CheckoutForm courseid={courseID}  />
+                          <CheckoutForm courseid={courseID} />
                         </div>
                       </Box>
                     </TabPanel>

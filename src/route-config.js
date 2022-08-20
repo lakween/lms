@@ -18,6 +18,7 @@ import ListUsersPage from "./admin/Users/list-users/list-users.page";
 import AddNewCourse from "./admin/Course/add-course/add-courses.page";
 import PaymentCancel from "./web/common/payment/cancel.page";
 import PaymentSuccess from "./web/common/payment/success.page";
+import Payment from "./admin/Payments/payment.page";
 
 export let RouterConfig = () => {
 
@@ -84,6 +85,13 @@ export let RouterConfig = () => {
             element: <Layout/>,
             children: [
                 {index: true, path: "add", element: <AddNewCourse/>},
+            ],
+        },
+        {
+            path: "payment",
+            element: <Layout/>,
+            children: [
+                {index: true, element: <Payment/>},
             ],
         },
     ]
