@@ -72,7 +72,7 @@ const Courses = () => {
           <div className="container">
             <div className="row justify-content-center">
               {course.map((item) => (
-                <div className="col-xl-4 col-lg-4 col-md-6">
+                <div key={item.id} className="col-xl-4 col-lg-4 col-md-6">
                   <Card
                     name={item.title}
                     price={"200"}

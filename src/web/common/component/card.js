@@ -5,55 +5,55 @@ function Card(props) {
     let navigate = useNavigate();
   return (
     <>
-      <div class="course-grid course-style-3">
-        <div class="course-header">
-          <div class="course-thumb">
+      <div className="course-grid course-style-3">
+        <div className="course-header">
+          <div className="course-thumb">
             <img
               src="assets/images/course/img_01.png"
               alt=""
-              class="img-fluid"
+              className="img-fluid"
             />
           </div>
         </div>
 
-        <div class="course-content">
-          <div class="course-meta d-flex justify-content-between mb-3">
-            <span class="category">{props.category}</span>
-            <span class="label">
-              <i class="fas fa-signal me-2"></i>
+        <div className="course-content">
+          <div className="course-meta d-flex justify-content-between mb-3">
+            <span className="category">{props.category}</span>
+            <span className="label">
+              <i className="fas fa-signal me-2"></i>
               {props.level}
             </span>
           </div>
-          <h3 class="course-title mb-3">
+          <h3 className="course-title mb-3">
             <a href={"/cosdetails/" + props.id}>{props.name}</a>
           </h3>
 
           <div className="d-flex justify-content-between">
-            <div class="course-meta-info">
-              <div class="d-flex align-items-center">
-                <span class="students">
-                  <i class="far fa-user-alt me-2"></i>51 Students
+            <div className="course-meta-info">
+              <div className="d-flex align-items-center">
+                <span className="students">
+                  <i className="far fa-user-alt me-2"></i>51 Students
                 </span>
               </div>
             </div>
-            <div class="course-meta-info">
-              <div class="d-flex align-items-center">
-                <span class="students">
-                  <i class="far fa-video me-2"></i>20+ Videos
+            <div className="course-meta-info">
+              <div className="d-flex align-items-center">
+                <span className="students">
+                  <i className="far fa-video me-2"></i>20+ Videos
                 </span>
               </div>
             </div>
           </div>
 
-          <div class="course-footer mt-4 d-flex align-items-center justify-content-between">
-            <div class="course-price">$ {props.price}</div>
+          <div className="course-footer mt-4 d-flex align-items-center justify-content-between">
+            <div className="course-price">$ {props.price}</div>
             <button
-              class="btn btn-main-outline rounded-pill btn-sm"
+              className="btn btn-main-outline rounded-pill btn-sm"
               onClick={() => {
                 navigate("/cosdetails/" + props.id);
               }}
             >
-              Buy Now <i class="fa fa-long-arrow-right"></i>
+              Buy Now <i className="fa fa-long-arrow-right"></i>
             </button>
           </div>
         </div>

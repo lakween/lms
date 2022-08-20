@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 
-import CourseContent from "./common/course.content.page";
+import CourseContent from "./common/component/course.content.page";
 import HeaderNav from "./common/header/navbar.page";
 import SmallCentered from "./common/footer/footer.page";
 
@@ -51,7 +51,7 @@ const Courses = () => {
       <>
         {courseDetails.map((item) => (
           <CourseContent
-          key="{item}"
+            key="{item}"
             title={item.title}
             fee={item.fee}
             desc={item.description}

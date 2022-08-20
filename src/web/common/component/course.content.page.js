@@ -38,12 +38,16 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import useFormController from "../../hooks/useFormController";
+import useFormController from "../../../hooks/useFormController";
 import firebase from "firebase/compat/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
-import useUserLoginInfo from "../../hooks/useUserLoginInfo";
-import CheckoutForm from "./component/payment.checkout.compo";
+import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
+import CheckoutForm from "./payment.checkout.compo";
+import { getAllDocFromCollection } from "../../../common/common-action/common-action";
+
+// firebase extentions
+import { getDocs, setDoc, doc, query, where, getDoc } from "firebase/firestore";
 
 export default function CourseContent(props) {
   let dispatch = useDispatch();
@@ -118,6 +122,18 @@ export default function CourseContent(props) {
       Proceess Next
     </Button>
   );
+
+  // get all paid details
+
+  const checkuserPay = async () => {
+    const db = firebase.firestore();
+
+    const querySnapshot = await getDocs(collection(db, "courseByStudent"));
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
+  };
 
   return (
     <>
@@ -209,7 +225,8 @@ export default function CourseContent(props) {
 
                     <div className="buy-btn">
                       <button className="btn btn-main rounded" onClick={onOpen}>
-                        <i className="far fa-shopping-cart me-2"></i> Enroll Course
+                        <i className="far fa-shopping-cart me-2"></i> Enroll
+                        Course
                       </button>
                     </div>
 
@@ -224,8 +241,8 @@ export default function CourseContent(props) {
                           Development
                         </li>
                         <li>
-                          <i className="fal fa-long-arrow-right"></i>Documentation
-                          Files
+                          <i className="fal fa-long-arrow-right"></i>
+                          Documentation Files
                         </li>
                       </ul>
                     </div>
