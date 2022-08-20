@@ -23,6 +23,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 import firebase from "firebase/compat/app";
+import Card from "../web/common/component/card";
 
 import CourseCard from "./common/component/course_card.compo";
 import HeaderNav from "./common/header/navbar.page";
@@ -30,8 +31,7 @@ import SmallCentered from "./common/footer/footer.page";
 import { getAllCourses } from "./actions/course.actions";
 import { useNavigate, Redirect } from "react-router-dom";
 
-const Courses = () => { 
-
+const Courses = () => {
   let navigate = useNavigate();
   const [input, setInput] = useState("");
   const [course, setCourse] = useState([]);
@@ -48,34 +48,43 @@ const Courses = () => {
 
   const bg = useColorModeValue("white", "gray.800");
 
-  if(course.length == '0'){
-    navigate("/login");
-  }
+  // if(course.length == '0'){
+  //   navigate("/login");
+  // }
 
   return (
     <>
       <HeaderNav />
 
       <>
-        <Container maxW="7xl" bg="gray.50">
-          <Heading mb={"2"} p={2}>
-            Courses
-          </Heading>
-          <SimpleGrid columns={[2, null, 4]} spacing="5px">
-            {course.map((item) => (
-              <Box
-                onClick={() => {
-                  navigate("/cosdetails/" + item.id);
-                }}
-              >
-                <CourseCard
-                  name={item.title}
-                  imageURL="https://www.learnworlds.com/app/uploads/2022/01/teacher-and-student-with-laptop-remote-learning.png"
-                />
-              </Box>
-            ))}
-          </SimpleGrid>
-        </Container>
+        <section class="page-header">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8 col-xl-8">
+                <div class="title-block">
+                  <h1>Courses</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-padding page">
+          <div class="container">
+            <div class="row justify-content-center">
+              {course.map((item) => (
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                  <Card
+                    name={item.title}
+                    price={"200"}
+                    category={"English"}
+                    level={"Beginner"}
+                    id={item.id}
+                  ></Card>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </>
       <>
         <SmallCentered />

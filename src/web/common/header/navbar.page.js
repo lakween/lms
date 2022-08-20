@@ -29,7 +29,7 @@ const HeaderNav = () => {
               <div class="site-logo">
                 <a href="index.html">
                   <img src="assets/images/logo.jpg" alt="" class="img-fluid h-10"/>
-                </a>
+                </a>               
               </div>
 
               <div class="offcanvas-icon d-block d-lg-none">
@@ -58,48 +58,11 @@ const HeaderNav = () => {
                     </ul>
                   </li>
                   <li>
-                    <a href="about.html">About</a>
+                    <a href="/about">About</a>
                   </li>
 
                   <li>
-                    <a href="courses.html">Courses</a>
-                    <ul class="submenu">
-                      <li>
-                        <a href="courses.html">Courses</a>
-                      </li>
-                      <li>
-                        <a href="courses-2.html">Course Grid 2 </a>
-                      </li>
-                      <li>
-                        <a href="courses-3.html">Course Grid 3</a>
-                      </li>
-                      <li>
-                        <a href="courses-4.html">Course Grid 4</a>
-                      </li>
-                      <li>
-                        <a href="courses-5-list.html">Course List</a>
-                      </li>
-                      <li class="has-submenu">
-                        <a href="#">Single Layout</a>
-                        <ul class="submenu">
-                          <li>
-                            <a href="course-single.html">Course Single 1</a>
-                          </li>
-                          <li>
-                            <a href="course-single-2.html">Course Single 2</a>
-                          </li>
-                          <li>
-                            <a href="course-single-3.html">Course Single 3</a>
-                          </li>
-                          <li>
-                            <a href="course-single-4.html">Course Single 4</a>
-                          </li>
-                          <li>
-                            <a href="course-single-5.html">Course Single 5</a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
+                    <a href="/courses">Courses</a>
                   </li>
 
                   <li>
