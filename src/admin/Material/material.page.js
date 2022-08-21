@@ -1,4 +1,5 @@
 import react from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Form,
   FormGroup,
@@ -22,21 +23,31 @@ import {
   ModalFooter,
 } from "reactstrap";
 
-const Payment = (getNames) => {
+const Material = (getNames) => {
+  let navigate = useNavigate();
   return (
     <>
-      {" "}
       <Breadcrumb listTag="div">
         <BreadcrumbItem href="/home" tag="a">
           Home
         </BreadcrumbItem>
-        <BreadcrumbItem href="/payment" tag="a">
-          Payments
+        <BreadcrumbItem href="/material" tag="a">
+          Material
         </BreadcrumbItem>
       </Breadcrumb>
       <Card className="mt-2">
         <CardBody>
-          <CardTitle tag="h5">Course Payment by Students</CardTitle>
+          <div className="d-flex d-flex justify-content-between">
+            <CardTitle tag="h5">Material Manage</CardTitle>
+            <Button
+              color="primary"
+              onClick={() => {
+                navigate("/material/add");
+              }}
+            >
+              Add Material
+            </Button>
+          </div>
           <CardSubtitle
             className="mb-2 text-muted text-weight-bold"
             tag="h6"
@@ -80,4 +91,4 @@ const Payment = (getNames) => {
     </>
   );
 };
-export default Payment;
+export default Material;
