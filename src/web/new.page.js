@@ -48,7 +48,8 @@ const SpeechtoText = () => {
                 <button className="btn btn-main btn-sm mx-2" onClick={SpeechRecognition.startListening({continuous:true})}>Start</button>
                 <button
                   className="btn btn-main btn-sm mx-2"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     SpeechRecognition.stopListening();
                     console.log("listening stops");
                   }}
