@@ -19,6 +19,7 @@ import AddNewCourse from "./admin/Course/add-course/add-courses.page";
 import PaymentCancel from "./web/common/payment/cancel.page";
 import PaymentSuccess from "./web/common/payment/success.page";
 import Payment from "./admin/Payments/payment.page";
+import SpeechtoText from "./web/new.page";
 
 export let RouterConfig = () => {
 
@@ -149,7 +150,7 @@ export let RouterConfig = () => {
             element: <CourseDeatils/>,
         },
         {
-            path: "class/:id",
+            path: "class-content/:id",
             element: <CourseDeatils/>,
         },
         {
@@ -167,6 +168,10 @@ export let RouterConfig = () => {
         {
             path: "/payment/success/:id",
             element: <PaymentSuccess/>,
+        },
+        {
+            path: "/ai-voice",
+            element: <SpeechtoText/>,
         },
 
         ...getRoutesByUser()

@@ -59,6 +59,9 @@ const HeaderNav = () => {
                   <li>
                     <a href="/about">About us</a>
                   </li>
+                  <li>
+                    <a href="/ai-voice">AI Voice</a>
+                  </li>
                 </ul>
 
                 <a href="#" className="nav-close">

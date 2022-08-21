@@ -7,6 +7,7 @@ import {
   Heading,
   SimpleGrid,
   Container,
+  Link,
 } from "@chakra-ui/react";
 import {
   query,
@@ -19,7 +20,7 @@ import {
 } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 
-import CourseCard from "./common/component/course_card.compo";
+import Card from "./common/component/card";
 import HeaderNav from "./common/header/navbar.page";
 import SmallCentered from "./common/footer/footer.page";
 import { getAllClasses } from "./actions/course.actions";
@@ -39,8 +40,6 @@ const Class = () => {
     let res = await dispatch(getAllClasses());
     setClasses(res || []);
   }
-
-  console.log(classes);
   const bg = useColorModeValue("white", "gray.800");
 
   return (
@@ -48,7 +47,42 @@ const Class = () => {
       <HeaderNav />
 
       <>
-        <Container maxW="7xl" bg="gray.50">
+        <section className="page-header">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-8 col-xl-8">
+                <div className="title-block">
+                  <h1>Classes</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="section-padding page">
+          <div className="container">
+            <div className="row justify-content-center">
+              {classes.map((item) => (
+                <div key={item.id} className="col-xl-4 col-lg-4 col-md-6">
+                  <Link
+                    onClick={() => {
+                      navigate("/class/" + item.id);
+                    }}
+                    _hover={"none"}
+                  >
+                    <Card
+                      name={item.title}
+                      price={"150"}
+                      category={"LK & EN"}
+                      level={"Beginner"}
+                      id={item.id}
+                    ></Card>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        {/* <Container maxW="7xl" bg="gray.50">
           <Heading mb={"2"} p={2}> Classess</Heading>
           <SimpleGrid columns={[2, null, 4]} spacing="5px">
             {classes.map((item) => (
@@ -61,7 +95,7 @@ const Class = () => {
               </Box>
             ))}
           </SimpleGrid>
-        </Container>
+        </Container> */}
       </>
       <>
         <SmallCentered />
