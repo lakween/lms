@@ -574,9 +574,9 @@ BUTTONS STYLE
 }
 
 .btn-main-2 {
-  border-color: var(--theme-secondary-color);
-  color: #fff;
-  background: var(--theme-secondary-color);
+  border-color: var(--theme-secondary-color) !important;
+  color: #fff !important;
+  background: var(--theme-secondary-color) !important;
 }
 
 .btn-main-2:hover {

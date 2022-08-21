@@ -28,8 +28,12 @@ const HeaderNav = () => {
             <div className="d-flex align-items-center justify-content-between">
               <div className="site-logo">
                 <a href="index.html">
-                  <img src="assets/images/logo.jpg" alt="" className="img-fluid h-10"/>
-                </a>               
+                  <img
+                    src="assets/images/logo.jpg"
+                    alt=""
+                    className="img-fluid h-10"
+                  />
+                </a>
               </div>
 
               <div className="offcanvas-icon d-block d-lg-none">
@@ -41,64 +45,19 @@ const HeaderNav = () => {
               <nav className="site-navbar ms-auto">
                 <ul className="primary-menu">
                   <li className="current">
-                    <a href="index.html">Home</a>
-                    <ul className="submenu">
-                      <li>
-                        <a href="index.html">Home One</a>
-                      </li>
-                      <li>
-                        <a href="index-2.html">Home Two</a>
-                      </li>
-                      <li>
-                        <a href="index-3.html">Home Three</a>
-                      </li>
-                      <li>
-                        <a href="index-4.html">Home Four</a>
-                      </li>
-                    </ul>
+                    <a href="/">Home</a>
                   </li>
-                  <li>
-                    <a href="/about">About</a>
-                  </li>
-
                   <li>
                     <a href="/courses">Courses</a>
                   </li>
-
                   <li>
-                    <a href="#">Pages</a>
-                    <ul className="submenu">
-                      <li>
-                        <a href="instructor.html">Instructors</a>
-                      </li>
-                      <li>
-                        <a href="cart.html">Cart</a>
-                      </li>
-                      <li>
-                        <a href="checkout.html">Checkout</a>
-                      </li>
-                      <li>
-                        <a href="login.html">Login</a>
-                      </li>
-                      <li>
-                        <a href="Register.html">Register</a>
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li>
-                    <a href="blog.html">Blog</a>
-                    <ul className="submenu">
-                      <li>
-                        <a href="blog-grid.html">Blog</a>
-                      </li>
-                      <li>
-                        <a href="blog-single.html">Blog Details</a>
-                      </li>
-                    </ul>
+                    <a href="/class">Classes</a>
                   </li>
                   <li>
-                    <a href="contact.html">Contact</a>
+                    <a href="/contact">Contact</a>
+                  </li>
+                  <li>
+                    <a href="/about">About us</a>
                   </li>
                 </ul>
 
@@ -106,6 +65,17 @@ const HeaderNav = () => {
                   <i className="fal fa-times"></i>
                 </a>
               </nav>
+              <div className="header-btn d-none d-xl-block">
+                <a href="/login" className="login">
+                  Login
+                </a>
+                <a
+                  href="/signup"
+                  className="btn btn-main-2 btn-sm-2 rounded"
+                >
+                  Sign up
+                </a>
+              </div>
             </div>
           </div>
         </div>
