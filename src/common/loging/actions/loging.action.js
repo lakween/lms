@@ -54,6 +54,7 @@ export const login = async (form, navigate) => {
         const auth = getAuth();
         return res
     } catch (e) {
+        return e
     }
 }
 export const getUsrType = async (id) => {

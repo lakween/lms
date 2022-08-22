@@ -21,7 +21,7 @@ const useUserLoginInfo = ()=>{
                 dispatch(setUserType(userdetails?.userType))
                 dispatch(setProfileStatus(userdetails?.status))
             } else {
-                navigate('/')
+                // navigate('/')
             }
         });
     }
