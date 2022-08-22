@@ -22,7 +22,7 @@ import {
     ModalFooter,
 } from "reactstrap";
 
-const PaymentTable = () => {
+const PaymentTable = ({columns = [], data = [], setRefetch, refetch}) => {
     return (
         <>
             <Row>
@@ -30,31 +30,59 @@ const PaymentTable = () => {
                     <Table bordered>
                         <thead>
                         <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            {
+                                columns?.map((item) => (
+                                    <th>
+                                        {item}
+                                    </th>
+                                ))
+                            }
+
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        {
+                            data?.map((item, index) => (
+                                <tr key={index}>
+                                    <th scope="row">
+                                        {item.id}
+                                    </th>
+                                    <td>
+                                        {item.CourseID}
+                                    </td>
+                                    <td>
+                                        {item.StudentID}
+                                    </td>
+                                    <td>
+                                        {item.payMethod}
+                                    </td>
+
+                                    {/*<td>*/}
+                                    {/*    <Button onClick={() => onClickAcceptHandler(item)} marginRight={1}*/}
+                                    {/*            size={'xs'}> Accept</Button>*/}
+                                    {/*    <Button size={'xs'} onClick={() => onClickRejectHandler(item)}> Reject</Button>*/}
+                                    {/*</td>*/}
+                                </tr>
+                            ))
+                        }
+                        {/*<tr>*/}
+                        {/*    <th scope="row">1</th>*/}
+                        {/*    <td>Mark</td>*/}
+                        {/*    <td>Otto</td>*/}
+                        {/*    <td>@mdo</td>*/}
+                        {/*</tr>*/}
+                        {/*<tr>*/}
+                        {/*    <th scope="row">2</th>*/}
+                        {/*    <td>Jacob</td>*/}
+                        {/*    <td>Thornton</td>*/}
+                        {/*    <td>@fat</td>*/}
+                        {/*</tr>*/}
+                        {/*<tr>*/}
+                        {/*    <th scope="row">3</th>*/}
+                        {/*    <td>Larry</td>*/}
+                        {/*    <td>the Bird</td>*/}
+                        {/*    <td>@twitter</td>*/}
+                        {/*</tr>*/}
                         </tbody>
                     </Table>
                 </Col>

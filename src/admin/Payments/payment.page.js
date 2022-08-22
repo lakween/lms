@@ -1,4 +1,3 @@
-import react from "react";
 import {
     Form,
     FormGroup,
@@ -22,8 +21,24 @@ import {
     ModalFooter,
 } from "reactstrap";
 import PaymentTable from "./components/payment-table";
+import {getAllDocFromCollection} from "../../common/common-action/common-action";
+import {useEffect, useState} from "react";
 
 const PaymentPage = () => {
+    const [paymentModel, setPaymentModel] = useState()
+    const [refetch, setRefetch] = useState(false)
+    let columns = ["id","CourseID","StudentID", "payMethod"," Action"]
+
+    useEffect(() => {
+        getPaymentData()
+    }, [refetch])
+
+    const getPaymentData = async () => {
+        let result = await getAllDocFromCollection('courseByStudent')
+        setPaymentModel(result)
+        console.log(result,'result')
+    }
+
     return (
         <>
             {" "}
@@ -42,7 +57,7 @@ const PaymentPage = () => {
                         className="mb-2 text-muted text-weight-bold"
                         tag="h6"
                     ></CardSubtitle>
-                    <PaymentTable/>
+                    <PaymentTable  columns={columns} data={paymentModel} setRefetch={setRefetch} refetch={refetch}/>
                 </CardBody>
             </Card>
         </>
