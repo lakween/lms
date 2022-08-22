@@ -36,7 +36,6 @@ const PaymentPage = () => {
     const getPaymentData = async () => {
         let result = await getAllDocFromCollection('courseByStudent')
         setPaymentModel(result)
-        console.log(result,'result')
     }
 
     return (
