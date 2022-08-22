@@ -3,19 +3,19 @@ import {useEffect, useState} from "react";
 
 const CourseNameCell = ({value}) => {
     const [state, setstate] = useState('')
+
     useEffect(() => {
         getPaymentData()
     }, [value])
 
     const getPaymentData = async () => {
-        let result = await getDocFromCollection('courses',value)
+        let result = await getDocFromCollection('courses', value)
         setstate(result?.title)
-        console.log(result,'result')
     }
 
-    return(
+    return (
         <>
-            {state ? state: 'data Not Found'}
+            {state ? state : 'data Not Found'}
         </>
     )
 }

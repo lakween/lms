@@ -22,6 +22,7 @@ import {
     ModalFooter,
 } from "reactstrap";
 import StudentNameCell from "./student-name-cell";
+import CourseNameCell from "./course-name.cell";
 
 const PaymentTable = ({columns = [], data = [], setRefetch, refetch}) => {
     return (
@@ -49,7 +50,7 @@ const PaymentTable = ({columns = [], data = [], setRefetch, refetch}) => {
                                         {item.id}
                                     </th>
                                     <td>
-                                        {item.CourseID}
+                                        <CourseNameCell value={item.CourseID}/>
                                     </td>
                                     <td>
                                         <StudentNameCell value={item.StudentID}/>

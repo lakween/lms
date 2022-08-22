@@ -27,7 +27,7 @@ import {useEffect, useState} from "react";
 const PaymentPage = () => {
     const [paymentModel, setPaymentModel] = useState()
     const [refetch, setRefetch] = useState(false)
-    let columns = ["id","CourseID","StudentID", "payMethod"," Action"]
+    let columns = ["id","Course","Student", "payMethod"," Action"]
 
     useEffect(() => {
         getPaymentData()
