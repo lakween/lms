@@ -21,13 +21,14 @@ import {
     ModalBody,
     ModalFooter,
 } from "reactstrap";
+import StudentNameCell from "./student-name-cell";
 
 const PaymentTable = ({columns = [], data = [], setRefetch, refetch}) => {
     return (
         <>
             <Row>
                 <Col lg="12" md="12" className="mt-4">
-                    <Table bordered>
+                    <Table hover bordered>
                         <thead>
                         <tr>
                             {
@@ -51,7 +52,7 @@ const PaymentTable = ({columns = [], data = [], setRefetch, refetch}) => {
                                         {item.CourseID}
                                     </td>
                                     <td>
-                                        {item.StudentID}
+                                        <StudentNameCell value={item.StudentID}/>
                                     </td>
                                     <td>
                                         {item.payMethod}
