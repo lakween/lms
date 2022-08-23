@@ -29,12 +29,11 @@ const MaterialAdd = () => {
     const [file, setFile] = useState({})
     const toast = useToast()
 
-    useEffect(()=>{
-        setForm({...form,materialType:'video',moduleType:'class'})
-    },[])
+    useEffect(() => {
+        setForm({...form, materialType: 'video', moduleType: 'class'})
+    }, [])
 
     const onChangeFileInput = (e) => {
-        console.log('oooo')
         if (e.target.files[0]) {
             console.log(e.target.files[0].name)
             setFile(e.target.files[0])
@@ -51,6 +50,8 @@ const MaterialAdd = () => {
             console.log(fileUrl, 'photoURL')
         }
         await createDocOfCollection('materials', {...form, fileUrl: fileUrl})
+        setForm({ materialType: 'video', moduleType: 'class'})
+        setFile({})
         toast({
             title: 'Material added',
             // description: "We've created your account for you.",
@@ -85,7 +86,7 @@ const MaterialAdd = () => {
                 />
             </FormGroup>
             <FormGroup>
-                <Label >Video from Files</Label>
+                <Label>Video from Files</Label>
                 <Input
                     id="path"
                     name="path"
