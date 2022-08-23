@@ -16,13 +16,41 @@ import {
     Breadcrumb,
 } from "reactstrap";
 import useFormController from "../../hooks/useFormController";
+import {updateProfilePhoto} from "../../user/student-profile/actions/student-profile.action";
+import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
+import {updateProfile} from "firebase/auth";
+import {createDocOfCollection} from "../../common/common-action/common-action";
 
 const MaterialAdd = () => {
     let navigate = useNavigate();
     const [selectedOption, setSelectedOption] = useState("video");
     const [valueChangeHandler, setValue, form, setForm] = useFormController()
+   const [file,setFile] = useState({})
 
-    console.log(form, 'form')
+    const onChangeFileInput = async (e) => {
+        if (e.target.files[0]) {
+            console.log(e.target.files[0].name)
+            setFile(e.target.files[0])
+            // const storage = getStorage();
+            // const fileRef = ref(storage, `materials/${e.target.files[0].name}`);
+            //
+            // const snapshot = await uploadBytes(fileRef, e.target.files[0]);
+            // const photoURL = await getDownloadURL(fileRef);
+            // console.log(photoURL,'photoURL')
+        }
+    };
+
+    const onSave = async () => {
+        let fileUrl = ''
+      if(file){
+          const storage = getStorage();
+          const fileRef = ref(storage, `materials/${file.name}`);
+          const snapshot = await uploadBytes(fileRef, file);
+          fileUrl = await getDownloadURL(fileRef);
+          console.log(fileUrl,'photoURL')
+      }
+        createDocOfCollection()
+    }
 
     let materialVideoMarkup = (
         <div>
@@ -52,6 +80,7 @@ const MaterialAdd = () => {
                     id="path"
                     name="path"
                     placeholder="url placeholder"
+                    onChange={onChangeFileInput}
                     type="file"
                 />
             </FormGroup>
@@ -75,6 +104,7 @@ const MaterialAdd = () => {
                 <Input
                     id="path"
                     name="path"
+                    onChange={onChangeFileInput}
                     placeholder="file"
                     type="file"
                 />
@@ -99,6 +129,7 @@ const MaterialAdd = () => {
                 <Input
                     id="path"
                     name="path"
+                    onChange={onChangeFileInput}
                     placeholder="url placeholder"
                     type="file"
                 />
@@ -123,6 +154,7 @@ const MaterialAdd = () => {
                 <Input
                     id="path"
                     name="path"
+                    onChange={onChangeFileInput}
                     placeholder="url placeholder"
                     type="file"
                 />
