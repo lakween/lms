@@ -2,12 +2,9 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {
-    Form,
     FormGroup,
     Label,
     Input,
-    FormFeedback,
-    FormText,
     Row,
     Col,
     Card,
@@ -17,11 +14,6 @@ import {
     Button,
     BreadcrumbItem,
     Breadcrumb,
-    Table,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
 } from "reactstrap";
 import useFormController from "../../hooks/useFormController";
 
@@ -29,6 +21,8 @@ const MaterialAdd = () => {
     let navigate = useNavigate();
     const [selectedOption, setSelectedOption] = useState("video");
     const [valueChangeHandler, setValue, form, setForm] = useFormController()
+
+    console.log(form, 'form')
 
     let materialVideoMarkup = (
         <div>
@@ -38,6 +32,7 @@ const MaterialAdd = () => {
                     id="email"
                     name="email"
                     placeholder="with a placeholder"
+                    onChange={valueChangeHandler}
                     type="Email"
                 />
             </FormGroup>
@@ -47,6 +42,7 @@ const MaterialAdd = () => {
                     id="password"
                     name="password"
                     placeholder="password placeholder"
+                    onChange={valueChangeHandler}
                     type="text"
                 />
             </FormGroup>
@@ -70,6 +66,7 @@ const MaterialAdd = () => {
                     id="exampleEmail"
                     name="email"
                     placeholder="with a placeholder"
+                    onChange={valueChangeHandler}
                     type="Text"
                 />
             </FormGroup>
@@ -93,6 +90,7 @@ const MaterialAdd = () => {
                     id="documentName"
                     name="documentName"
                     placeholder="document Name"
+                    onChange={valueChangeHandler}
                     type="Text"
                 />
             </FormGroup>
@@ -116,6 +114,7 @@ const MaterialAdd = () => {
                     id="examName"
                     name="examName"
                     placeholder="exam name"
+                    onChange={valueChangeHandler}
                     type="Text"
                 />
             </FormGroup>
@@ -176,12 +175,10 @@ const MaterialAdd = () => {
                                     <FormGroup>
                                         <Label for="exampleSelect">Select Material type</Label>
                                         <Input
-                                            id="exampleSelect"
-                                            name="select"
+                                            id="materialType"
+                                            name="materialType"
                                             type="select"
-                                            onChange={(event) =>
-                                                setSelectedOption(event.target.value)
-                                            }
+                                            onChange={valueChangeHandler}
                                         >
                                             <option value="video">Video Lesson</option>
                                             <option value="self">Self Traning Session</option>
@@ -199,14 +196,12 @@ const MaterialAdd = () => {
                                         type="select"
                                         onChange={valueChangeHandler}
                                     >
-                                        <option value="video">Video Lesson</option>
-                                        <option value="self">Self Traning Session</option>
-                                        <option value="doc">Document</option>
-                                        <option value="exam">Exam</option>
+                                        <option value="class">Class</option>
+                                        <option value="course">Course</option>
                                     </Input>
                                 </Col>
                             </Row>
-                            {markUps[selectedOption]}
+                            {markUps[form['materialType']]}
                             <Button color="primary">Save</Button>
                         </Col>
                     </Row>
