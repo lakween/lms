@@ -23,27 +23,28 @@ import {
     ModalBody,
     ModalFooter,
 } from "reactstrap";
+import useFormController from "../../hooks/useFormController";
 
 const MaterialAdd = () => {
     let navigate = useNavigate();
-
     const [selectedOption, setSelectedOption] = useState("video");
+    const [valueChangeHandler, setValue, form, setForm] = useFormController()
 
     let materialVideoMarkup = (
         <div>
             <FormGroup>
-                <Label for="exampleEmail">Video Name</Label>
+                <Label>Video Name</Label>
                 <Input
-                    id="exampleEmail"
+                    id="email"
                     name="email"
                     placeholder="with a placeholder"
-                    type="Text"
+                    type="Email"
                 />
             </FormGroup>
             <FormGroup>
-                <Label for="examplePassword">Video URL</Label>
+                <Label>Video URL</Label>
                 <Input
-                    id="examplePassword"
+                    id="password"
                     name="password"
                     placeholder="password placeholder"
                     type="text"
@@ -52,8 +53,8 @@ const MaterialAdd = () => {
             <FormGroup>
                 <Label for="exampleUrl">Video from Files</Label>
                 <Input
-                    id="exampleUrl"
-                    name="url"
+                    id="path"
+                    name="path"
                     placeholder="url placeholder"
                     type="file"
                 />
@@ -64,7 +65,7 @@ const MaterialAdd = () => {
     let materialSelfMarkUp = (
         <div>
             <FormGroup>
-                <Label for="exampleEmail">Material Name</Label>
+                <Label>Material Name</Label>
                 <Input
                     id="exampleEmail"
                     name="email"
@@ -73,11 +74,11 @@ const MaterialAdd = () => {
                 />
             </FormGroup>
             <FormGroup>
-                <Label for="exampleUrl">Files</Label>
+                <Label>Files</Label>
                 <Input
-                    id="exampleUrl"
-                    name="url"
-                    placeholder="url placeholder"
+                    id="path"
+                    name="path"
+                    placeholder="file"
                     type="file"
                 />
             </FormGroup>
@@ -87,19 +88,19 @@ const MaterialAdd = () => {
     let materialDocMarkUp = (
         <div>
             <FormGroup>
-                <Label for="exampleEmail">Document Name</Label>
+                <Label>Document Name</Label>
                 <Input
-                    id="exampleEmail"
-                    name="email"
-                    placeholder="with a placeholder"
+                    id="documentName"
+                    name="documentName"
+                    placeholder="document Name"
                     type="Text"
                 />
             </FormGroup>
             <FormGroup>
-                <Label for="exampleUrl">Files</Label>
+                <Label>Files</Label>
                 <Input
-                    id="exampleUrl"
-                    name="url"
+                    id="path"
+                    name="path"
                     placeholder="url placeholder"
                     type="file"
                 />
@@ -110,25 +111,32 @@ const MaterialAdd = () => {
     let materialExam = (
         <div>
             <FormGroup>
-                <Label for="exampleEmail">Exam Name</Label>
+                <Label>Exam Name</Label>
                 <Input
-                    id="exampleEmail"
-                    name="email"
-                    placeholder="with a placeholder"
+                    id="examName"
+                    name="examName"
+                    placeholder="exam name"
                     type="Text"
                 />
             </FormGroup>
             <FormGroup>
-                <Label for="exampleUrl">Files</Label>
+                <Label>Files</Label>
                 <Input
-                    id="exampleUrl"
-                    name="url"
+                    id="path"
+                    name="path"
                     placeholder="url placeholder"
                     type="file"
                 />
             </FormGroup>
         </div>
     )
+
+    let markUps = {
+        video: materialVideoMarkup,
+        self: materialSelfMarkUp,
+        doc: materialDocMarkUp,
+        exam: materialExam
+    }
 
     return (
         <>
@@ -184,14 +192,12 @@ const MaterialAdd = () => {
                                     </FormGroup>
                                 </Col>
                                 <Col md="6">
-                                    <Label for="exampleSelect">Select Material type</Label>
+                                    <Label>Module type</Label>
                                     <Input
-                                        id="exampleSelect"
-                                        name="select"
+                                        id="moduleType"
+                                        name="moduleType"
                                         type="select"
-                                        onChange={(event) =>
-                                            setSelectedOption(event.target.value)
-                                        }
+                                        onChange={valueChangeHandler}
                                     >
                                         <option value="video">Video Lesson</option>
                                         <option value="self">Self Traning Session</option>
@@ -200,10 +206,7 @@ const MaterialAdd = () => {
                                     </Input>
                                 </Col>
                             </Row>
-                            { selectedOption == "video" && materialVideoMarkup}
-                            { selectedOption == "self" && materialSelfMarkUp}
-                            { selectedOption == "doc" && materialDocMarkUp}
-                            { selectedOption == "exam" && materialExam}
+                            {markUps[selectedOption]}
                             <Button color="primary">Save</Button>
                         </Col>
                     </Row>
