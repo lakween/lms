@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {
@@ -20,36 +20,44 @@ import {updateProfilePhoto} from "../../user/student-profile/actions/student-pro
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
 import {updateProfile} from "firebase/auth";
 import {createDocOfCollection} from "../../common/common-action/common-action";
+import {useToast} from "@chakra-ui/react";
 
 const MaterialAdd = () => {
     let navigate = useNavigate();
     const [selectedOption, setSelectedOption] = useState("video");
     const [valueChangeHandler, setValue, form, setForm] = useFormController()
-   const [file,setFile] = useState({})
+    const [file, setFile] = useState({})
+    const toast = useToast()
 
-    const onChangeFileInput = async (e) => {
+    useEffect(()=>{
+        setForm({...form,materialType:'video',moduleType:'class'})
+    },[])
+
+    const onChangeFileInput = (e) => {
+        console.log('oooo')
         if (e.target.files[0]) {
             console.log(e.target.files[0].name)
             setFile(e.target.files[0])
-            // const storage = getStorage();
-            // const fileRef = ref(storage, `materials/${e.target.files[0].name}`);
-            //
-            // const snapshot = await uploadBytes(fileRef, e.target.files[0]);
-            // const photoURL = await getDownloadURL(fileRef);
-            // console.log(photoURL,'photoURL')
         }
     };
 
     const onSave = async () => {
         let fileUrl = ''
-      if(file){
-          const storage = getStorage();
-          const fileRef = ref(storage, `materials/${file.name}`);
-          const snapshot = await uploadBytes(fileRef, file);
-          fileUrl = await getDownloadURL(fileRef);
-          console.log(fileUrl,'photoURL')
-      }
-        createDocOfCollection()
+        if (file) {
+            const storage = getStorage();
+            const fileRef = ref(storage, `materials/${file.name}`);
+            const snapshot = await uploadBytes(fileRef, file);
+            fileUrl = await getDownloadURL(fileRef);
+            console.log(fileUrl, 'photoURL')
+        }
+        await createDocOfCollection('materials', {...form, fileUrl: fileUrl})
+        toast({
+            title: 'Material added',
+            // description: "We've created your account for you.",
+            status: 'success',
+            duration: 2000,
+            isClosable: true,
+        })
     }
 
     let materialVideoMarkup = (
@@ -57,9 +65,10 @@ const MaterialAdd = () => {
             <FormGroup>
                 <Label>Video Name</Label>
                 <Input
-                    id="email"
-                    name="email"
+                    id="videoName"
+                    name="videoName"
                     placeholder="with a placeholder"
+                    value={form['videoName']}
                     onChange={valueChangeHandler}
                     type="Email"
                 />
@@ -67,15 +76,16 @@ const MaterialAdd = () => {
             <FormGroup>
                 <Label>Video URL</Label>
                 <Input
-                    id="password"
-                    name="password"
+                    id="videoURL"
+                    name="videoURL"
                     placeholder="password placeholder"
+                    value={form['videoURL']}
                     onChange={valueChangeHandler}
                     type="text"
                 />
             </FormGroup>
             <FormGroup>
-                <Label for="exampleUrl">Video from Files</Label>
+                <Label >Video from Files</Label>
                 <Input
                     id="path"
                     name="path"
@@ -92,9 +102,10 @@ const MaterialAdd = () => {
             <FormGroup>
                 <Label>Material Name</Label>
                 <Input
-                    id="exampleEmail"
-                    name="email"
+                    id="materialName"
+                    name="materialName"
                     placeholder="with a placeholder"
+                    value={form['materialName']}
                     onChange={valueChangeHandler}
                     type="Text"
                 />
@@ -120,6 +131,7 @@ const MaterialAdd = () => {
                     id="documentName"
                     name="documentName"
                     placeholder="document Name"
+                    value={form['documentName']}
                     onChange={valueChangeHandler}
                     type="Text"
                 />
@@ -145,6 +157,7 @@ const MaterialAdd = () => {
                     id="examName"
                     name="examName"
                     placeholder="exam name"
+                    value={form['examName']}
                     onChange={valueChangeHandler}
                     type="Text"
                 />
@@ -234,7 +247,7 @@ const MaterialAdd = () => {
                                 </Col>
                             </Row>
                             {markUps[form['materialType']]}
-                            <Button color="primary">Save</Button>
+                            <Button onClick={onSave} color="primary">Save</Button>
                         </Col>
                     </Row>
                 </CardBody>
