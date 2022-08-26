@@ -1,6 +1,7 @@
 import {Col, Row, Table} from "reactstrap";
 import CourseNameCell from "../../Payments/components/course-name.cell";
 import StudentNameCell from "../../Payments/components/student-name-cell";
+import {Link} from "react-router-dom";
 
 const MaterialTableComponent = ({columns = [], data = [], setRefetch, refetch}) => {
     return (
@@ -39,8 +40,8 @@ const MaterialTableComponent = ({columns = [], data = [], setRefetch, refetch}) 
                                     <td>
                                         {item?.videoURL}
                                     </td>
-                                    <td>
-                                        {item?.fileUrl}
+                                    <td className={'overflow-hidden w-[10vw]'}>
+                                        <a href={item?.fileUrl}>{item?.fileUrl}</a>
                                     </td>
                                 </tr>
                             ))
