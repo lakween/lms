@@ -19,23 +19,32 @@ import useFormController from "../../hooks/useFormController";
 import {updateProfilePhoto} from "../../user/student-profile/actions/student-profile.action";
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
 import {updateProfile} from "firebase/auth";
-import {createDocOfCollection} from "../../common/common-action/common-action";
+import {createDocOfCollection, getAllDocFromCollection} from "../../common/common-action/common-action";
 import {useToast} from "@chakra-ui/react";
 
 const MaterialAdd = () => {
     let navigate = useNavigate();
-    const [selectedOption, setSelectedOption] = useState("video");
     const [valueChangeHandler, setValue, form, setForm] = useFormController()
     const [file, setFile] = useState({})
+    const [options, setOptions] = useState([])
     const toast = useToast()
 
     useEffect(() => {
         setForm({...form, materialType: 'video', moduleType: 'class'})
     }, [])
 
+    useEffect(() => {
+        getCoursesOrClass()
+    }, [form['moduleType']])
+
+    const getCoursesOrClass = async () => {
+        let result = await getAllDocFromCollection(form['moduleType'] == 'Course' ? 'courses' : 'classes')
+        console.log(result,'result')
+        setOptions(result)
+    }
+
     const onChangeFileInput = (e) => {
         if (e.target.files[0]) {
-            console.log(e.target.files[0].name)
             setFile(e.target.files[0])
         }
     };
@@ -47,10 +56,9 @@ const MaterialAdd = () => {
             const fileRef = ref(storage, `materials/${file.name}`);
             const snapshot = await uploadBytes(fileRef, file);
             fileUrl = await getDownloadURL(fileRef);
-            console.log(fileUrl, 'photoURL')
         }
         await createDocOfCollection('materials', {...form, fileUrl: fileUrl})
-        setForm({ materialType: 'video', moduleType: 'class'})
+        setForm({materialType: 'video', moduleType: 'class'})
         setFile({})
         toast({
             title: 'Material added',
@@ -62,7 +70,7 @@ const MaterialAdd = () => {
     }
 
     let materialVideoMarkup = (
-        <div>
+        <Col md={6}>
             <FormGroup>
                 <Label>Video Name</Label>
                 <Input
@@ -95,7 +103,7 @@ const MaterialAdd = () => {
                     type="file"
                 />
             </FormGroup>
-        </div>
+        </Col>
     )
 
     let materialSelfMarkUp = (
@@ -242,12 +250,34 @@ const MaterialAdd = () => {
                                         type="select"
                                         onChange={valueChangeHandler}
                                     >
-                                        <option value="class">Class</option>
-                                        <option value="course">Course</option>
+                                        <option value="Course">Course</option>
+                                        <option value="Classes">Classes</option>
+
                                     </Input>
                                 </Col>
                             </Row>
-                            {markUps[form['materialType']]}
+                            <Row>
+                                {markUps[form['materialType']]}
+                                <Col md="6">
+                                    <FormGroup>
+                                        <Label
+                                            for="exampleSelect">{form['moduleType'] == 'Classes' ? 'Select a Class' : 'Select a course'}</Label>
+                                        <Input
+                                            id="module"
+                                            name="module"
+                                            type="select"
+                                            onChange={valueChangeHandler}
+                                        >{
+                                            options?.map((option) => (
+                                                <option value={option.id}>{option?.title}</option>
+                                            ))
+                                        }
+                                        </Input>
+
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+
                             <Button onClick={onSave} color="primary">Save</Button>
                         </Col>
                     </Row>
