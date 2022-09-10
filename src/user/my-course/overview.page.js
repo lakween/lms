@@ -1,4 +1,4 @@
-import { useEffect, useState, useNavigate } from "react";
+import { useEffect, useState } from "react";
 import { filterDocsFromCollection } from "../../common/common-action/common-action";
 import { useDispatch } from "react-redux";
 import {
@@ -14,30 +14,34 @@ import {
   Breadcrumb,
 } from "reactstrap";
 import { getDocFromCollection } from "../../common/common-action/common-action";
+import {useNavigate, useParams} from "react-router-dom";
+import {CardText} from "react-bootstrap-icons";
+import {Col, Row} from "react-bootstrap";
 
 const CourseOverview = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const [courses, setCourses] = useState([]);
+  const [course, setCourse] = useState({});
+  const [materials, setMaterials] = useState([]);
+  let { id } = useParams()
+  console.log(id,'id')
 
   useEffect(() => {
-    getCourses();
-  }, []);
+    getCourse();
+  }, [id]);
 
-  async function getCourses() {
-    let courseByStudent = await filterDocsFromCollection(
-      "courseByStudent",
-      "CourseID",
-      [
-        ["StudentID", "==", "dedkzbpbWPd1aQfvaGDN3Zn3DgW2"],
-        ["isPaid", "==", "true"],
-      ]
-    );
-    let courses = await getAllCourses(courseByStudent);
-    setCourses(courses);
+  async function getCourse() {
+   let result = await getDocFromCollection('courses',id)
+    setCourse({...result})
+
+    let materials = await filterDocsFromCollection('materials','',[['moduleType','==',id]])
+    setCourse({...result})
+    setMaterials([...materials])
+
+    console.log(materials,'materials')
   }
   return (
-    <>
+    <div>
       <Breadcrumb listTag="div">
         <BreadcrumbItem href="/my-courses" tag="a">
           My Course
@@ -61,7 +65,25 @@ const CourseOverview = () => {
           </div>
         </CardBody>
       </Card>
-    </>
+      <Row className={'mt-2'}>
+        <Col sm="12">
+          <Card body>
+            <CardTitle tag="h5">
+                {course?.title}
+            </CardTitle>
+          </Card>
+        </Col>
+      </Row>
+      <Row className={'mt-2'}>
+        <Col sm="12">
+          <Card body>
+            <CardTitle tag="h5">
+              Title
+            </CardTitle>
+          </Card>
+        </Col>
+      </Row>
+    </div>
   );
 };
 
