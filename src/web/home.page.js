@@ -9,14 +9,6 @@ import {useNavigate} from "react-router-dom";
 
 const WebHome = () => {
     let navigate = useNavigate()
-   // let [type, status, user] = useUserLoginInfo()
-   //  console.log([type, status, user],'status')
-   //  if (user && status == "pending") {
-   //     navigate("/unknownProfile")
-   //  }else if(user) {
-   //      console.log([type, status, user],'status')
-   //      navigate("/home")
-   //  }
     const bg = useColorModeValue("white", "gray.800");
 
     const Feature = (props) => {

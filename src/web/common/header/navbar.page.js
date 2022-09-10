@@ -21,138 +21,69 @@ const HeaderNav = () => {
   let navigate = useNavigate();
 
   return (
-    <chakra.nav bg={bg} shadow="base">
-      <Box mx="auto" px={6} py={3} maxW="full">
-        <Box
-          display={{ md: "flex" }}
-          alignItems={{ md: "center" }}
-          justifyContent={{ md: "space-between" }}
-        >
-          <Flex alignItems="center" justifyContent="space-between">
-            <Box mr="2">
-              <Logo color={useColorModeValue("gray.700", "white")} />
-            </Box>
-            <Box fontSize="xl" fontWeight="semibold" color="gray.700">
-              <chakra.a
-                fontSize={["xl", , "2xl"]}
-                fontWeight="bold"
-                color="gray.800"
-                _dark={{ color: "white" }}
-                _hover={{
-                  color: "gray.700",
-                  _dark: { color: "gray.300" },
-                }}
-              >
-                SILEC Sri Lanka Language Academy 
-              </chakra.a>
-            </Box>
-          </Flex>
+    <>
+      <header className="header-style-1">
+        <div className="header-navbar navbar-sticky">
+          <div className="container">
+            <div className="d-flex align-items-center justify-content-between">
+              <div className="site-logo">
+                <a href="index.html">
+                  <img
+                    src="assets/images/logo.jpg"
+                    alt=""
+                    className="img-fluid h-10"
+                  />
+                </a>
+              </div>
 
-          <Box display={["none", , "flex"]} alignItems={{ md: "center" }}>
-            <chakra.a
-              onClick={() => {
-                navigate("/index");
-              }}
-              display="block"
-              mx={4}
-              mt={[2, , 0]}
-              fontSize="sm"
-              color="gray.700"
-              _dark={{ color: "gray.200" }}
-              textTransform="capitalize"
-              _hover={{ color: "brand.400", _dark: { color: "blue.400" } }}
-            >
-              Home
-            </chakra.a>
-            <chakra.a
-              onClick={() => {
-                navigate("/about");
-              }}
-              display="block"
-              mx={4}
-              mt={[2, , 0]}
-              fontSize="sm"
-              color="gray.700"
-              _dark={{ color: "gray.200" }}
-              textTransform="capitalize"
-              _hover={{ color: "brand.400", _dark: { color: "blue.400" } }}
-            >
-              About
-            </chakra.a>
-            <chakra.a
-              onClick={() => {
-                navigate("/contact");
-              }}
-              display="block"
-              mx={4}
-              mt={[2, , 0]}
-              fontSize="sm"
-              color="gray.700"
-              _dark={{ color: "gray.200" }}
-              textTransform="capitalize"
-              _hover={{ color: "brand.400", _dark: { color: "blue.400" } }}
-            >
-              Contact
-            </chakra.a>
-            <chakra.a
-              onClick={() => {
-                navigate("/courses");
-              }}
-              display="block"
-              mx={4}
-              mt={[2, 0]}
-              fontSize="sm"
-              color="gray.700"
-              _dark={{ color: "gray.200" }}
-              textTransform="capitalize"
-              _hover={{ color: "brand.400", _dark: { color: "blue.400" } }}
-            >
-            Courses
-            </chakra.a>
-            <chakra.a
-              onClick={() => {
-                navigate("/login");
-              }}
-              display="block"
-              mx={4}
-              mt={[2, 0]}
-              fontSize="sm"
-              color="gray.700"
-              _dark={{ color: "gray.200" }}
-              textTransform="capitalize"
-              _hover={{ color: "brand.400", _dark: { color: "blue.400" } }}
-            >
-              Login
-            </chakra.a>
-          </Box>
-          <Flex display={{ md: "none" }}>
-            <Menu>
-              <MenuButton
-                py={2}
-                transition="all 0.3s"
-                _focus={{ boxShadow: "none" }}
-              >
-                <HStack>
-                  <Box display={{ md: "flex" }}>
-                    <FiChevronDown />
-                  </Box>
-                </HStack>
-              </MenuButton>
-              <MenuList
-                bg={useColorModeValue("white", "gray.900")}
-                borderColor={useColorModeValue("gray.200", "gray.700")}
-              >
-                <MenuItem>Home</MenuItem>
-                <MenuItem onClick={() => navigate("about")}>About</MenuItem>
-                <MenuItem>Contact</MenuItem>
-                <MenuDivider />
-                <MenuItem onClick={() => navigate("login")}>Login</MenuItem>
-              </MenuList>
-            </Menu>
-          </Flex>
-        </Box>
-      </Box>
-    </chakra.nav>
+              <div className="offcanvas-icon d-block d-lg-none">
+                <a href="#" className="nav-toggler">
+                  <i className="fal fa-bars"></i>
+                </a>
+              </div>
+
+              <nav className="site-navbar ms-auto">
+                <ul className="primary-menu">
+                  <li className="current">
+                    <a href="/">Home</a>
+                  </li>
+                  <li>
+                    <a href="/courses">Courses</a>
+                  </li>
+                  <li>
+                    <a href="/class">Classes</a>
+                  </li>
+                  <li>
+                    <a href="/contact">Contact</a>
+                  </li>
+                  <li>
+                    <a href="/about">About us</a>
+                  </li>
+                  <li>
+                    <a href="/ai-voice">AI Voice</a>
+                  </li>
+                </ul>
+
+                <a href="#" className="nav-close">
+                  <i className="fal fa-times"></i>
+                </a>
+              </nav>
+              <div className="header-btn d-none d-xl-block">
+                <a href="/login" className="login">
+                  Login
+                </a>
+                <a
+                  href="/signup"
+                  className="btn btn-main-2 btn-sm-2 rounded"
+                >
+                  Sign up
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </>
   );
 };
 

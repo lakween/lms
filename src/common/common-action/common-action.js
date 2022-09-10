@@ -8,11 +8,9 @@ export const getDocFromCollection = async (collection, document) => {
     return snapshot.data() ? snapshot.data() : {}
 }
 
-export const createDocOfCollection = (collName, data) => {
-    return async (dispatch) => {
-        const db = firebase.firestore();
-        const docRef = await addDoc(collection(db, collName), data);
-    }
+export const createDocOfCollection = async (collName, data) => {
+    const db = firebase.firestore();
+    const docRef = await addDoc(collection(db, collName), data);
 }
 
 export const createDocOfCollectionWithId = async (collName, id, data) => {
@@ -29,7 +27,6 @@ export const getAllDocFromCollection = async (collName) => {
     }
     return array
 }
-
 
 export const filterDocsFromCollection = async (coll, fields, filters) => {
     const db = firebase.firestore();

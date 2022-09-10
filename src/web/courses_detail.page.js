@@ -1,39 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  chakra,
-  useColorModeValue,
-  Flex,
-  Icon,
-} from "@chakra-ui/react";
+import { chakra, useColorModeValue, Flex, Icon } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import {
-  query,
-  collection,
-  getDocs,
-  where,
-} from "firebase/firestore";
+import { query, collection, getDocs, where } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 
-import CourseDetails from "./common/component/course_details.compo";
+import CourseContent from "./common/component/course.content.page";
 import HeaderNav from "./common/header/navbar.page";
 import SmallCentered from "./common/footer/footer.page";
 
-
-export const singleCourseDetail = (param) => { 
-   
-  return async (dispatch) => {    
+export const singleCourseDetail = (param) => {
+  return async (dispatch) => {
     const courseid = param.id;
     const db = firebase.firestore();
     let array = [];
     const courses = collection(db, "courses");
     const q = query(
       courses,
-      where(
-        firebase.firestore.FieldPath.documentId(),
-        "==",
-        courseid
-      )
+      where(firebase.firestore.FieldPath.documentId(), "==", courseid)
     );
     const querySnapshot = await getDocs(q);
     for (let doc of querySnapshot.docs) {
@@ -64,15 +48,15 @@ const Courses = () => {
     <>
       <HeaderNav />
 
-      <>   
-      {courseDetails.map((item) => (   
-        <CourseDetails
-        key="{item}"
-        title={item.title}
-        fee={item.fee}
-        desc={item.description}  
-        cid={item.id}  
-        ></CourseDetails>
+      <>
+        {courseDetails.map((item) => (
+          <CourseContent
+            key="{item}"
+            title={item.title}
+            fee={item.fee}
+            desc={item.description}
+            cid={item.id}
+          ></CourseContent>
         ))}
       </>
 

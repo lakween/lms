@@ -30,7 +30,7 @@ const HomePage = () => {
       "CourseID",
       [
         ["StudentID", "==", "dedkzbpbWPd1aQfvaGDN3Zn3DgW2"],
-        ["isPaid", "==", true],
+        ["isPaid", "==", "true"],
       ]
     );
     let courses = await getAllCourses(courseByStudent);
@@ -95,7 +95,7 @@ const HomePage = () => {
                 return (
                   <Col sm="6" lg="6" xl="4" key={index}>
                     <Blog
-                      image={course?.img}
+                      image={course?.img ? course.img : 'https://media.istockphoto.com/photos/laptop-computer-with-books-pen-and-yellow-legal-pad-picture-id92259124?b=1&k=20&m=92259124&s=170667a&w=0&h=6_eHLehWQdrhysXf8c1d3Zae3uTrKLhjMTNpdk5RSj4='}
                       title={course?.title}
                       subtitle={course?.id}
                       text={course?.description}
@@ -124,7 +124,7 @@ const HomePage = () => {
                   title={course?.title}
                   subtitle={course?.id}
                   text={course?.description}
-                  image={course?.img}
+                  image={course?.img ? course.img : "https://media.istockphoto.com/photos/laptop-computer-with-books-pen-and-yellow-legal-pad-picture-id92259124?b=1&k=20&m=92259124&s=170667a&w=0&h=6_eHLehWQdrhysXf8c1d3Zae3uTrKLhjMTNpdk5RSj4="}
                   color="primary"
                 />
               </Col>

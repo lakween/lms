@@ -44,7 +44,6 @@ const CheckoutForm = (props) => {
   if (stripeError) alert(stripeError);
 
   return (
-
     <Button
       colorScheme="blue"
       onClick={redirectToCheckout}
