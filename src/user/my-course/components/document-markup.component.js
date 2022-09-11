@@ -2,7 +2,6 @@ import {Card ,CardTitle, CardText, Col, Row} from "reactstrap";
 import {FiPaperclip} from "react-icons/fi";
 
 const DocumentMarkup = ({data}) => {
-    console.log(data, 'ddddd')
 
     return (<>{
         data?.map((item)=>(
