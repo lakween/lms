@@ -109,7 +109,7 @@ const MaterialAdd = () => {
     let materialSelfMarkUp = (
         <div>
             <FormGroup>
-                <Label>Material Name</Label>
+                <Label>Session Title</Label>
                 <Input
                     id="materialName"
                     name="materialName"
@@ -120,15 +120,16 @@ const MaterialAdd = () => {
                 />
             </FormGroup>
             <FormGroup>
-                <Label>Files</Label>
+                <Label>Session Content</Label>
                 <Input
-                    id="path"
-                    name="path"
-                    onChange={onChangeFileInput}
-                    placeholder="file"
-                    type="file"
+                    id="materialDesc"
+                    name="materialDesc"
+                    placeholder="Type your sentence to Traning"
+                    value={form['materialDesc']}
+                    onChange={valueChangeHandler}
+                    type="Text"
                 />
-            </FormGroup>
+            </FormGroup>         
         </div>
     )
 
