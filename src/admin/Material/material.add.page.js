@@ -24,27 +24,22 @@ import {useToast} from "@chakra-ui/react";
 
 const MaterialAdd = () => {
     let navigate = useNavigate();
-    const [valueChangeHandler, setValue, form, setForm] = useFormController({ materialType: 'video',moduleType: 'course'})
+    const [valueChangeHandler, setValue, form, setForm] = useFormController()
     const [file, setFile] = useState({})
     const [options, setOptions] = useState([])
     const toast = useToast()
 
-    // useEffect(() => {
-    //     setForm({...form, materialType: 'video', moduleType: 'course', module: options[0]?.id})
-    // }, [])
-
     useEffect(() => {
-        console.log(form['moduleType'])
-        setForm({...form, module: options[0]?.id})
-    }, [options])
+        setForm({...form, materialType: 'video', moduleType: 'class'})
+    }, [])
 
     useEffect(() => {
         getCoursesOrClass()
     }, [form['moduleType']])
 
     const getCoursesOrClass = async () => {
-        let result = await getAllDocFromCollection(form['moduleType'] == 'course' ? 'courses' : 'classes')
-        console.log(result, 'result')
+        let result = await getAllDocFromCollection(form['moduleType'] == 'Course' ? 'courses' : 'classes')
+        console.log(result,'result')
         setOptions(result)
     }
 
@@ -62,11 +57,9 @@ const MaterialAdd = () => {
             const snapshot = await uploadBytes(fileRef, file);
             fileUrl = await getDownloadURL(fileRef);
         }
-        console.log({...form, fileUrl: fileUrl}, 'pppppp')
         await createDocOfCollection('materials', {...form, fileUrl: fileUrl})
-        setForm({materialType: 'video', moduleType: 'course', module: options[0]?.id})
+        setForm({materialType: 'video', moduleType: 'class'})
         setFile({})
-        fileUrl = ''
         toast({
             title: 'Material added',
             // description: "We've created your account for you.",
@@ -136,7 +129,7 @@ const MaterialAdd = () => {
                     onChange={valueChangeHandler}
                     type="Text"
                 />
-            </FormGroup>
+            </FormGroup>         
         </div>
     )
 
@@ -233,7 +226,7 @@ const MaterialAdd = () => {
                     <Row>
                         <Col lg="12" md="12" className="mt-4">
                             <Row>
-                                <Col md="4">
+                                <Col md="6">
                                     <FormGroup>
                                         <Label for="exampleSelect">Select Material type</Label>
                                         <Input
@@ -250,7 +243,7 @@ const MaterialAdd = () => {
 
                                     </FormGroup>
                                 </Col>
-                                <Col md="4">
+                                <Col md="6">
                                     <Label>Module type</Label>
                                     <Input
                                         id="moduleType"
@@ -258,14 +251,18 @@ const MaterialAdd = () => {
                                         type="select"
                                         onChange={valueChangeHandler}
                                     >
-                                        <option value="course">Course</option>
-                                        <option value="classes">Classes</option>
+                                        <option value="Course">Course</option>
+                                        <option value="Classes">Classes</option>
+
                                     </Input>
                                 </Col>
-                                <Col md="4">
+                            </Row>
+                            <Row>
+                                {markUps[form['materialType']]}
+                                <Col md="6">
                                     <FormGroup>
                                         <Label
-                                            for="exampleSelect">{form['moduleType'] == 'classes' ? 'Select a class' : 'Select a course'}</Label>
+                                            for="exampleSelect">{form['moduleType'] == 'Classes' ? 'Select a Class' : 'Select a course'}</Label>
                                         <Input
                                             id="module"
                                             name="module"
@@ -280,10 +277,6 @@ const MaterialAdd = () => {
 
                                     </FormGroup>
                                 </Col>
-
-                            </Row>
-                            <Row>
-                                {markUps[form['materialType']]}
                             </Row>
 
                             <Button onClick={onSave} color="primary">Save</Button>
