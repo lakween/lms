@@ -108,7 +108,7 @@ const CourseOverview = () => {
                       <DocumentMarkup data={materials?.filter((item)=>(item.materialType=='doc'))}/>
                     </Tab>
                     <Tab eventKey="profile" title="Exams">
-                        <ExamMarkupComponent data={[]}></ExamMarkupComponent>
+                        <ExamMarkupComponent data={materials?.filter((item)=>(item.materialType=='exam'))}></ExamMarkupComponent>
                     </Tab>
                     <Tab eventKey="longer-tab" title="Self Training">
 
