@@ -226,7 +226,7 @@ const MaterialAdd = () => {
                     <Row>
                         <Col lg="12" md="12" className="mt-4">
                             <Row>
-                                <Col md="6">
+                                <Col md="4">
                                     <FormGroup>
                                         <Label for="exampleSelect">Select Material type</Label>
                                         <Input
@@ -243,7 +243,7 @@ const MaterialAdd = () => {
 
                                     </FormGroup>
                                 </Col>
-                                <Col md="6">
+                                <Col md="4">
                                     <Label>Module type</Label>
                                     <Input
                                         id="moduleType"
@@ -256,10 +256,7 @@ const MaterialAdd = () => {
 
                                     </Input>
                                 </Col>
-                            </Row>
-                            <Row>
-                                {markUps[form['materialType']]}
-                                <Col md="6">
+                                <Col md="4">
                                     <FormGroup>
                                         <Label
                                             for="exampleSelect">{form['moduleType'] == 'Classes' ? 'Select a Class' : 'Select a course'}</Label>
@@ -276,6 +273,13 @@ const MaterialAdd = () => {
                                         </Input>
 
                                     </FormGroup>
+                                </Col>
+
+                            </Row>
+                            <Row>
+                                {markUps[form['materialType']]}
+                                <Col md="6">
+
                                 </Col>
                             </Row>
 
