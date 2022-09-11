@@ -21,6 +21,7 @@ import {Col, Row} from "react-bootstrap";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import ExamMarkupComponent from "./components/exam-markup.component";
+import SelfTrainningMarkupComponent from "./components/self-trainning-markup.component";
 
 const CourseOverview = () => {
     let navigate = useNavigate();
@@ -111,7 +112,7 @@ const CourseOverview = () => {
                         <ExamMarkupComponent data={materials?.filter((item)=>(item.materialType=='exam'))}></ExamMarkupComponent>
                     </Tab>
                     <Tab eventKey="longer-tab" title="Self Training">
-
+                        <SelfTrainningMarkupComponent data={materials?.filter((item)=>(item.materialType=='self'))}/>
                     </Tab>
                     <Tab eventKey="contact" title="Videos">
 
