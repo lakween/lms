@@ -22,6 +22,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import ExamMarkupComponent from "./components/exam-markup.component";
 import SelfTrainningMarkupComponent from "./components/self-trainning-markup.component";
+import VideoMarkupComponent from "./components/video-markup.component";
 
 const CourseOverview = () => {
     let navigate = useNavigate();
@@ -115,7 +116,7 @@ const CourseOverview = () => {
                         <SelfTrainningMarkupComponent data={materials?.filter((item)=>(item.materialType=='self'))}/>
                     </Tab>
                     <Tab eventKey="contact" title="Videos">
-
+                        <VideoMarkupComponent data={materials?.filter((item)=>(item.materialType=='video'))}/>
                     </Tab>
                 </Tabs>
                 </Col>
