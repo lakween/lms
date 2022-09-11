@@ -1,68 +1,57 @@
-import { useEffect, useState } from "react";
-import { filterDocsFromCollection } from "../../common/common-action/common-action";
-import { useDispatch } from "react-redux";
+import {useEffect, useState} from "react";
+import {filterDocsFromCollection} from "../../common/common-action/common-action";
+import {useDispatch} from "react-redux";
 import {
-  getAllCourses,
-  increaseCountofCourse,
+    getAllCourses,
+    increaseCountofCourse,
 } from "../home/actions/home.action";
 import {
-  Card,
-  CardBody,
-  CardTitle,
-  Button,
-  BreadcrumbItem,
-  Breadcrumb,
-  ListGroup,
-  ListGroupItem,
-  Badge,
+    Card,
+    CardBody,
+    CardTitle,
+    Button,
+    BreadcrumbItem,
+    Breadcrumb,
 } from "reactstrap";
-import { getDocFromCollection } from "../../common/common-action/common-action";
-import { useNavigate, useParams } from "react-router-dom";
+import {getDocFromCollection} from "../../common/common-action/common-action";
+import {useNavigate, useParams} from "react-router-dom";
 import DocumentMarkup from "./components/document-markup.component";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Col, Row } from "react-bootstrap";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Col, Row} from "react-bootstrap";
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 import ExamMarkupComponent from "./components/exam-markup.component";
+import SelfTrainningMarkupComponent from "./components/self-trainning-markup.component";
 
 const CourseOverview = () => {
-  const { transcript, resetTranscript } = useSpeechRecognition();
+    let navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [course, setCourse] = useState({});
+    const [materials, setMaterials] = useState([]);
+    let {id} = useParams()
+    console.log(id, 'id')
 
-  useEffect(() => {
-    SpeechRecognition.startListening({ continuous: true });
-    console.log("start lisrnting");
-  }, []);
+    useEffect(() => {
+        getCourse();
+    }, [id]);
 
-  let navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [course, setCourse] = useState({});
-  const [materials, setMaterials] = useState([]);
-  let { id } = useParams();
-  console.log(id, "id");
+    async function getCourse() {
+        let result = await getDocFromCollection('courses', id)
+        setCourse({...result})
 
-  useEffect(() => {
-    getCourse();
-  }, [id]);
+        let materials = await filterDocsFromCollection('materials', '', [['module', '==', id]])
+        setCourse({...result})
+        setMaterials([...materials])
 
-  async function getCourse() {
-    let result = await getDocFromCollection("courses", id);
-    setCourse({ ...result });
+        console.log(materials, 'materials')
+    }
 
-    let materials = await filterDocsFromCollection("materials", "", [
-      ["module", "==", id],
-    ]);
-    setCourse({ ...result });
-    setMaterials([...materials]);
+    const [currentActiveTab, setCurrentActiveTab] = useState('1');
 
-    console.log(materials, "materials");
-  }
-
-  const [currentActiveTab, setCurrentActiveTab] = useState("1");
-
-  // Toggle active state for Tab
-  const toggle = (tab) => {
-    if (currentActiveTab !== tab) setCurrentActiveTab(tab);
-  };
+    // Toggle active state for Tab
+    const toggle = tab => {
+        if (currentActiveTab !== tab) setCurrentActiveTab(tab);
+    }
 
     return (
         <>
@@ -123,7 +112,7 @@ const CourseOverview = () => {
                         <ExamMarkupComponent data={materials?.filter((item)=>(item.materialType=='exam'))}></ExamMarkupComponent>
                     </Tab>
                     <Tab eventKey="longer-tab" title="Self Training">
-
+                        <SelfTrainningMarkupComponent data={materials?.filter((item)=>(item.materialType=='self'))}/>
                     </Tab>
                     <Tab eventKey="contact" title="Videos">
 
