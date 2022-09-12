@@ -87,7 +87,9 @@ const PaymentTable = ({columns = [], data = [], setRefetch, refetch}) => {
                                     <td>
                                         {item?.payMethod}
                                     </td>
-
+                                    <td>
+                                        {item?.paymentSlip ? <a href={item?.paymentSlip}>View Slip</a> :'No slip found'}
+                                    </td>
                                     <td>
                                         <Button onClick={() => onClickAcceptHandler(item)} marginRight={1}
                                                 size={'xs'}>{item?.is_accept ? 'Reject' : ' Accept'}</Button>
