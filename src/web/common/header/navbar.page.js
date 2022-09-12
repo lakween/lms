@@ -31,7 +31,7 @@ const HeaderNav = () => {
                   <img
                     src="assets/images/logo.jpg"
                     alt=""
-                    className="img-fluid h-10"
+                    className="img-fluid h-20"
                   />
                 </a>
               </div>
@@ -48,6 +48,9 @@ const HeaderNav = () => {
                     <a href="/">Home</a>
                   </li>
                   <li>
+                    <a href="/about">About us</a>
+                  </li>
+                  <li>
                     <a href="/courses">Courses</a>
                   </li>
                   <li>
@@ -55,12 +58,6 @@ const HeaderNav = () => {
                   </li>
                   <li>
                     <a href="/contact">Contact</a>
-                  </li>
-                  <li>
-                    <a href="/about">About us</a>
-                  </li>
-                  <li>
-                    <a href="/ai-voice">AI Voice</a>
                   </li>
                 </ul>
 
@@ -72,10 +69,7 @@ const HeaderNav = () => {
                 <a href="/login" className="login">
                   Login
                 </a>
-                <a
-                  href="/signup"
-                  className="btn btn-main-2 btn-sm-2 rounded"
-                >
+                <a href="/signup" className="btn btn-main-2 btn-sm-2 rounded">
                   Sign up
                 </a>
               </div>
