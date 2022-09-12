@@ -32,6 +32,7 @@
     "react-speech-recognition": "^3.9.1",
     "reactstrap": "^9.1.2",
     "sass": "^1.54.0",
+    "string-similarity": "^4.0.4",
     "vercel": "^28.0.1",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.19",
