@@ -65,7 +65,7 @@ const Class = () => {
                 <div key={item.id} className="col-xl-4 col-lg-4 col-md-6">
                   <Link
                     onClick={() => {
-                      navigate("/class/" + item.id);
+                      navigate("/class-content/" + item.id);
                     }}
                     _hover={"none"}
                   >

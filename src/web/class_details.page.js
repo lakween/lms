@@ -15,7 +15,7 @@ export const singleCourseDetail = (param) => {
     const courseid = param.id;
     const db = firebase.firestore();
     let array = [];
-    const courses = collection(db, "courses");
+    const courses = collection(db, "classes");
     const q = query(
       courses,
       where(firebase.firestore.FieldPath.documentId(), "==", courseid)

@@ -90,7 +90,6 @@ const PaymentSuccess = () => {
 
   return (
     <>
-      <HeaderNav />
       <>
         <div className="mt-5 mb-5 h-100">
           <Row>
@@ -110,12 +109,11 @@ const PaymentSuccess = () => {
                     
                   </a>
                 </div>
-                <div className="card-footer text-muted">2 days ago</div>
+                <div className="card-footer text-muted">Return Home to View Course Content</div>
               </div>
             </Col>
           </Row>
         </div>
-        <SmallCentered />
       </>
     </>
   );

@@ -6,7 +6,6 @@ import { Row, Col, Alert } from "reactstrap";
 const PaymentCancel = () => {
   return (
     <>
-      <HeaderNav />
       <>
         <div className="mt-5 mb-5 h-100">
           <Row>
@@ -27,7 +26,6 @@ const PaymentCancel = () => {
             </Col>
           </Row>
         </div>
-        <SmallCentered />
       </>
     </>
   );
