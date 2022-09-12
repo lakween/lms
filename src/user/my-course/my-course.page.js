@@ -18,10 +18,12 @@ import {
   Col,
 } from "reactstrap";
 import Blog from "../home/components/Blog";
+import useUserLoginInfo from "../../hooks/useUserLoginInfo";
 
 const MyCourse = () => {
   const dispatch = useDispatch();
   const [courses, setCourses] = useState([]);
+  const [userType, status, user] = useUserLoginInfo();
 
   useEffect(() => {
     getCourses();
@@ -32,7 +34,7 @@ const MyCourse = () => {
       "courseByStudent",
       "CourseID",
       [
-        ["StudentID", "==", "dedkzbpbWPd1aQfvaGDN3Zn3DgW2"],
+        ["StudentID", "==", user?.uid],
         ["isPaid", "==", "true"],
       ]
     );

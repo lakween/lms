@@ -29,6 +29,7 @@ const CourseOverview = () => {
     const dispatch = useDispatch();
     const [course, setCourse] = useState({});
     const [materials, setMaterials] = useState([]);
+
     let {id} = useParams()
     console.log(id, 'id')
 
@@ -44,7 +45,16 @@ const CourseOverview = () => {
         setCourse({...result})
         setMaterials([...materials])
 
-        console.log(materials, 'materials')
+        let courseByStudent = await filterDocsFromCollection(
+            "courseByStudent",
+            "CourseID",
+            [
+                ["CourseID", "==", id],
+                ["StudentID", "==", "true"],
+            ]
+        );
+
+        console.log(course, 'materials')
     }
 
     const [currentActiveTab, setCurrentActiveTab] = useState('1');
@@ -97,32 +107,42 @@ const CourseOverview = () => {
                     </Card>
                 </Col>
             </Row>
-            <Row className={'mt-2 mb-2'}>
-                <Col sm="12">
-                <Tabs
-                    defaultActiveKey="profile"
-                    id="fill-tab-example"
-                    className=""
-                    fill
+            {course?.is_accept ? <Row className={'mt-2 mb-2'}>
+                    <Col sm="12">
+                        <Tabs
+                            defaultActiveKey="profile"
+                            id="fill-tab-example"
+                            className=""
+                            fill
 
-                >
-                    <Tab eventKey="home" title="Documents">
-                      <DocumentMarkup data={materials?.filter((item)=>(item.materialType=='doc'))}/>
-                    </Tab>
-                    <Tab eventKey="profile" title="Exams">
-                        <ExamMarkupComponent data={materials?.filter((item)=>(item.materialType=='exam'))}></ExamMarkupComponent>
-                    </Tab>
-                    <Tab eventKey="longer-tab" title="Self Training">
-                        <SelfTrainningMarkupComponent data={materials?.filter((item)=>(item.materialType=='self'))}/>
-                    </Tab>
-                    <Tab eventKey="contact" title="Videos">
-                        <VideoMarkupComponent data={materials?.filter((item)=>(item.materialType=='video'))}/>
-                    </Tab>
-                </Tabs>
-                </Col>
-            </Row>
+                        >
+                            <Tab eventKey="home" title="Documents">
+                                <DocumentMarkup data={materials?.filter((item) => (item.materialType == 'doc'))}/>
+                            </Tab>
+                            <Tab eventKey="profile" title="Exams">
+                                <ExamMarkupComponent
+                                    data={materials?.filter((item) => (item.materialType == 'exam'))}></ExamMarkupComponent>
+                            </Tab>
+                            <Tab eventKey="longer-tab" title="Self Training">
+                                <SelfTrainningMarkupComponent
+                                    data={materials?.filter((item) => (item.materialType == 'self'))}/>
+                            </Tab>
+                            <Tab eventKey="contact" title="Videos">
+                                <VideoMarkupComponent data={materials?.filter((item) => (item.materialType == 'video'))}/>
+                            </Tab>
+                        </Tabs>
+                    </Col>
+                </Row> :
+                <Row className={'mt-2'}>
+                    <Col sm="12">
+                        <Card body>
+                            <CardTitle tag="h5" className={'text-black'}>Your payment is not accept</CardTitle>
+                        </Card>
+                    </Col>
+                </Row>
+            }
 
-            </>
+        </>
     );
 };
 
