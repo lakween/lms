@@ -86,11 +86,11 @@ export default function CourseContent(props) {
     } else {
       const db = firebase.firestore();
       const docRef = await addDoc(collection(db, "courseByStudent"), {
-        StudentID: "accounts/" + stuID,
-        CourseID: "courses/" + courseID,
+        StudentID: stuID,
+        CourseID: courseID,
         isEnrolled: "true",
         paymentSlip: photoURL,
-        payMethod: form.st_pay_ref ? "online" : "slip",
+        payMethod: "slip",
         isPaid: "true",
       });
       if (docRef.id) {
