@@ -23,15 +23,17 @@ import Tabs from 'react-bootstrap/Tabs';
 import ExamMarkupComponent from "./components/exam-markup.component";
 import SelfTrainningMarkupComponent from "./components/self-trainning-markup.component";
 import VideoMarkupComponent from "./components/video-markup.component";
+import useUserLoginInfo from "../../hooks/useUserLoginInfo";
+import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 
 const CourseOverview = () => {
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const [course, setCourse] = useState({});
     const [materials, setMaterials] = useState([]);
-
+    const [userType, status, user] = useUserLoginInfo();
+    const [accept,setAccept] = useState('')
     let {id} = useParams()
-    console.log(id, 'id')
 
     useEffect(() => {
         getCourse();
@@ -50,11 +52,10 @@ const CourseOverview = () => {
             "CourseID",
             [
                 ["CourseID", "==", id],
-                ["StudentID", "==", "true"],
+                ["StudentID", "==", user?.uid],
             ]
         );
-
-        console.log(course, 'materials')
+        setAccept(courseByStudent[0]?.is_accept)
     }
 
     const [currentActiveTab, setCurrentActiveTab] = useState('1');
@@ -107,7 +108,7 @@ const CourseOverview = () => {
                     </Card>
                 </Col>
             </Row>
-            {course?.is_accept ? <Row className={'mt-2 mb-2'}>
+            {accept ? <Row className={'mt-2 mb-2'}>
                     <Col sm="12">
                         <Tabs
                             defaultActiveKey="profile"
@@ -131,6 +132,12 @@ const CourseOverview = () => {
                                 <VideoMarkupComponent data={materials?.filter((item) => (item.materialType == 'video'))}/>
                             </Tab>
                         </Tabs>
+                    </Col>
+                </Row> : accept == '' ?  <Row className={'mt-2'}>
+                    <Col sm="12">
+                        <Card body>
+                            <Skeleton height='20px' />
+                        </Card>
                     </Col>
                 </Row> :
                 <Row className={'mt-2'}>
