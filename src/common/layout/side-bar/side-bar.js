@@ -3,7 +3,7 @@ import Logo from "./Logo";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {getAllDocFromCollection} from "../../common-action/common-action";
 
 const Sidebar = () => {
@@ -36,8 +36,12 @@ const Sidebar = () => {
 
     return (
         <div className="p-3" style={{minHeight: '100vh'}}>
-            <div className="d-flex align-items-center">
-                <Logo/>
+            <div className="d-flex justify-content-center align-items-center">
+                <img
+                    src="assets/images/logo.jpg"
+                    alt=""
+                    className="img-fluid h-20 w-45"
+                />{/*<Logo/>*/}
             </div>
             <div className="pt-4 mt-2">
                 <Nav vertical className="sidebarNav">

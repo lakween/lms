@@ -29,6 +29,8 @@ const SignUp = (getNames) => {
     let dispatch = useDispatch()
     const toast = useToast()
 
+    console.log(errors.password,'errors')
+
     const signUpHandler = async () => {
         setErrors({})
         try {
@@ -46,7 +48,6 @@ const SignUp = (getNames) => {
             navigate('/unknownProfile')
         } catch (e) {
             e.inner.forEach(e => {
-                // console.log({[e.path]: e.message},'e')
                 setErrors((errors) => ({...errors, [e.path]: e.message}))
             });
         }
@@ -135,7 +136,7 @@ const SignUp = (getNames) => {
                                     </Button>
                                 </InputRightElement>
                             </InputGroup>
-                            {errors.password ? <FormErrorMessage color={'red'}>{errors.password}</FormErrorMessage> :
+                            {errors.password ? <Text color={'red'}>{errors.password}</Text> :
                                 <FormErrorMessage></FormErrorMessage>}
                         </FormControl>
                         <FormControl id="tel" isRequired isInvalid={!form.mobile_number}>
