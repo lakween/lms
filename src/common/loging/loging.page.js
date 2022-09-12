@@ -50,7 +50,7 @@ const Login = () => {
             dispatch(setUserType(userDetails.userType))
             dispatch(setProfileStatus(userDetails.status))
             if(userDetails.status == 'pending') navigate('/unknownProfile')
-            else navigate('/student-dashbord')
+            else navigate('/home')
         }
     }
 
