@@ -4,7 +4,7 @@ import {mode} from "@chakra-ui/theme-tools";
 export const theme = extendTheme({
     config: {
         initialColorMode: "light",
-        useSystemColorMode: true
+        useSystemColorMode: false
     },
     // components: {
     //     // Text: {

@@ -129,11 +129,9 @@ const StudentProfile = () => {
                     <p className="mb-0">Email</p>
                   </div>
                   <div className="col-sm-9">
-                    <DisplayLine
-                      modelPath={"email"}
-                      name={"email"}
-                      value={model?.email ? model?.email : "--------"}
-                    />
+                      <p className="text-muted mb-0">
+                        {model?.email}
+                      </p>
                   </div>
                 </div>
                 <hr className="divider-horizontal" />
@@ -173,7 +171,26 @@ const StudentProfile = () => {
                   </div>
                   <div className="col-sm-9">
                     <p className="text-muted mb-0">
-                      Bay Area, San Francisco, CA
+                      <DisplayLine
+                          modelPath={"Address"}
+                          name={"Address"}
+                          onUpdate={onUpdateHandler}
+                          value={model?.Address ? model?.Address : ""}/>
+                    </p>
+                  </div>
+                </div>
+                <hr className="divider-horizontal" />
+                <div className="row mt-2 mb-2">
+                  <div className="col-sm-3">
+                    <p className="mb-0">School</p>
+                  </div>
+                  <div className="col-sm-9">
+                    <p className="text-muted mb-0">
+                      <DisplayLine
+                          modelPath={"School"}
+                          name={"School"}
+                          onUpdate={onUpdateHandler}
+                          value={model?.School ? model?.School : ""}/>
                     </p>
                   </div>
                 </div>
@@ -184,32 +201,21 @@ const StudentProfile = () => {
                   </div>
                   <div className="col-sm-9">
                     <p className="text-muted mb-0">
-                      001
+                      {model?.uid}
                     </p>
                   </div>
                 </div>
                 <hr className="divider-horizontal" />
-                <div className="row mt-2 mb-2">
-                  <div className="col-sm-3">
-                    <p className="mb-0">Student Branch</p>
-                  </div>
-                  <div className="col-sm-9">
-                    <p className="text-muted mb-0">
-                      Califonia
-                    </p>
-                  </div>
-                </div>
-                <hr className="divider-horizontal" />
-                <div className="row mt-2 mb-2">
-                  <div className="col-sm-3">
-                    <p className="mb-0">Stdundet RAQ</p>
-                  </div>
-                  <div className="col-sm-9">
-                    <p className="text-muted mb-0">
-                      Bay Area, San Francisco, CA
-                    </p>
-                  </div>
-                </div>
+                {/*<div className="row mt-2 mb-2">*/}
+                {/*  <div className="col-sm-3">*/}
+                {/*    <p className="mb-0">Stdundet RAQ</p>*/}
+                {/*  </div>*/}
+                {/*  <div className="col-sm-9">*/}
+                {/*    <p className="text-muted mb-0">*/}
+                {/*      Bay Area, San Francisco, CA*/}
+                {/*    </p>*/}
+                {/*  </div>*/}
+                {/*</div>*/}
               </CardBody>
             </Card>
           </Col>
