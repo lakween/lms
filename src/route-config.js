@@ -49,7 +49,7 @@ export let RouterConfig = () => {
 
   let studentRoute = [
     {
-      path: "/student-dashbord",
+      path: "/home",
       element: <Layout />,
       children: [{ index: true, element: <HomePage /> }],
     },
