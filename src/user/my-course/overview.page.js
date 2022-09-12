@@ -24,7 +24,7 @@ import ExamMarkupComponent from "./components/exam-markup.component";
 import SelfTrainningMarkupComponent from "./components/self-trainning-markup.component";
 import VideoMarkupComponent from "./components/video-markup.component";
 import useUserLoginInfo from "../../hooks/useUserLoginInfo";
-import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
+import {Skeleton, SkeletonCircle, SkeletonText} from '@chakra-ui/react'
 
 const CourseOverview = () => {
     let navigate = useNavigate();
@@ -32,7 +32,7 @@ const CourseOverview = () => {
     const [course, setCourse] = useState({});
     const [materials, setMaterials] = useState([]);
     const [userType, status, user] = useUserLoginInfo();
-    const [accept,setAccept] = useState('')
+    const [accept, setAccept] = useState('')
     let {id} = useParams()
 
     useEffect(() => {
@@ -109,34 +109,34 @@ const CourseOverview = () => {
                 </Col>
             </Row>
             {accept ? <Row className={'mt-2 mb-2'}>
-                    <Col sm="12">
-                        <Tabs
-                            defaultActiveKey="profile"
-                            id="fill-tab-example"
-                            className=""
-                            fill
+                <Col sm="12">
+                    <Tabs
+                        defaultActiveKey="profile"
+                        id="fill-tab-example"
+                        className=""
+                        fill
 
-                        >
-                            <Tab eventKey="home" title="Documents">
-                                <DocumentMarkup data={materials?.filter((item) => (item.materialType == 'doc'))}/>
-                            </Tab>
-                            <Tab eventKey="profile" title="Exams">
-                                <ExamMarkupComponent
-                                    data={materials?.filter((item) => (item.materialType == 'exam'))}></ExamMarkupComponent>
-                            </Tab>
-                            <Tab eventKey="longer-tab" title="Self Training">
-                                <SelfTrainningMarkupComponent
-                                    data={materials?.filter((item) => (item.materialType == 'self'))}/>
-                            </Tab>
-                            <Tab eventKey="contact" title="Videos">
-                                <VideoMarkupComponent data={materials?.filter((item) => (item.materialType == 'video'))}/>
-                            </Tab>
-                        </Tabs>
-                    </Col>
-                </Row> : accept == '' ?  <Row className={'mt-2'}>
+                    >
+                        <Tab eventKey="home" title="Documents">
+                            <DocumentMarkup data={materials?.filter((item) => (item.materialType == 'doc'))}/>
+                        </Tab>
+                        <Tab eventKey="profile" title="Exams">
+                            <ExamMarkupComponent
+                                data={materials?.filter((item) => (item.materialType == 'exam'))}></ExamMarkupComponent>
+                        </Tab>
+                        <Tab eventKey="longer-tab" title="Self Training">
+                            <SelfTrainningMarkupComponent
+                                data={materials?.filter((item) => (item.materialType == 'self'))}/>
+                        </Tab>
+                        <Tab eventKey="contact" title="Videos">
+                            <VideoMarkupComponent data={materials?.filter((item) => (item.materialType == 'video'))}/>
+                        </Tab>
+                    </Tabs>
+                </Col>
+            </Row> : accept == '' ? <Row className={'mt-2'}>
                     <Col sm="12">
                         <Card body>
-                            <Skeleton height='20px' />
+                            <Skeleton height='20px'/>
                         </Card>
                     </Col>
                 </Row> :
