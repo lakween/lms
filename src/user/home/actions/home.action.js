@@ -7,7 +7,7 @@ export const getAllCourses = async (courseBystudent) => {
     let array = []
     for (let item of courseBystudent) {
         let a = await getDocFromCollection('courses', item?.CourseID)
-        array.push(a)
+        array.push({...a, courseID: item?.CourseID})
     }
     return array
 
