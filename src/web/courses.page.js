@@ -45,6 +45,7 @@ const Courses = () => {
     let res = await dispatch(getAllCourses());
     setCourse(res || []);
   }
+  
 
   const bg = useColorModeValue("white", "gray.800");
 

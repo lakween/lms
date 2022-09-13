@@ -56,6 +56,11 @@ export let RouterConfig = () => {
       children: [{ index: true, element: <HomePage /> }],
     },
     {
+      path: "/student-dashbord",
+      element: <Layout />,
+      children: [{ index: true, element: <HomePage /> }],
+    },
+    {
       path: "/profile",
       element: <Layout />,
       children: [{ index: true, element: <StudentProfile /> }],
