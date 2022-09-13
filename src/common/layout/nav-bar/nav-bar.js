@@ -86,7 +86,7 @@ const Header = () => {
               width="30"
             ></img>
           </DropdownToggle>
-          <DropdownMenu>
+          <DropdownMenu style={{right: "10px"}}>
             <DropdownItem header>Info</DropdownItem>
             <DropdownItem>My Account</DropdownItem>
             <DropdownItem onClick={() => navigate("/profile")}>
