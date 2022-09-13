@@ -24,11 +24,11 @@ const SelfTrainningMarkupComponent = ({ data }) => {
 
   return (
     <>
+      <h1 className="mt-4 mb-4 f-25">
+        Your Patrice Sentences are Below <Badge>New</Badge>
+      </h1>
       {data?.map((item) => (
         <>
-          <h1 className="mt-4 mb-4 f-25">
-            Your Patrice Sentences are Below <Badge>New</Badge>
-          </h1>
           <Row className={"mt-2"}>
             <div className="col-md-12 mt-4 mb-4">
               <ListGroup>
