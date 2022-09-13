@@ -43,7 +43,7 @@ import firebase from "firebase/compat/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
-import CheckoutForm from "./payment.checkout.compo";
+import ClassCheckOutForm from "./class.payment.checkout.compo";
 
 // firebase extentions
 import { getDocs, setDoc, doc, query, where, getDoc } from "firebase/firestore";
@@ -190,7 +190,7 @@ export default function ClassContent(props) {
                   <div className="course-sidebar-details">
                     <div className="price-header">
                       <h2 className="course-price">RS : {props.fee}</h2>
-                      <span className="course-price-badge onsale">39% off</span>
+                      <span className="course-price-badge onsale">20% off</span>
                     </div>
                     <ul className="course-sidebar-list">
                       <li>
@@ -207,7 +207,7 @@ export default function ClassContent(props) {
                           <span>
                             <i className="fas fa-play-circle"></i>Lectures
                           </span>
-                          2
+                          10
                         </div>
                       </li>
                       <li>
@@ -368,7 +368,7 @@ export default function ClassContent(props) {
                   </Stack>
                   <Box>
                     <div className="d-flex align-items-end justify-content-end">
-                      <CheckoutForm courseid={courseID} />
+                      <ClassCheckOutForm classID={courseID} />
                     </div>
                   </Box>
                 </TabPanel>
