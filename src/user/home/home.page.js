@@ -100,6 +100,7 @@ const HomePage = () => {
                       subtitle={course?.id}
                       text={course?.description}
                       color="primary"
+                      btnAction= {course.id ? "overview/"+ course.id  : "overview/4oAjEp4AIpSXhAK1m8Vz"}
                     />
                   </Col>
                 );
@@ -126,6 +127,7 @@ const HomePage = () => {
                   text={course?.description}
                   image={course?.img ? course.img : "https://media.istockphoto.com/photos/laptop-computer-with-books-pen-and-yellow-legal-pad-picture-id92259124?b=1&k=20&m=92259124&s=170667a&w=0&h=6_eHLehWQdrhysXf8c1d3Zae3uTrKLhjMTNpdk5RSj4="}
                   color="primary"
+                  btnAction= {course.id ? "overview/"+ course.id  : "overview/4oAjEp4AIpSXhAK1m8Vz"}
                 />
               </Col>
             ))}

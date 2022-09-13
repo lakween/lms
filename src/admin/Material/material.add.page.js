@@ -67,6 +67,7 @@ const MaterialAdd = () => {
             duration: 2000,
             isClosable: true,
         })
+        window.location.reload();
     }
 
     let materialVideoMarkup = (
