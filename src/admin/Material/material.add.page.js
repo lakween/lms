@@ -184,12 +184,39 @@ const MaterialAdd = () => {
             </FormGroup>
         </div>
     )
+    let materialAnnouncementMarkup = (
+        <div>
+            <FormGroup>
+                <Label>Annousemnt Name</Label>
+                <Input
+                    id="annoName"
+                    name="annoName"
+                    placeholder="exam name"
+                    value={form['annoName']}
+                    onChange={valueChangeHandler}
+                    type="Text"
+                />
+            </FormGroup>
+            <FormGroup>
+                <Label>Zoom Link</Label>
+                <Input
+                    id="zoomlink"
+                    name="zoomlink"
+                    placeholder="exam name"
+                    value={form['zoomlink']}
+                    onChange={valueChangeHandler}
+                    type="Text"
+                />
+            </FormGroup>
+        </div>
+    )
 
     let markUps = {
         video: materialVideoMarkup,
         self: materialSelfMarkUp,
         doc: materialDocMarkUp,
-        exam: materialExam
+        exam: materialExam,
+        announcement: materialAnnouncementMarkup
     }
 
     return (
@@ -239,6 +266,7 @@ const MaterialAdd = () => {
                                             <option value="self">Self Traning Session</option>
                                             <option value="doc">Document</option>
                                             <option value="exam">Exam</option>
+                                            <option value="announcement">Announcement</option>
                                         </Input>
 
                                     </FormGroup>
