@@ -20,6 +20,7 @@ import Material from "./admin/Material/material.page";
 import MaterialAdd from "./admin/Material/material.add.page";
 import ListUsersPage from "./admin/Users/list-users/list-users.page";
 import AddNewCourse from "./admin/Course/add-course/add-courses.page";
+import Inquiry from "./admin/Inquiry/inquiry.page";
 import PaymentCancel from "./web/common/payment/cancel.page";
 import PaymentSuccess from "./web/common/payment/success.page";
 import ClassPaymentSuccess from "./web/common/payment/class.success.page";
@@ -111,6 +112,11 @@ export let RouterConfig = () => {
         { index: true, element: <Material /> },
         { index: true, path: "add", element: <MaterialAdd /> },
       ],
+    },
+    {
+      path: "inquiry",
+      element: <Layout />,
+      children: [{ index: true, element: <Inquiry /> }],
     },
   ];
   let unknownRoute = [
