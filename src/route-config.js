@@ -7,6 +7,7 @@ import Contact from "./web/contact.page";
 import Courses from "./web/courses.page";
 import Class from "./web/class.page";
 import CourseDeatils from "./web/courses_detail.page";
+import ClassDetails from "./web/class_details.page";
 import SignUp from "./user/sign-up/sign-up.page";
 import Login from "./common/loging/loging.page";
 import useUserLoginInfo from "./hooks/useUserLoginInfo";
@@ -19,8 +20,10 @@ import Material from "./admin/Material/material.page";
 import MaterialAdd from "./admin/Material/material.add.page";
 import ListUsersPage from "./admin/Users/list-users/list-users.page";
 import AddNewCourse from "./admin/Course/add-course/add-courses.page";
+import Inquiry from "./admin/Inquiry/inquiry.page";
 import PaymentCancel from "./web/common/payment/cancel.page";
 import PaymentSuccess from "./web/common/payment/success.page";
+import ClassPaymentSuccess from "./web/common/payment/class.success.page";
 import Payment from "./admin/Payments/payment.page";
 import SpeechtoText from "./web/new.page";
 import MyCourse from "./user/my-course/my-course.page";
@@ -52,6 +55,14 @@ export let RouterConfig = () => {
       path: "/home",
       element: <Layout />,
       children: [{ index: true, element: <HomePage /> }],
+    },
+    {
+      path: "/student-dashbord",
+      element: <Layout />,
+      children: [
+        { index: true, element: <HomePage /> },
+        { index: true, path: "overview/:id", element: <CourseOverview /> },
+      ],
     },
     {
       path: "/profile",
@@ -101,6 +112,11 @@ export let RouterConfig = () => {
         { index: true, element: <Material /> },
         { index: true, path: "add", element: <MaterialAdd /> },
       ],
+    },
+    {
+      path: "inquiry",
+      element: <Layout />,
+      children: [{ index: true, element: <Inquiry /> }],
     },
   ];
   let unknownRoute = [
@@ -152,7 +168,7 @@ export let RouterConfig = () => {
     },
     {
       path: "class-content/:id",
-      element: <CourseDeatils />,
+      element: <ClassDetails />,
     },
     {
       path: "/",
@@ -169,6 +185,10 @@ export let RouterConfig = () => {
     {
       path: "/payment/success/:id",
       element: <PaymentSuccess />,
+    },
+    {
+      path: "/class_payment/success/:id",
+      element: <ClassPaymentSuccess />,
     },
     {
       path: "/ai-voice",

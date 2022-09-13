@@ -34,7 +34,7 @@ const addPayData = async (stuID, courseId) => {
   return docRef.id;
 };
 
-const PaymentSuccess = () => {
+const ClassPaymentSuccess = () => {
   const [info, setInfo] = useState([]);
   const user = useUserLoginInfo();
   const params = useParams();
@@ -57,7 +57,7 @@ const PaymentSuccess = () => {
       addPayData(stuID, courseIDParam);   
     } else {
       console.log("already data have");
-      navigate("/courses");
+      navigate("/class");
     }
   }
 
@@ -119,4 +119,4 @@ const PaymentSuccess = () => {
   );
 };
 
-export default PaymentSuccess;
+export default ClassPaymentSuccess;

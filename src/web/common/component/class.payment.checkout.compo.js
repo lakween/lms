@@ -14,18 +14,18 @@ const getStripe = () => {
   return stripePromise;
 };
 
-const CheckoutForm = (props) => {
+const ClassCheckOutForm = (props) => {
   const [stripeError, setStripeError] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const item = {
-    price: "price_1Lhbl2I7sT9CamFrUO8eoO2E",
+    price: "price_1LhbWpI7sT9CamFrgDrb3oee",
     quantity: 1,
   };
 
   const checkoutOptions = {
     lineItems: [item],
     mode: "payment",
-    successUrl: `${window.location.origin}/payment/success/${props.courseid}`,
+    successUrl: `${window.location.origin}/class_payment/success/${props.classID}`,
     cancelUrl: `${window.location.origin}/payment/cancel`,
   };
 
@@ -54,4 +54,4 @@ const CheckoutForm = (props) => {
   );
 };
 
-export default CheckoutForm;
+export default ClassCheckOutForm;

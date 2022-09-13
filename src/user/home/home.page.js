@@ -50,8 +50,8 @@ const HomePage = () => {
           <TopCards
             bg="bg-light-success text-success"
             title="Profit"
-            subtitle="Yearly Earning"
-            earning="$21k"
+            subtitle="Total Videos"
+            earning="10"
             icon="bi bi-wallet"
           />
         </Col>
@@ -59,8 +59,8 @@ const HomePage = () => {
           <TopCards
             bg="bg-light-danger text-danger"
             title="Refunds"
-            subtitle="Refund given"
-            earning="$1k"
+            subtitle="Total Exams"
+            earning="15"
             icon="bi bi-coin"
           />
         </Col>
@@ -68,8 +68,8 @@ const HomePage = () => {
           <TopCards
             bg="bg-light-warning text-warning"
             title="New Project"
-            subtitle="Yearly Project"
-            earning="456"
+            subtitle="Announcement"
+            earning="1"
             icon="bi bi-basket3"
           />
         </Col>
@@ -77,8 +77,8 @@ const HomePage = () => {
           <TopCards
             bg="bg-light-info text-into"
             title="Sales"
-            subtitle="Weekly Sales"
-            earning="210"
+            subtitle="Self Traning"
+            earning="5"
             icon="bi bi-bag"
           />
         </Col>
@@ -100,6 +100,7 @@ const HomePage = () => {
                       subtitle={course?.id}
                       text={course?.description}
                       color="primary"
+                      btnAction= {course.id ? "overview/"+ course.id  : "overview/4oAjEp4AIpSXhAK1m8Vz"}
                     />
                   </Col>
                 );
@@ -126,6 +127,7 @@ const HomePage = () => {
                   text={course?.description}
                   image={course?.img ? course.img : "https://media.istockphoto.com/photos/laptop-computer-with-books-pen-and-yellow-legal-pad-picture-id92259124?b=1&k=20&m=92259124&s=170667a&w=0&h=6_eHLehWQdrhysXf8c1d3Zae3uTrKLhjMTNpdk5RSj4="}
                   color="primary"
+                  btnAction= {course.id ? "overview/"+ course.id  : "overview/4oAjEp4AIpSXhAK1m8Vz"}
                 />
               </Col>
             ))}
