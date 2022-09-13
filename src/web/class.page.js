@@ -71,7 +71,7 @@ const Class = () => {
                   >
                     <Card
                       name={item.title}
-                      price={"150"}
+                      price={item.class_fee}
                       category={"LK & EN"}
                       level={"Beginner"}
                       id={item.id}

@@ -48,7 +48,7 @@ import CheckoutForm from "./payment.checkout.compo";
 // firebase extentions
 import { getDocs, setDoc, doc, query, where, getDoc } from "firebase/firestore";
 
-export default function CourseContent(props) {
+export default function ClassContent(props) {
   let dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   let [valueChangeHandler, setValue, form, setForm] = useFormController();
@@ -246,7 +246,7 @@ export default function CourseContent(props) {
                               className="btn btn-primary rounded"
                               onClick={onOpen}
                             >
-                              <i class="fas fa-eye me-2"></i>
+                              <i className="fas fa-eye me-2"></i>
                               View Course
                             </button>
                           );
@@ -274,16 +274,16 @@ export default function CourseContent(props) {
                 </div>
               </div>
             </div>
-            <div class="col-xl-8 col-lg-7">
-              <div class="tutori-course-content">
-                <nav class="course-single-tabs learn-press-nav-tabs">
+            <div className="col-xl-8 col-lg-7">
+              <div className="tutori-course-content">
+                <nav className="course-single-tabs learn-press-nav-tabs">
                   <div
-                    class="nav nav-tabs course-nav"
+                    className="nav nav-tabs course-nav"
                     id="nav-tab"
                     role="tablist"
                   >
                     <a
-                      class="nav-item nav-link active"
+                      className="nav-item nav-link active"
                       id="nav-home-tab"
                       data-bs-toggle="tab"
                       href="#nav-home"
@@ -296,17 +296,17 @@ export default function CourseContent(props) {
                   </div>
                 </nav>
                 <div
-                  class="tab-content tutori-course-content"
+                  className="tab-content tutori-course-content"
                   id="nav-tabContent"
                 >
                   <div
-                    class="tab-pane fade show active"
+                    className="tab-pane fade show active"
                     id="nav-home"
                     role="tabpanel"
                     aria-labelledby="nav-home-tab"
                   >
-                    <div class="single-course-details ">
-                      <h4 class="course-title">Description</h4>
+                    <div className="single-course-details ">
+                      <h4 className="course-title">Description</h4>
                       <p>{props.desc}</p>
                     </div>
                   </div>

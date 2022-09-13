@@ -10,7 +10,7 @@ import HeaderNav from "./common/header/navbar.page";
 import SmallCentered from "./common/footer/footer.page";
 import Class from "./class.page";
 
-export const singleCourseDetail = (param) => {
+export const singleClassDetail = (param) => {
   return async (dispatch) => {
     const courseid = param.id;
     const db = firebase.firestore();
@@ -39,7 +39,7 @@ const ClassInfo = () => {
   }, []);
 
   async function getCourseDetails() {
-    let res = await dispatch(singleCourseDetail(param));
+    let res = await dispatch(singleClassDetail(param));
     setCourseDetails(res || []);
   }
 

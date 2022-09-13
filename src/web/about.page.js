@@ -55,27 +55,24 @@ const About = () => {
                   <div className="about-features">
                     <div className="feature-item feature-style-left">
                       <div className="feature-icon icon-bg-3 icon-radius">
-                        <i className="fa fa-video"></i>
+                        <i class="fas fa-fist-raised"></i>
                       </div>
                       <div className="feature-text">
                         <h4>Strength</h4>
                         <p>
-                          Lorem ipsum, dolor sit amet consectetur adipisicing
-                          elit. Quidem veniam nulla inventore dolores fuga{" "}
+                          a strong attribute or inherent asset build with SILEC
+                          Sri Lanka
                         </p>
                       </div>
                     </div>
 
                     <div className="feature-item feature-style-left">
                       <div className="feature-icon icon-bg-2 icon-radius">
-                        <i className="far fa-file-certificate"></i>
+                        <i class="fas fa-mind-share"></i>
                       </div>
                       <div className="feature-text">
                         <h4>Intelligence,</h4>
-                        <p>
-                          Lorem ipsum, dolor sit amet consectetur adipisicing
-                          elit. Quidem veniam nulla inventore dolores fuga{" "}
-                        </p>
+                        <p>acquire and apply knowledge and skills</p>
                       </div>
                     </div>
 
@@ -85,34 +82,27 @@ const About = () => {
                       </div>
                       <div className="feature-text">
                         <h4>Loyalty</h4>
-                        <p>
-                          Lorem ipsum, dolor sit amet consectetur adipisicing
-                          elit. Quidem veniam nulla inventore dolores fuga{" "}
-                        </p>
+                        <p>improve the quality of being loyal</p>
                       </div>
                     </div>
                     <div className="feature-item feature-style-left">
-                      <div className="feature-icon icon-bg-1 icon-radius">
-                        <i className="fad fa-users"></i>
+                      <div className="feature-icon icon-bg-2 icon-radius">
+                        <i class="fas fa-graduation-cap"></i>
                       </div>
                       <div className="feature-text">
                         <h4>Education</h4>
                         <p>
-                          Lorem ipsum, dolor sit amet consectetur adipisicing
-                          elit. Quidem veniam nulla inventore dolores fuga{" "}
+                          achieving certain aims and goals with SILEC Sri Lanka
                         </p>
                       </div>
                     </div>
                     <div className="feature-item feature-style-left">
-                      <div className="feature-icon icon-bg-1 icon-radius">
-                        <i className="fad fa-users"></i>
+                      <div className="feature-icon icon-bg-3 icon-radius">
+                        <i class="fas fa-user-graduate"></i>
                       </div>
                       <div className="feature-text">
                         <h4>Character</h4>
-                        <p>
-                          Lorem ipsum, dolor sit amet consectetur adipisicing
-                          elit. Quidem veniam nulla inventore dolores fuga{" "}
-                        </p>
+                        <p>enhance person’s moral and ethical quality</p>
                       </div>
                     </div>
                   </div>
@@ -147,27 +137,27 @@ const About = () => {
                     <li>
                       <i className="fa fa-check"></i>
                       <h5>
-                        Develop your skills Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit.
+                        Focus for national and international Cambridge exams
                       </h5>
                     </li>
                     <li>
                       <i className="fa fa-check"></i>
-                      <h5>
-                        Share your knowledge Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit.
-                      </h5>
+                      <h5>Personal attention for every child.</h5>
                     </li>
                     <li>
                       <i className="fa fa-check"></i>
                       <h5>
-                        Earn from globally Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit.
+                        Improving knowledge with reading , writing, listening,
+                        speaking and comparison
                       </h5>
+                    </li>
+                    <li>
+                      <i className="fa fa-check"></i>
+                      <h5>Fun with english learning</h5>
                     </li>
                   </ul>
-                  <a href="#" className="btn btn-main rounded">
-                    Start Teaching today
+                  <a href="/courses" className="btn btn-main rounded mb-4">
+                    Start learning  today
                   </a>
                 </div>
               </div>
@@ -286,7 +276,7 @@ const About = () => {
                   <div className="col-lg-3 col-md-6">
                     <div className="counter-item mb-5 mb-lg-0">
                       <div className="count">
-                        <span className="counter h2">1200</span>
+                        <span className="counter h2">8</span>
                       </div>
                       <p>Online Courses</p>
                     </div>
@@ -294,7 +284,7 @@ const About = () => {
                   <div className="col-lg-3 col-md-6">
                     <div className="counter-item mb-5 mb-lg-0">
                       <div className="count">
-                        <span className="counter h2">2256</span>
+                        <span className="counter h2">17</span>
                       </div>
                       <p>Finished Seasons</p>
                     </div>

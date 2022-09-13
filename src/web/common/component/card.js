@@ -35,7 +35,7 @@ function Card(props) {
           </h3>
 
           <div className="course-footer mt-4 d-flex align-items-center justify-content-between">
-            <div className="course-price">$ {props.price}</div>
+            <div className="course-price">RS: {props.price}</div>
             <button
               className="btn btn-main-outline rounded-pill btn-sm"
               onClick={() => {
