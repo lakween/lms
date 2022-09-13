@@ -28,6 +28,7 @@ import Payment from "./admin/Payments/payment.page";
 import SpeechtoText from "./web/new.page";
 import MyCourse from "./user/my-course/my-course.page";
 import CourseOverview from "./user/my-course/overview.page";
+import AllCourses from "./user/all courses/all-courses.page";
 
 export let RouterConfig = () => {
   const [userType, status, user] = useUserLoginInfo();
@@ -81,6 +82,11 @@ export let RouterConfig = () => {
       path: "profile",
       element: <Layout />,
       children: [{ index: true, element: <StudentProfile /> }],
+    },
+    {
+      path: "/all-courses",
+      element: <Layout />,
+      children: [{ index: true, element: <AllCourses /> }],
     },
   ];
 
