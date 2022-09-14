@@ -30,16 +30,11 @@ const MaterialAdd = () => {
     const toast = useToast()
 
     useEffect(() => {
-        setForm({...form, materialType: 'video', moduleType: 'class'})
-    }, [])
-
-    useEffect(() => {
         getCoursesOrClass()
     }, [form['moduleType']])
 
     const getCoursesOrClass = async () => {
         let result = await getAllDocFromCollection(form['moduleType'] == 'Course' ? 'courses' : 'classes')
-        console.log(result,'result')
         setOptions(result)
     }
 
@@ -53,12 +48,11 @@ const MaterialAdd = () => {
         let fileUrl = ''
         if (file) {
             const storage = getStorage();
-            const fileRef = ref(storage, `materials/${file.name}`);
+            const fileRef = ref(storage, `materials/${Math.floor(Math.random() * 1000) + file.name }`);
             const snapshot = await uploadBytes(fileRef, file);
             fileUrl = await getDownloadURL(fileRef);
         }
         await createDocOfCollection('materials', {...form, fileUrl: fileUrl})
-        setForm({materialType: 'video', moduleType: 'class'})
         setFile({})
         toast({
             title: 'Material added',
@@ -130,7 +124,7 @@ const MaterialAdd = () => {
                     onChange={valueChangeHandler}
                     type="Text"
                 />
-            </FormGroup>         
+            </FormGroup>
         </div>
     )
 
@@ -263,6 +257,7 @@ const MaterialAdd = () => {
                                             type="select"
                                             onChange={valueChangeHandler}
                                         >
+                                            <option value="video">Select</option>
                                             <option value="video">Video Lesson</option>
                                             <option value="self">Self Traning Session</option>
                                             <option value="doc">Document</option>
@@ -280,8 +275,9 @@ const MaterialAdd = () => {
                                         type="select"
                                         onChange={valueChangeHandler}
                                     >
-                                        <option value="Course">Course</option>
+                                        <option value="video">Select</option>
                                         <option value="Classes">Classes</option>
+                                        <option value="Course">Course</option>
 
                                     </Input>
                                 </Col>
@@ -297,7 +293,8 @@ const MaterialAdd = () => {
                                             name="module"
                                             type="select"
                                             onChange={valueChangeHandler}
-                                        >{
+                                        ><option value={''}>{'Select'}</option>
+                                            {
                                             options?.map((option) => (
                                                 <option value={option.id}>{option?.title}</option>
                                             ))
