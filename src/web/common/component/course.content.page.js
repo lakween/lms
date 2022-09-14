@@ -244,7 +244,7 @@ export default function CourseContent(props) {
                           return (
                             <button
                               className="btn btn-primary rounded"
-                              onClick={onOpen}
+                              onClick={navigate("/my-courses")}
                             >
                               <i class="fas fa-eye me-2"></i>
                               View Course

@@ -29,6 +29,8 @@ const addPayData = async (stuID, courseId) => {
     isEnrolled: "true",
     payMethod: "online",
     isPaid: "true",
+    is_accept: true,
+    courseType: "class",
   });
 
   return docRef.id;
