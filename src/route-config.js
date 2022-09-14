@@ -34,6 +34,7 @@ export let RouterConfig = () => {
   const [userType, status, user] = useUserLoginInfo();
 
   const getRoutesByUser = () => {
+    console.log(userType,'userType')
     switch (true) {
       case status == "pending":
         return unknownRoute;

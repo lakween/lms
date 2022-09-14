@@ -31,6 +31,9 @@ const Sidebar = () => {
         } else if (userType == 'admin') {
             let res = await getAllDocFromCollection('adminRoutes')
             setLinkItems([...res])
+        }else if (userType == 'teacher') {
+            let res = await getAllDocFromCollection('teacherRoutes')
+            setLinkItems([...res])
         }
     }
 
