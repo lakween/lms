@@ -26,6 +26,7 @@ import CourseNameCell from "./course-name.cell";
 import firebase from "firebase/compat/app";
 import {doc, updateDoc} from "firebase/firestore";
 import {useToast} from "@chakra-ui/react";
+import ClassNameCell from "./class-name.cell";
 
 const PaymentTable = ({columns = [], data = [], setRefetch, refetch}) => {
     const toast = useToast()
@@ -79,7 +80,7 @@ const PaymentTable = ({columns = [], data = [], setRefetch, refetch}) => {
                                         {item?.id}
                                     </th>
                                     <td>
-                                        <CourseNameCell value={item?.CourseID}/>
+                                        { item?.courseType == 'course'? <CourseNameCell value={item?.CourseID}/> : <ClassNameCell value={item?.CourseID}/>}
                                     </td>
                                     <td>
                                         <StudentNameCell value={item?.StudentID}/>

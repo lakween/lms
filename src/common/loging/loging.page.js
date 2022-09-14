@@ -131,13 +131,13 @@ const Login = () => {
                             >
                                 Login
                             </Button>
-                            <Button leftIcon={<FcGoogle/>} colorScheme="teal" size="sm" onClick={
-                                () => {
-                                    signUpwithGoogle()
-                                }
-                            }>
-                                Sign Up with Google
-                            </Button>
+                            {/*<Button leftIcon={<FcGoogle/>} colorScheme="teal" size="sm" onClick={*/}
+                            {/*    () => {*/}
+                            {/*        signUpwithGoogle()*/}
+                            {/*    }*/}
+                            {/*}>*/}
+                            {/*    Sign Up with Google*/}
+                            {/*</Button>*/}
                         </Stack>
                     </Box>
                 </Stack>
