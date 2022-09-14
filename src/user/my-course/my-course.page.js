@@ -40,6 +40,7 @@ const MyCourse = () => {
         );
         let courses = await getAllCourses(courseByStudent);
         setCourses(courses);
+        console.log(courses);
     }
 
     const onClickHandler = async (id) => {
@@ -77,7 +78,7 @@ const MyCourse = () => {
                                                             : "https://media.istockphoto.com/photos/laptop-computer-with-books-pen-and-yellow-legal-pad-picture-id92259124?b=1&k=20&m=92259124&s=170667a&w=0&h=6_eHLehWQdrhysXf8c1d3Zae3uTrKLhjMTNpdk5RSj4="
                                                     }
                                                     color="primary"
-                                                    btnAction={course.id ? "overview/" + course.courseID : "overview/4oAjEp4AIpSXhAK1m8Vz"}
+                                                    btnAction={course.courseID ? "overview/" + course.courseID : "overview/YdLcf5FC3gIkKlTqZKxY"}
                                                 />
                                             </Col>
                                         ))}
