@@ -36,9 +36,11 @@ export const getAllInquiry = () => {
     };
   };
 
-export const increaseCountofCourse = async (id) => {
+export const increaseCountofCourse = async (id,type) => {
+    console.log(id,type,'asasasa')
   const db = firebase.firestore();
-  const courseRef = doc(db, "courses", id);
+  const courseRef = doc(db, type, id);
+
   await updateDoc(courseRef, {
     accsessCount: increment(1),
   });

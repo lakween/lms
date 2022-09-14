@@ -66,6 +66,8 @@ const CourseOverview = () => {
         if (currentActiveTab !== tab) setCurrentActiveTab(tab);
     }
 
+
+
     return (
         <>
             <Breadcrumb listTag="div">

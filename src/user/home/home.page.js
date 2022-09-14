@@ -16,9 +16,13 @@ import { filterDocsFromCollection } from "../../common/common-action/common-acti
 import { useDispatch } from "react-redux";
 import { getAllCourses, increaseCountofCourse } from "./actions/home.action";
 import bg1 from "../../assets/images/bg/bg1.jpg";
+import useUserLoginInfo from "../../hooks/useUserLoginInfo";
+import {useNavigate} from "react-router-dom";
 const HomePage = () => {
   const dispatch = useDispatch();
+  const navigator = useNavigate()
   const [courses, setCourses] = useState([]);
+  const [userType, status, user] = useUserLoginInfo();
 
   useEffect(() => {
     getCourses();
@@ -29,13 +33,17 @@ const HomePage = () => {
       "courseByStudent",
       "CourseID",
       [
-        ["StudentID", "==", "dedkzbpbWPd1aQfvaGDN3Zn3DgW2"],
+        ["StudentID", "==", user?.uid],
         ["isPaid", "==", "true"],
       ]
     );
     let courses = await getAllCourses(courseByStudent);
     setCourses(courses);
     console.log(courses);
+  }
+
+  const abc = () => {
+    console.log('ssdsdsd')
   }
 
   const onClickHandler = async (id) => {
@@ -100,7 +108,7 @@ const HomePage = () => {
                       subtitle={course?.id}
                       text={course?.description}
                       color="primary"
-                      btnAction= {course.id ? "overview/"+ course.id  : "overview/4oAjEp4AIpSXhAK1m8Vz"}
+                      btnAction= {course.courseID ? "/my-courses/overview/"+ course.courseID  : "overview/4oAjEp4AIpSXhAK1m8Vz"}
                     />
                   </Col>
                 );
@@ -119,7 +127,7 @@ const HomePage = () => {
           </CardSubtitle>
           <Row>
             {courses.map((course) => (
-              <Col sm="6" lg="6" xl="4" key={course}>
+              <Col sm="6" lg="6" xl="4" key={course}  >
                 <Blog
                   id={course?.id}
                   title={course?.title}
@@ -127,7 +135,7 @@ const HomePage = () => {
                   text={course?.description}
                   image={course?.img ? course.img : "https://media.istockphoto.com/photos/laptop-computer-with-books-pen-and-yellow-legal-pad-picture-id92259124?b=1&k=20&m=92259124&s=170667a&w=0&h=6_eHLehWQdrhysXf8c1d3Zae3uTrKLhjMTNpdk5RSj4="}
                   color="primary"
-                  btnAction= {course.id ? "overview/"+ course.id  : "overview/4oAjEp4AIpSXhAK1m8Vz"}
+                  btnAction={course.courseID ? "/my-courses/overview/"+ course.courseID  : "overview/4oAjEp4AIpSXhAK1m8Vz"}
                 />
               </Col>
             ))}
