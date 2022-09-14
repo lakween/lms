@@ -123,10 +123,10 @@ const CourseOverview = () => {
                         <Tab eventKey="home" title="Documents">
                             <DocumentMarkup data={materials?.filter((item) => (item.materialType == 'doc'))}/>
                         </Tab>
-                        <Tab eventKey="profile" title="Exams">
+                        {/* <Tab eventKey="profile" title="Exams">
                             <ExamMarkupComponent
                                 data={materials?.filter((item) => (item.materialType == 'exam'))}></ExamMarkupComponent>
-                        </Tab>
+                        </Tab> */}
                         <Tab eventKey="longer-tab" title="Self Training">
                             <SelfTrainningMarkupComponent
                                 data={materials?.filter((item) => (item.materialType == 'self'))}/>

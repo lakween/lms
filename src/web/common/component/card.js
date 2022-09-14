@@ -27,7 +27,7 @@ function Card(props) {
           <h3 className="course-title mb-3">
             <a
               onClick={() => {
-                navigate("/cosdetails/" + props.id);
+                navigate( props.type== "class"? "/class-content/" + props.id :  "/cosdetails/" + props.id);
               }}
             >
               {props.name}
@@ -39,7 +39,7 @@ function Card(props) {
             <button
               className="btn btn-main-outline rounded-pill btn-sm"
               onClick={() => {
-                navigate("/cosdetails/" + props.id);
+                navigate( props.type== "class"? "/class-content/" + props.id :  "/cosdetails/" + props.id);
               }}
             >
               Buy Now <i className="fa fa-long-arrow-right"></i>
