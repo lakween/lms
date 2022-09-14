@@ -48,12 +48,19 @@ export const signOut = async () => {
     let res = await firebase.auth().signOut()
 }
 
-export const login = async (form, navigate) => {
+export const login = async (form, navigate,toast) => {
     try {
         let res = await firebase.auth().signInWithEmailAndPassword(form.username, form.password)
         const auth = getAuth();
         return res
     } catch (e) {
+        toast({
+            title: JSON.parse(JSON.stringify(e.code)),
+            // description: "We've created your account for you.",
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+        })
         return e
     }
 }
