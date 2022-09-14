@@ -14,7 +14,8 @@ export const getAllCourses = async (courseBystudent) => {
     const db = firebase.firestore();
     let array = []
     for (let item of courseBystudent) {
-        let a = await getDocFromCollection('courses', item?.CourseID)
+      let collection = item.courseType == "class" ? "classes" : "courses";
+        let a = await getDocFromCollection(collection, item?.CourseID)
         array.push({...a, courseID: item?.CourseID})
     }
     return array
