@@ -138,10 +138,12 @@ const AllUserListTable = ({setRefetch, refetch}) => {
 
                             </td>
                             <td>
-                                <Button onClick={() => onClickRejectHandler(item)} marginRight={1}
-                                        size={'xs'}> Deactivate </Button>
-                                <Button onClick={() => onClickDeleteHandler(item)} marginRight={1}
-                                        size={'xs'}> Delete </Button>
+                                { item.userType == 'admin'?'': <>
+                                    <Button onClick={() => onClickRejectHandler(item)} marginRight={1}
+                                            size={'xs'}> Deactivate </Button>
+                                    <Button onClick={() => onClickDeleteHandler(item)} marginRight={1}
+                                            size={'xs'}> Delete </Button>
+                                </> }
                             </td>
                         </tr>
                     ))
