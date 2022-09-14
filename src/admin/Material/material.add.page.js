@@ -20,7 +20,8 @@ import {updateProfilePhoto} from "../../user/student-profile/actions/student-pro
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
 import {updateProfile} from "firebase/auth";
 import {createDocOfCollection, getAllDocFromCollection} from "../../common/common-action/common-action";
-import {useToast} from "@chakra-ui/react";
+import {Spinner, useToast} from "@chakra-ui/react";
+import classnames from "classnames";
 
 const MaterialAdd = () => {
     let navigate = useNavigate();
@@ -28,6 +29,7 @@ const MaterialAdd = () => {
     const [file, setFile] = useState({})
     const [options, setOptions] = useState([])
     const toast = useToast()
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         getCoursesOrClass()
@@ -45,6 +47,7 @@ const MaterialAdd = () => {
     };
 
     const onSave = async () => {
+        setIsLoading(true)
         let fileUrl = ''
         if (file) {
             const storage = getStorage();
@@ -54,6 +57,7 @@ const MaterialAdd = () => {
         }
         await createDocOfCollection('materials', {...form, fileUrl: fileUrl})
         setFile({})
+        setIsLoading(false)
         toast({
             title: 'Material added',
             // description: "We've created your account for you.",
@@ -305,7 +309,19 @@ const MaterialAdd = () => {
                                 </Col>
                             </Row>
 
-                            <Button onClick={onSave} color="primary">Save</Button>
+                            <Button disabled={isLoading}
+                                onClick={!isLoading ? onSave :()=>{}} color="primary">
+                                { isLoading ? <Spinner
+                                    className={classnames({
+                                        "position-relative": true,
+                                        "button-style": true,
+                                        visible: true,
+                                        invisible: false
+                                    })}
+                                    size="sm"
+                                    // type="grow"
+                                />:'Save'}
+                                </Button>
                         </Col>
                     </Row>
                 </CardBody>
