@@ -116,9 +116,6 @@ const Login = () => {
                                         </Button>
                                     </InputRightElement>
                                 </InputGroup>
-                                <FormHelperText textAlign="right">
-                                    <Link>forgot password?</Link>
-                                </FormHelperText>
                             </FormControl>
                             <Button
                                 isLoading={isLoading}
