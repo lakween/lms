@@ -41,6 +41,8 @@ export let RouterConfig = () => {
         return studentRoute;
       case userType == "admin":
         return adminRoute;
+      case userType == "teacher":
+        return teacherRoutes;
       default:
         return [
           {
@@ -110,6 +112,37 @@ export let RouterConfig = () => {
       path: "payment",
       element: <Layout />,
       children: [{ index: true, element: <Payment /> }],
+    },
+    {
+      path: "material",
+      element: <Layout />,
+      children: [
+        { index: true, element: <Material /> },
+        { index: true, path: "add", element: <MaterialAdd /> },
+      ],
+    },
+    {
+      path: "inquiry",
+      element: <Layout />,
+      children: [{ index: true, element: <Inquiry /> }],
+    },
+  ];
+
+  let teacherRoutes = [
+    {
+      path: "home",
+      element: <Layout />,
+      children: [{ index: true, element: <AdminHomePage /> }],
+    },
+    {
+      path: "users",
+      element: <Layout />,
+      children: [{ index: true, path: "list", element: <ListUsersPage /> }],
+    },
+    {
+      path: "courses-manage",
+      element: <Layout />,
+      children: [{ index: true, path: "add", element: <AddNewCourse /> }],
     },
     {
       path: "material",
