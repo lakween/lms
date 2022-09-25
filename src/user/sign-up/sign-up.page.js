@@ -41,8 +41,9 @@ const SignUp = (getNames) => {
                 let result = await createDocOfCollectionWithId('accounts', res.uid, {
                     ...res,
                     ...form,
+                    fullName: form?.first_name + ' ' +form?.last_name,
                     userType: 'student',
-                    status: 'pending'
+                    status: 'approved'
                 })
             }
             navigate('/unknownProfile')

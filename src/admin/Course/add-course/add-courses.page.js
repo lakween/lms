@@ -31,6 +31,7 @@ import useFormController from "../../../hooks/useFormController";
 import { getAllCourses } from "../../../web/actions/course.actions";
 import { useDispatch } from "react-redux";
 import signSchema from "./schema/add-course-page.schema";
+import { doc, updateDoc, deleteField } from "firebase/firestore";
 
 const AddNewCourse = (getNames) => {
   let [errors, setErrors] = useState({});
@@ -65,6 +66,7 @@ const AddNewCourse = (getNames) => {
             duration: 5000,
             isClosable: true,
           });
+          window.location.reload();
         })
         .catch((error) => {
           toast({
@@ -100,6 +102,13 @@ const AddNewCourse = (getNames) => {
     overflow: "hidden",
     width: "200px",
     wordWrap: "break-word",
+  };
+
+  const handleClick = async (event, param) => {
+    alert("Course Delete Success");
+    const db = firebase.firestore();
+    await db.collection("courses").doc(param).delete();
+    window.location.reload();
   };
   return (
     <>
@@ -144,7 +153,7 @@ const AddNewCourse = (getNames) => {
                     <FormGroup>
                       <Label for="course_fee">Course Fee</Label>
                       <Input
-                      invalid={!form.course_fee}
+                        invalid={!form.course_fee}
                         id="course_fee"
                         name="course_fee"
                         type="text"
@@ -224,10 +233,8 @@ const AddNewCourse = (getNames) => {
                     <th># Trace ID</th>
                     <th>Title</th>
                     <th>Description</th>
-                    <th>Shot Desc</th>
-                    <th>Feature</th>
-                    <th>Details</th>
-                    <th>Banner</th>
+                    <th>Accsess Count</th>
+                    <th>Fee</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -237,13 +244,26 @@ const AddNewCourse = (getNames) => {
                       <th scope="row">{items.id}</th>
                       <td>{items.title}</td>
                       <td style={myStyle}>{items.description}</td>
-                      <td>{items.shotDesc}</td>
-                      <td>{items.feature}</td>
-                      <td>{items.feature}</td>
-                      <td style={myStyle}>{items.img}</td>
+                      <td>{items.accsessCount}</td>
+                      <td>{items.fee}</td>
                       <td>
-                        <Button color="primary" href="#" tag="a" size="sm">
-                          <i className="bi bi-eye-fill"></i>
+                        <Button
+                          color="danger"
+                          href="#"
+                          tag="a"
+                          size="sm"
+                          onClick={(event) => {
+                            if (
+                              window.confirm(
+                                "Are you sure you wish to delete this item?"
+                              )
+                            ) {
+                              handleClick(event, items.id);
+                            }
+                            this.onCancel(items.id);
+                          }}
+                        >
+                          <i class="bi bi-trash-fill"></i>
                         </Button>
                       </td>
                     </tr>

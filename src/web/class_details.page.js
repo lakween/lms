@@ -5,20 +5,19 @@ import { useParams } from "react-router-dom";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 
-import CourseContent from "./common/component/course.content.page";
+import ClassContent from "./common/component/class.content.page";
 import HeaderNav from "./common/header/navbar.page";
 import SmallCentered from "./common/footer/footer.page";
-import Class from "./class.page";
 
-export const singleCourseDetail = (param) => {
+export const singleClassDetail = (param) => {
   return async (dispatch) => {
-    const courseid = param.id;
+    const classID = param.id;
     const db = firebase.firestore();
     let array = [];
-    const courses = collection(db, "courses");
+    const classes = collection(db, "classes");
     const q = query(
-      courses,
-      where(firebase.firestore.FieldPath.documentId(), "==", courseid)
+      classes,
+      where(firebase.firestore.FieldPath.documentId(), "==", classID)
     );
     const querySnapshot = await getDocs(q);
     for (let doc of querySnapshot.docs) {
@@ -28,19 +27,19 @@ export const singleCourseDetail = (param) => {
   };
 };
 
-const ClassInfo = () => {
+const ClassDetails = () => {
   const param = useParams();
   const [input, setInput] = useState("");
-  const [courseDetails, setCourseDetails] = useState([]);
+  const [classDetails, setClassDetails] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getCourseDetails();
+    getClassDetails();
   }, []);
 
-  async function getCourseDetails() {
-    let res = await dispatch(singleCourseDetail(param));
-    setCourseDetails(res || []);
+  async function getClassDetails() {
+    let res = await dispatch(singleClassDetail(param));
+    setClassDetails(res || []);
   }
 
   const bg = useColorModeValue("white", "gray.800");
@@ -50,14 +49,14 @@ const ClassInfo = () => {
       <HeaderNav />
 
       <>
-        {courseDetails.map((item) => (
-          <CourseContent
+        {classDetails.map((item) => (
+          <ClassContent
             key="{item}"
             title={item.title}
-            fee={item.fee}
+            fee={item.class_fee}
             desc={item.description}
             cid={item.id}
-          ></CourseContent>
+          ></ClassContent>
         ))}
       </>
 
@@ -68,4 +67,4 @@ const ClassInfo = () => {
   );
 };
 
-export default ClassInfo;
+export default ClassDetails;

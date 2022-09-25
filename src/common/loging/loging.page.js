@@ -15,7 +15,7 @@ import {
     Link,
     Stack,
     useColorMode,
-    useColorModeValue, useDisclosure
+    useColorModeValue, useDisclosure, useToast
 } from "@chakra-ui/react";
 import {FaLock, FaUserAlt} from "react-icons/fa";
 import {FcGoogle} from "react-icons/fc";
@@ -31,6 +31,7 @@ const Login = () => {
     // const {colorMode, toggleColorMode} = useColorMode()
     const { isOpen, onOpen, onClose } = useDisclosure()
     let navigate = useNavigate();
+    const toast = useToast()
     let dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(false)
     const [modalState, setModalState] = useState({})
@@ -42,7 +43,7 @@ const Login = () => {
 
     const loginHandler = async () => {
         setIsLoading(true)
-        let res = await login(form, navigate)
+        let res = await login(form, navigate,toast)
         setIsLoading(false)
         let userDetails = await getUsrType(res.user.uid)
         if (res) {
@@ -115,9 +116,6 @@ const Login = () => {
                                         </Button>
                                     </InputRightElement>
                                 </InputGroup>
-                                <FormHelperText textAlign="right">
-                                    <Link>forgot password?</Link>
-                                </FormHelperText>
                             </FormControl>
                             <Button
                                 isLoading={isLoading}
@@ -130,13 +128,13 @@ const Login = () => {
                             >
                                 Login
                             </Button>
-                            <Button leftIcon={<FcGoogle/>} colorScheme="teal" size="sm" onClick={
-                                () => {
-                                    signUpwithGoogle()
-                                }
-                            }>
-                                Sign Up with Google
-                            </Button>
+                            {/*<Button leftIcon={<FcGoogle/>} colorScheme="teal" size="sm" onClick={*/}
+                            {/*    () => {*/}
+                            {/*        signUpwithGoogle()*/}
+                            {/*    }*/}
+                            {/*}>*/}
+                            {/*    Sign Up with Google*/}
+                            {/*</Button>*/}
                         </Stack>
                     </Box>
                 </Stack>

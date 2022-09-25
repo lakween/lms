@@ -30,13 +30,13 @@ const addPayData = async (stuID, courseId) => {
     payMethod: "online",
     isPaid: "true",
     is_accept: true,
-    courseType: "course",
+    courseType: "class",
   });
 
   return docRef.id;
 };
 
-const PaymentSuccess = () => {
+const ClassPaymentSuccess = () => {
   const [info, setInfo] = useState([]);
   const user = useUserLoginInfo();
   const params = useParams();
@@ -59,7 +59,7 @@ const PaymentSuccess = () => {
       addPayData(stuID, courseIDParam);   
     } else {
       console.log("already data have");
-      navigate("/courses");
+      navigate("/class");
     }
   }
 
@@ -121,4 +121,4 @@ const PaymentSuccess = () => {
   );
 };
 
-export default PaymentSuccess;
+export default ClassPaymentSuccess;

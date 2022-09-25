@@ -43,12 +43,12 @@ import firebase from "firebase/compat/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import useUserLoginInfo from "../../../hooks/useUserLoginInfo";
-import CheckoutForm from "./payment.checkout.compo";
+import ClassCheckOutForm from "./class.payment.checkout.compo";
 
 // firebase extentions
 import { getDocs, setDoc, doc, query, where, getDoc } from "firebase/firestore";
 
-export default function CourseContent(props) {
+export default function ClassContent(props) {
   let dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   let [valueChangeHandler, setValue, form, setForm] = useFormController();
@@ -190,7 +190,7 @@ export default function CourseContent(props) {
                   <div className="course-sidebar-details">
                     <div className="price-header">
                       <h2 className="course-price">RS : {props.fee}</h2>
-                      <span className="course-price-badge onsale">39% off</span>
+                      <span className="course-price-badge onsale">20% off</span>
                     </div>
                     <ul className="course-sidebar-list">
                       <li>
@@ -207,7 +207,7 @@ export default function CourseContent(props) {
                           <span>
                             <i className="fas fa-play-circle"></i>Lectures
                           </span>
-                          2
+                          10
                         </div>
                       </li>
                       <li>
@@ -244,9 +244,9 @@ export default function CourseContent(props) {
                           return (
                             <button
                               className="btn btn-primary rounded"
-                              onClick={navigate("/my-courses")}
+                              onClick={onOpen}
                             >
-                              <i class="fas fa-eye me-2"></i>
+                              <i className="fas fa-eye me-2"></i>
                               View Course
                             </button>
                           );
@@ -274,16 +274,16 @@ export default function CourseContent(props) {
                 </div>
               </div>
             </div>
-            <div class="col-xl-8 col-lg-7">
-              <div class="tutori-course-content">
-                <nav class="course-single-tabs learn-press-nav-tabs">
+            <div className="col-xl-8 col-lg-7">
+              <div className="tutori-course-content">
+                <nav className="course-single-tabs learn-press-nav-tabs">
                   <div
-                    class="nav nav-tabs course-nav"
+                    className="nav nav-tabs course-nav"
                     id="nav-tab"
                     role="tablist"
                   >
                     <a
-                      class="nav-item nav-link active"
+                      className="nav-item nav-link active"
                       id="nav-home-tab"
                       data-bs-toggle="tab"
                       href="#nav-home"
@@ -296,17 +296,17 @@ export default function CourseContent(props) {
                   </div>
                 </nav>
                 <div
-                  class="tab-content tutori-course-content"
+                  className="tab-content tutori-course-content"
                   id="nav-tabContent"
                 >
                   <div
-                    class="tab-pane fade show active"
+                    className="tab-pane fade show active"
                     id="nav-home"
                     role="tabpanel"
                     aria-labelledby="nav-home-tab"
                   >
-                    <div class="single-course-details ">
-                      <h4 class="course-title">Description</h4>
+                    <div className="single-course-details ">
+                      <h4 className="course-title">Description</h4>
                       <p>{props.desc}</p>
                     </div>
                   </div>
@@ -368,7 +368,7 @@ export default function CourseContent(props) {
                   </Stack>
                   <Box>
                     <div className="d-flex align-items-end justify-content-end">
-                      <CheckoutForm courseid={courseID} />
+                      <ClassCheckOutForm classID={courseID} />
                     </div>
                   </Box>
                 </TabPanel>

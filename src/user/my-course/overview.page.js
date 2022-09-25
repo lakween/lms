@@ -22,6 +22,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import ExamMarkupComponent from "./components/exam-markup.component";
 import SelfTrainningMarkupComponent from "./components/self-trainning-markup.component";
+import AnnouncementMarkupComponent from "./components/announcement-markup.component";
 import VideoMarkupComponent from "./components/video-markup.component";
 import useUserLoginInfo from "../../hooks/useUserLoginInfo";
 import {Skeleton, SkeletonCircle, SkeletonText} from '@chakra-ui/react'
@@ -64,6 +65,8 @@ const CourseOverview = () => {
     const toggle = tab => {
         if (currentActiveTab !== tab) setCurrentActiveTab(tab);
     }
+
+
 
     return (
         <>
@@ -120,13 +123,17 @@ const CourseOverview = () => {
                         <Tab eventKey="home" title="Documents">
                             <DocumentMarkup data={materials?.filter((item) => (item.materialType == 'doc'))}/>
                         </Tab>
-                        <Tab eventKey="profile" title="Exams">
+                        {/* <Tab eventKey="profile" title="Exams">
                             <ExamMarkupComponent
                                 data={materials?.filter((item) => (item.materialType == 'exam'))}></ExamMarkupComponent>
-                        </Tab>
+                        </Tab> */}
                         <Tab eventKey="longer-tab" title="Self Training">
                             <SelfTrainningMarkupComponent
                                 data={materials?.filter((item) => (item.materialType == 'self'))}/>
+                        </Tab>
+                        <Tab eventKey="announcement" title="Announcement">
+                            <AnnouncementMarkupComponent
+                                data={materials?.filter((item) => (item.materialType == 'announcement'))}/>
                         </Tab>
                         <Tab eventKey="contact" title="Videos">
                             <VideoMarkupComponent data={materials?.filter((item) => (item.materialType == 'video'))}/>

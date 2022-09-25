@@ -34,10 +34,25 @@ const AllUserListTable = ({setRefetch, refetch}) => {
         setData(result)
     }
 
-    const onClickDeleteHandler = async (item) => {
-       let result = await  deleteProfile(item.id)
+    const onClickRejectHandler = async (item) => {
+        const db = firebase.firestore();
+        const accountRef = await doc(db, 'accounts', item.id);
+        await updateDoc(accountRef, {status: "rejected"});
+        getAllUsers()
         toast({
-            title: 'Account created.',
+            title: 'Account Rejected.',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+        })
+    }
+
+    const onClickDeleteHandler = async (item) => {
+        const db = firebase.firestore();
+        await db.collection("accounts").doc(item.id).delete();
+        getAllUsers()
+        toast({
+            title: 'Account Deleted.',
             status: 'success',
             duration: 9000,
             isClosable: true,
@@ -123,10 +138,12 @@ const AllUserListTable = ({setRefetch, refetch}) => {
 
                             </td>
                             <td>
-                                <Button onClick={() => onClickDeleteHandler(item)} marginRight={1}
-                                        size={'xs'}> Deactivate </Button>
-                                <Button onClick={() => onClickDeleteHandler(item)} marginRight={1}
-                                        size={'xs'}> Delete </Button>
+                                { item.userType == 'admin'?'': <>
+                                    <Button onClick={() => onClickRejectHandler(item)} marginRight={1}
+                                            size={'xs'}> Deactivate </Button>
+                                    <Button onClick={() => onClickDeleteHandler(item)} marginRight={1}
+                                            size={'xs'}> Delete </Button>
+                                </> }
                             </td>
                         </tr>
                     ))

@@ -12,6 +12,7 @@ const ListUsersPage = () => {
     const [refetch, setRefetch] = useState(false)
 
     useEffect(() => {
+        console.log('wwww')
         getPendingUsers()
         getAllUsers()
     }, [refetch])

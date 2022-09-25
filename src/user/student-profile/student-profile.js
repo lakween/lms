@@ -92,13 +92,12 @@ const StudentProfile = () => {
                       onChange={onChangeProfilePicture}
                     />
                   </Flex>
-                  <DisplayLine
-                    modelPath={"displayName"}
-                    name={"displayName"}
-                    onUpdate={onUpdateAuthHandler}
-                    mt={5}
-                    value={model?.displayName ? model?.displayName : "Unknown"}
-                  />
+                    <DisplayLine
+                        modelPath={"fullName"}
+                        name={"fullName"}
+                        onUpdate={onUpdateHandler}
+                        value={model?.fullName ? model?.fullName : "Unknown"}
+                    />
                 </Box>
               </CardBody>
             </Card>
@@ -141,11 +140,11 @@ const StudentProfile = () => {
                   </div>
                   <div className="col-sm-9">
                     <DisplayLine
-                      modelPath={"mobileNumber"}
-                      name={"mobileNumber"}
+                      modelPath={"mobile_number"}
+                      name={"mobile_number"}
                       onUpdate={onUpdateHandler}
                       value={
-                        model?.mobileNumber ? model?.mobileNumber : "--------"
+                        model?.mobile_number ? model?.mobile_number : "--------"
                       }
                     />
                   </div>
@@ -157,10 +156,10 @@ const StudentProfile = () => {
                   </div>
                   <div className="col-sm-9">
                     <DisplayLine
-                      modelPath={"BirthDay"}
-                      name={"BirthDay"}
+                      modelPath={"birthday"}
+                      name={"birthday"}
                       onUpdate={onUpdateHandler}
-                      value={model?.BirthDay ? model?.BirthDay : "00-00-0000"}
+                      value={model?.birthday ? model?.birthday : "00-00-0000"}
                     />
                   </div>
                 </div>

@@ -20,7 +20,8 @@ import {updateProfilePhoto} from "../../user/student-profile/actions/student-pro
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
 import {updateProfile} from "firebase/auth";
 import {createDocOfCollection, getAllDocFromCollection} from "../../common/common-action/common-action";
-import {useToast} from "@chakra-ui/react";
+import {Spinner, useToast} from "@chakra-ui/react";
+import classnames from "classnames";
 
 const MaterialAdd = () => {
     let navigate = useNavigate();
@@ -28,10 +29,7 @@ const MaterialAdd = () => {
     const [file, setFile] = useState({})
     const [options, setOptions] = useState([])
     const toast = useToast()
-
-    useEffect(() => {
-        setForm({...form, materialType: 'video', moduleType: 'class'})
-    }, [])
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         getCoursesOrClass()
@@ -39,7 +37,6 @@ const MaterialAdd = () => {
 
     const getCoursesOrClass = async () => {
         let result = await getAllDocFromCollection(form['moduleType'] == 'Course' ? 'courses' : 'classes')
-        console.log(result,'result')
         setOptions(result)
     }
 
@@ -50,16 +47,17 @@ const MaterialAdd = () => {
     };
 
     const onSave = async () => {
+        setIsLoading(true)
         let fileUrl = ''
         if (file) {
             const storage = getStorage();
-            const fileRef = ref(storage, `materials/${file.name}`);
+            const fileRef = ref(storage, `materials/${Math.floor(Math.random() * 1000) + file.name }`);
             const snapshot = await uploadBytes(fileRef, file);
             fileUrl = await getDownloadURL(fileRef);
         }
         await createDocOfCollection('materials', {...form, fileUrl: fileUrl})
-        setForm({materialType: 'video', moduleType: 'class'})
         setFile({})
+        setIsLoading(false)
         toast({
             title: 'Material added',
             // description: "We've created your account for you.",
@@ -67,6 +65,7 @@ const MaterialAdd = () => {
             duration: 2000,
             isClosable: true,
         })
+        window.location.reload();
     }
 
     let materialVideoMarkup = (
@@ -129,7 +128,7 @@ const MaterialAdd = () => {
                     onChange={valueChangeHandler}
                     type="Text"
                 />
-            </FormGroup>         
+            </FormGroup>
         </div>
     )
 
@@ -184,12 +183,39 @@ const MaterialAdd = () => {
             </FormGroup>
         </div>
     )
+    let materialAnnouncementMarkup = (
+        <div>
+            <FormGroup>
+                <Label>Annousemnt Name</Label>
+                <Input
+                    id="annoName"
+                    name="annoName"
+                    placeholder="exam name"
+                    value={form['annoName']}
+                    onChange={valueChangeHandler}
+                    type="Text"
+                />
+            </FormGroup>
+            <FormGroup>
+                <Label>Zoom Link</Label>
+                <Input
+                    id="zoomlink"
+                    name="zoomlink"
+                    placeholder="exam name"
+                    value={form['zoomlink']}
+                    onChange={valueChangeHandler}
+                    type="Text"
+                />
+            </FormGroup>
+        </div>
+    )
 
     let markUps = {
         video: materialVideoMarkup,
         self: materialSelfMarkUp,
         doc: materialDocMarkUp,
-        exam: materialExam
+        exam: materialExam,
+        announcement: materialAnnouncementMarkup
     }
 
     return (
@@ -235,10 +261,12 @@ const MaterialAdd = () => {
                                             type="select"
                                             onChange={valueChangeHandler}
                                         >
+                                            <option value="video">Select</option>
                                             <option value="video">Video Lesson</option>
                                             <option value="self">Self Traning Session</option>
                                             <option value="doc">Document</option>
                                             <option value="exam">Exam</option>
+                                            <option value="announcement">Announcement</option>
                                         </Input>
 
                                     </FormGroup>
@@ -251,8 +279,9 @@ const MaterialAdd = () => {
                                         type="select"
                                         onChange={valueChangeHandler}
                                     >
-                                        <option value="Course">Course</option>
+                                        <option value="video">Select</option>
                                         <option value="Classes">Classes</option>
+                                        <option value="Course">Course</option>
 
                                     </Input>
                                 </Col>
@@ -268,7 +297,8 @@ const MaterialAdd = () => {
                                             name="module"
                                             type="select"
                                             onChange={valueChangeHandler}
-                                        >{
+                                        ><option value={''}>{'Select'}</option>
+                                            {
                                             options?.map((option) => (
                                                 <option value={option.id}>{option?.title}</option>
                                             ))
@@ -279,7 +309,19 @@ const MaterialAdd = () => {
                                 </Col>
                             </Row>
 
-                            <Button onClick={onSave} color="primary">Save</Button>
+                            <Button disabled={isLoading}
+                                onClick={!isLoading ? onSave :()=>{}} color="primary">
+                                { isLoading ? <Spinner
+                                    className={classnames({
+                                        "position-relative": true,
+                                        "button-style": true,
+                                        visible: true,
+                                        invisible: false
+                                    })}
+                                    size="sm"
+                                    // type="grow"
+                                />:'Save'}
+                                </Button>
                         </Col>
                     </Row>
                 </CardBody>

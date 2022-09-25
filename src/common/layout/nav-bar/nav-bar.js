@@ -72,8 +72,8 @@ const Header = () => {
       <Collapse navbar isOpen={isOpen}>
         <Nav className="me-auto" navbar>
           <NavItem>
-            <Link to="/starter" className="nav-link">
-              Dashbord
+            <Link to="/student-dashbord" className="nav-link">
+              Dashboard
             </Link>
           </NavItem>
         </Nav>
@@ -86,7 +86,7 @@ const Header = () => {
               width="30"
             ></img>
           </DropdownToggle>
-          <DropdownMenu>
+          <DropdownMenu style={{right: "10px"}}>
             <DropdownItem header>Info</DropdownItem>
             <DropdownItem>My Account</DropdownItem>
             <DropdownItem onClick={() => navigate("/profile")}>

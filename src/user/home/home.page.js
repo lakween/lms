@@ -16,9 +16,13 @@ import { filterDocsFromCollection } from "../../common/common-action/common-acti
 import { useDispatch } from "react-redux";
 import { getAllCourses, increaseCountofCourse } from "./actions/home.action";
 import bg1 from "../../assets/images/bg/bg1.jpg";
+import useUserLoginInfo from "../../hooks/useUserLoginInfo";
+import {useNavigate} from "react-router-dom";
 const HomePage = () => {
   const dispatch = useDispatch();
+  const navigator = useNavigate()
   const [courses, setCourses] = useState([]);
+  const [userType, status, user] = useUserLoginInfo();
 
   useEffect(() => {
     getCourses();
@@ -29,13 +33,17 @@ const HomePage = () => {
       "courseByStudent",
       "CourseID",
       [
-        ["StudentID", "==", "dedkzbpbWPd1aQfvaGDN3Zn3DgW2"],
+        ["StudentID", "==", user?.uid],
         ["isPaid", "==", "true"],
       ]
     );
     let courses = await getAllCourses(courseByStudent);
     setCourses(courses);
     console.log(courses);
+  }
+
+  const abc = () => {
+    console.log('ssdsdsd')
   }
 
   const onClickHandler = async (id) => {
@@ -50,8 +58,8 @@ const HomePage = () => {
           <TopCards
             bg="bg-light-success text-success"
             title="Profit"
-            subtitle="Yearly Earning"
-            earning="$21k"
+            subtitle="Total Videos"
+            earning="10"
             icon="bi bi-wallet"
           />
         </Col>
@@ -59,8 +67,8 @@ const HomePage = () => {
           <TopCards
             bg="bg-light-danger text-danger"
             title="Refunds"
-            subtitle="Refund given"
-            earning="$1k"
+            subtitle="Total Exams"
+            earning="15"
             icon="bi bi-coin"
           />
         </Col>
@@ -68,8 +76,8 @@ const HomePage = () => {
           <TopCards
             bg="bg-light-warning text-warning"
             title="New Project"
-            subtitle="Yearly Project"
-            earning="456"
+            subtitle="Announcement"
+            earning="1"
             icon="bi bi-basket3"
           />
         </Col>
@@ -77,8 +85,8 @@ const HomePage = () => {
           <TopCards
             bg="bg-light-info text-into"
             title="Sales"
-            subtitle="Weekly Sales"
-            earning="210"
+            subtitle="Self Traning"
+            earning="5"
             icon="bi bi-bag"
           />
         </Col>
@@ -100,6 +108,7 @@ const HomePage = () => {
                       subtitle={course?.id}
                       text={course?.description}
                       color="primary"
+                      btnAction= {course.courseID ? "/my-courses/overview/"+ course.courseID  : "overview/4oAjEp4AIpSXhAK1m8Vz"}
                     />
                   </Col>
                 );
@@ -118,7 +127,7 @@ const HomePage = () => {
           </CardSubtitle>
           <Row>
             {courses.map((course) => (
-              <Col sm="6" lg="6" xl="4" key={course}>
+              <Col sm="6" lg="6" xl="4" key={course}  >
                 <Blog
                   id={course?.id}
                   title={course?.title}
@@ -126,6 +135,7 @@ const HomePage = () => {
                   text={course?.description}
                   image={course?.img ? course.img : "https://media.istockphoto.com/photos/laptop-computer-with-books-pen-and-yellow-legal-pad-picture-id92259124?b=1&k=20&m=92259124&s=170667a&w=0&h=6_eHLehWQdrhysXf8c1d3Zae3uTrKLhjMTNpdk5RSj4="}
                   color="primary"
+                  btnAction={course.courseID ? "/my-courses/overview/"+ course.courseID  : "overview/4oAjEp4AIpSXhAK1m8Vz"}
                 />
               </Col>
             ))}

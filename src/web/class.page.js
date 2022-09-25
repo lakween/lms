@@ -65,13 +65,13 @@ const Class = () => {
                 <div key={item.id} className="col-xl-4 col-lg-4 col-md-6">
                   <Link
                     onClick={() => {
-                      navigate("/class/" + item.id);
+                      navigate("/class-content/" + item.id);
                     }}
                     _hover={"none"}
                   >
                     <Card
                       name={item.title}
-                      price={"150"}
+                      price={item.class_fee}
                       category={"LK & EN"}
                       level={"Beginner"}
                       id={item.id}

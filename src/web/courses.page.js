@@ -45,6 +45,7 @@ const Courses = () => {
     let res = await dispatch(getAllCourses());
     setCourse(res || []);
   }
+  
 
   const bg = useColorModeValue("white", "gray.800");
 
@@ -75,7 +76,7 @@ const Courses = () => {
                 <div key={item.id} className="col-xl-4 col-lg-4 col-md-6">
                   <Card
                     name={item.title}
-                    price={"200"}
+                    price={item.fee}
                     category={"English"}
                     level={"Beginner"}
                     id={item.id}
